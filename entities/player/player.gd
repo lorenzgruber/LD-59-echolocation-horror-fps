@@ -1,18 +1,16 @@
 class_name Player extends CharacterBody3D
 
-enum States {WALK, RUN, SNEAK}
-
 @onready var camera_pivot: Node3D = $CameraPivot
+@onready var camera: Camera3D = %Camera
 @onready var echo_ping_emitter: EchoSignalEmitterComponent = $%EchoPingEmitter
 @onready var echo_cooldown_timer: Timer = $%EchoPingCooldownTimer
 
 @onready var footstep_component: FootstepComponent = $FootstepComponent
 @onready var footstep_audio_player: AudioStreamPlayer3D = $%FootstepAudioPlayer
 
+enum States {WALK, RUN, SNEAK}
 var state: States = States.WALK
-var is_running: bool = false
-var is_sneaking: bool = false
-var is_prev_step_left: bool = false
+
 var base_step_volume: float = 0.0
 
 const WALK_SPEED: float = 3.0
@@ -34,16 +32,19 @@ static var instance: Player = null
 
 func _ready() -> void:
 	base_step_volume = footstep_audio_player.volume_linear
+	update_footstep_volume()
 	instance = self
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("LEFT", "RIGHT", "FORWARD", "BACKWARD")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	var speed: float;
-	if (state == States.WALK): speed = WALK_SPEED;
-	elif (state == States.RUN): speed = RUN_SPEED
-	else: speed = SNEAK_SPEED
+	var speed : = get_move_speed();
+	
+	var camera_target_height: float;
+	if (state == States.SNEAK): camera_target_height = -0.6
+	else: camera_target_height = 0
+	camera.position.y = lerp(camera.position.y, camera_target_height, delta * 5.0)
 	
 	if direction:
 		velocity.x = direction.x * speed
@@ -51,7 +52,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-		
 
 	move_and_slide()
 	
@@ -77,6 +77,11 @@ func _input(event: InputEvent) -> void:
 		camera_pivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		var camera_rotation_x: float = clamp(camera_pivot.rotation_degrees.x, -CAMERA_MAX_X_ANGLE, CAMERA_MAX_X_ANGLE)
 		camera_pivot.rotation_degrees.x = camera_rotation_x
+		
+func get_move_speed() -> float:
+	if (state == States.WALK): return WALK_SPEED;
+	elif (state == States.RUN): return RUN_SPEED
+	else: return SNEAK_SPEED
 		
 func update_footstep_volume() -> void:
 	var percent: float;

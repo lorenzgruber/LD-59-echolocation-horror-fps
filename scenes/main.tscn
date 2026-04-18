@@ -147,10 +147,10 @@ material = ExtResource("3_o6xl0")
 [node name="Keys" type="Node3D" parent="World/Level" unique_id=1485673073]
 
 [node name="Key" parent="World/Level/Keys" unique_id=549883607 instance=ExtResource("2_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2664452, 1.2439871, 2.9724717)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6541252, 1.2439871, -22.081469)
 
 [node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.6084706, 0, -0.7935764, 0, 1, 0, 0.7935764, 0, 0.6084706, -4.0898876, 1, 3.617978)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=382546998]
 environment = SubResource("Environment_h2yge")

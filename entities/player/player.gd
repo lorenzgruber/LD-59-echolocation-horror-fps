@@ -57,6 +57,7 @@ func _input(event: InputEvent) -> void:
 	
 	if (Input.is_action_just_pressed("ECHO") and echo_cooldown_timer.is_stopped()):
 		echo_ping_emitter.emit_echo()
+		echo_cooldown_timer.start()
 	
 	if (event is InputEventMouseMotion):
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
@@ -67,13 +68,15 @@ func _input(event: InputEvent) -> void:
 func on_footstep() -> void:
 	var volume := get_step_volume_db()
 	footstep_audio_player.set_volume_db(volume)
+	footstep_audio_player.play()
 	
-	var radius := get_step_echo_radius()
-	right_foot_echo_emitter.echo_ping_radius = radius
-	left_foot_echo_emitter.echo_ping_radius = radius
+# TODO: foodsteps echos disabled for now
+#	var radius := get_step_echo_radius()
+#	right_foot_echo_emitter.echo_ping_radius = radius
+#	left_foot_echo_emitter.echo_ping_radius = radius
 	
-	if (is_prev_step_left): right_foot_echo_emitter.emit_echo()
-	else: left_foot_echo_emitter.emit_echo()
+#	if (is_prev_step_left): right_foot_echo_emitter.emit_echo()
+#	else: left_foot_echo_emitter.emit_echo()
 		
 	is_prev_step_left = !is_prev_step_left
 	
@@ -84,9 +87,9 @@ func get_step_volume_db() -> float:
 	
 	return linear_to_db( base_step_volume * (percent / 100) )
 
-func get_step_echo_radius() -> float: 
-	var radius := WALK_STEP_ECHO_RADIUS
-	if is_running: radius = RUN_STEP_ECHO_RADIUS
-	elif is_sneaking: radius = SNEAK_STEP_ECHO_RADIUS
-	
-	return radius;
+#func get_step_echo_radius() -> float: 
+#	var radius := WALK_STEP_ECHO_RADIUS
+#	if is_running: radius = RUN_STEP_ECHO_RADIUS
+#	elif is_sneaking: radius = SNEAK_STEP_ECHO_RADIUS
+#	
+#	return radius;

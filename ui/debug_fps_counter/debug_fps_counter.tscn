@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b0of50hkulya3"]
+
+[ext_resource type="Script" uid="uid://co8pib0x7roni" path="res://ui/debug_fps_counter/debug_fps_counter.gd" id="1_l16v0"]
+
+[node name="DebugFpsCounter" type="Control" unique_id=356024401]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("1_l16v0")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=736667595]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = -16
+theme_override_constants/margin_top = 16
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=520564205]
+layout_mode = 2
+text = "60 fps"

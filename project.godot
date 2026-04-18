@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 buses/default_bus_layout="uid://bk83ypkxvrpr7"
 
+[autoload]
+
+EchoPingManager="*uid://cjywiv4q8m227"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2

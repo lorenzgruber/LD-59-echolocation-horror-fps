@@ -1,16 +1,11 @@
 shader_type spatial;
 
-// Access the global variables we defined
-//uniform vec3 echo_origin;
-//uniform float echo_radius : hint_range(0.0, 100.0, 0.1) = 0.0;
-//uniform float echo_visibility : hint_range(0.0, 1.0, 0.01) = 0.0;
-
 uniform vec3[10] echo_origin;
 uniform float[10] echo_radius;
 uniform float[10] echo_visibility;
+uniform vec3[10] echo_color;
 
 uniform float echo_ring_width : hint_range(0.0, 10.0, 0.1) = 1.0;
-uniform vec3 echo_ring_color : source_color;
 uniform float echo_ring_intensity : hint_range(0.0, 10.0, 0.01) = 1.0;
 
 uniform float echo_ring_afterglow_width : hint_range(0.0, 100.0, 0.1) = 10.0;
@@ -19,18 +14,17 @@ uniform float echo_ring_afterglow_intensity : hint_range(0.0, 10.0, 0.01) = 1.0;
 varying vec3 world_position;
 
 void vertex() {
-    // Get the world position of the vertex to calculate distance in the fragment tip
     world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 }
 
 void fragment() {
-	float echo_mask = 0.0;
 	
 	for (int i = 0; i < 10; i++) {
 		float visibility = echo_visibility[i];
 		if (visibility <= 0.0) break;
 		vec3 origin = echo_origin[i];
 		float radius = echo_radius[i];
+		vec3 color = echo_color[i];
 		
 		float dist = distance(origin, world_position);
 	
@@ -44,9 +38,8 @@ void fragment() {
 		
 		float echo_strength = (echo_ring_strength + afterglow_strength) * visibility;
 		
-		echo_mask = max(echo_mask, echo_strength);
+		EMISSION = max(EMISSION, color * echo_strength);
 	}
 	
 	ALBEDO = vec3(0);
-	EMISSION = vec3(echo_ring_color) * echo_mask;
 }

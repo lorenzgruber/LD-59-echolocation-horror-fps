@@ -27,6 +27,7 @@ const SNEAK_STEP_VOLUME_PERCENT: float = 10
 const SNEAK_STEP_ECHO_RADIUS: float = 0.0;
 
 const MOUSE_SENSITIVITY: float = 0.001;
+const CAMERA_MAX_X_ANGLE: float = 45;
 
 func _ready() -> void:
 	footstep_component.footstep.connect(on_footstep)
@@ -60,6 +61,8 @@ func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseMotion):
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		camera_pivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
+		var camera_rotation_x: float = clamp(camera_pivot.rotation_degrees.x, -CAMERA_MAX_X_ANGLE, CAMERA_MAX_X_ANGLE)
+		camera_pivot.rotation_degrees.x = camera_rotation_x
 		
 func on_footstep() -> void:
 	var volume := get_step_volume_db()

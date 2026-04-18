@@ -21,6 +21,7 @@ buses/default_bus_layout="uid://bk83ypkxvrpr7"
 [autoload]
 
 EchoPingManager="*uid://cjywiv4q8m227"
+Constants="*uid://dcmiqqvgn0btf"
 
 [debug]
 

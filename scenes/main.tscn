@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vvsj132trp3y"]
 
-[ext_resource type="Script" uid="uid://bf2gae4murdde" path="res://systems/pause_controller.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://bf2gae4murdde" path="res://core/systems/pause_controller.gd" id="1_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dlk68f604osgy" path="res://entities/key/key.tscn" id="2_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bwon163ox2jcm" path="res://entities/player/player.tscn" id="2_tefeu"]
 [ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echo_geometry/echolocation_geometry.material" id="3_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://bivjoyj3mcgod" path="res://assets/Screenshot 2026-04-18 at 10.55.40.png" id="4_tipki"]
@@ -8,31 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://dcogvon41no0w" path="res://assets/audio/ambience/478812__ianstargem__ambience-4.wav" id="6_tefeu"]
 [ext_resource type="AudioStream" uid="uid://bcvh1263codim" path="res://assets/audio/ambience/138408__robinhood76__03480-static-white-noise.wav" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b0of50hkulya3" path="res://ui/debug_fps_counter/debug_fps_counter.tscn" id="8_tipki"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
-emission_enabled = true
-emission = Color(0, 1, 0.4140625, 1)
-
-[sub_resource type="Curve" id="Curve_0xm2m"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.29395604, 1), 0.0, 0.0, 0, 0, Vector2(0.7032967, 1), -0.1249844, -0.1249844, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_h2yge"]
-curve = SubResource("Curve_0xm2m")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bvp3"]
-emission_shape = 1
-emission_sphere_radius = 4.0
-spread = 180.0
-initial_velocity_min = 0.049999997
-initial_velocity_max = 0.14999999
-gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_curve = SubResource("CurveTexture_h2yge")
-
-[sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
-material = ExtResource("3_o6xl0")
-size = Vector2(0.1, 0.1)
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 ambient_light_energy = 0.0
@@ -77,111 +53,101 @@ shader_parameter/alpha = 1.0
 
 [node name="Level" type="Node3D" parent="World" unique_id=1694937844]
 
-[node name="Floor" type="CSGBox3D" parent="World/Level" unique_id=287067110]
+[node name="Geometry" type="Node3D" parent="World/Level" unique_id=1939336648]
+
+[node name="Floor" type="CSGBox3D" parent="World/Level/Geometry" unique_id=287067110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = ExtResource("3_o6xl0")
 
-[node name="Ceiling" type="CSGBox3D" parent="World/Level" unique_id=1667066976]
+[node name="Ceiling" type="CSGBox3D" parent="World/Level/Geometry" unique_id=1667066976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall" type="CSGBox3D" parent="World/Level" unique_id=2142722812]
+[node name="Wall" type="CSGBox3D" parent="World/Level/Geometry" unique_id=2142722812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.190073, 2.5, 0.0109815)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall6" type="CSGBox3D" parent="World/Level" unique_id=907076024]
+[node name="Wall6" type="CSGBox3D" parent="World/Level/Geometry" unique_id=907076024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2063959, 2.5, -9.493382)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall7" type="CSGBox3D" parent="World/Level" unique_id=490658039]
+[node name="Wall7" type="CSGBox3D" parent="World/Level/Geometry" unique_id=490658039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3343737, 2.5, -9.477699)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall4" type="CSGBox3D" parent="World/Level" unique_id=1045270208]
+[node name="Wall4" type="CSGBox3D" parent="World/Level/Geometry" unique_id=1045270208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.331684, 2.5, 0.0109815)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall10" type="CSGBox3D" parent="World/Level" unique_id=222878938]
+[node name="Wall10" type="CSGBox3D" parent="World/Level/Geometry" unique_id=222878938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.331684, 2.5, -18.964897)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall11" type="CSGBox3D" parent="World/Level" unique_id=2064212931]
+[node name="Wall11" type="CSGBox3D" parent="World/Level/Geometry" unique_id=2064212931]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2267647, 2.5, -18.964897)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall2" type="CSGBox3D" parent="World/Level" unique_id=1770825667]
+[node name="Wall2" type="CSGBox3D" parent="World/Level/Geometry" unique_id=1770825667]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.2027054, 2.5, -4.7297454)
 use_collision = true
 size = Vector3(0.5, 5, 3.4658203)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall8" type="CSGBox3D" parent="World/Level" unique_id=337763068]
+[node name="Wall8" type="CSGBox3D" parent="World/Level/Geometry" unique_id=337763068]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.2027054, 2.5, -14.22542)
 use_collision = true
 size = Vector3(0.5, 5, 3.4658203)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall9" type="CSGBox3D" parent="World/Level" unique_id=977673613]
+[node name="Wall9" type="CSGBox3D" parent="World/Level/Geometry" unique_id=977673613]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.3435555, 2.5, -14.22542)
 use_collision = true
 size = Vector3(0.5, 5, 3.4658203)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall5" type="CSGBox3D" parent="World/Level" unique_id=2114518613]
+[node name="Wall5" type="CSGBox3D" parent="World/Level/Geometry" unique_id=2114518613]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.3374252, 2.5, -4.7140617)
 use_collision = true
 size = Vector3(0.5, 5, 3.4658203)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall3" type="CSGBox3D" parent="World/Level" unique_id=1076937895]
+[node name="Wall3" type="CSGBox3D" parent="World/Level/Geometry" unique_id=1076937895]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.066705704, 2.5, 4.743152)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="Wall12" type="CSGBox3D" parent="World/Level" unique_id=1586759318]
+[node name="Wall12" type="CSGBox3D" parent="World/Level/Geometry" unique_id=1586759318]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.066705704, 2.5, -23.705996)
 use_collision = true
 size = Vector3(0.5, 5, 10)
 material = ExtResource("3_o6xl0")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="World/Level" unique_id=70328192]
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Level/Geometry" unique_id=70328192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8911781, 0.57205343, -1.7361431)
 use_collision = true
 material = ExtResource("3_o6xl0")
 
-[node name="GlowingBall" type="CSGSphere3D" parent="World/Level" unique_id=1885639807]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9072533, 1.267872, -1.7608173)
-radius = 0.2
-radial_segments = 20
-rings = 20
-material = SubResource("StandardMaterial3D_0xm2m")
+[node name="Keys" type="Node3D" parent="World/Level" unique_id=1485673073]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/Level/GlowingBall" unique_id=994326882]
-light_color = Color(0, 1, 0.3671875, 1)
-light_energy = 8.962
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="World/Level" unique_id=597231690]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026386023, 1.6261683, -2.7723985)
-lifetime = 4.0
-process_material = SubResource("ParticleProcessMaterial_1bvp3")
-draw_pass_1 = SubResource("QuadMesh_lquwl")
+[node name="Key" parent="World/Level/Keys" unique_id=549883607 instance=ExtResource("2_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2664452, 1.2439871, 2.9724717)
 
 [node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -199,7 +165,6 @@ autoplay = true
 [node name="Noise" type="AudioStreamPlayer" parent="Sound" unique_id=1007438899]
 stream = ExtResource("7_o6xl0")
 volume_db = -15.0
-autoplay = true
 bus = &"Static Noise"
 
 [node name="PauseController" type="Node" parent="." unique_id=321736088]

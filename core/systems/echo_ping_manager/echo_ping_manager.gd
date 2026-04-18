@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 	var echo_origin : Array[Vector3] = [];
 	var echo_radius : Array[float] = [];
 	var echo_visibility : Array[float] = [];
+	var echo_color : Array[Color] = [];
 	
 	var dead_ping_indices : Array[int] = [];
 	
@@ -24,6 +25,7 @@ func _process(delta: float) -> void:
 		echo_origin.append(echo_ping.origin);
 		echo_radius.append(echo_ping.radius);
 		echo_visibility.append(echo_ping.visibility);
+		echo_color.append(echo_ping.color);
 		
 		if (echo_ping.emitting == false):
 			dead_ping_indices.append(i);
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 	echo_geometry_material.set_shader_parameter("echo_origin", echo_origin);
 	echo_geometry_material.set_shader_parameter("echo_radius", echo_radius);
 	echo_geometry_material.set_shader_parameter("echo_visibility", echo_visibility);
+	echo_geometry_material.set_shader_parameter("echo_color", echo_color);
 
 func emit_echo(echo_ping: EchoPing) -> void:
 	if (echo_pings.size() >= MAX_ECHO_PINGS):		

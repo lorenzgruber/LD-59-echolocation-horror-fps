@@ -4,6 +4,7 @@ var origin: Vector3
 var radius: float
 var max_radius: float
 var visibility: float
+var color: Color
 
 var tree: SceneTree;
 
@@ -13,13 +14,17 @@ var emitting : bool;
 
 const ECHO_SPEED := 10.0;
 
-func _init(_origin: Vector3, _max_radius: float, _visibility: float, _tree: SceneTree) -> void:
+func _init(_origin: Vector3, _max_radius: float, _visibility: float, _color: Color, _tree: SceneTree) -> void:
 	self.origin = _origin;
 	self.radius = 0.0;
 	self.max_radius = _max_radius;
 	self.visibility = _visibility;
-	self.max_radius_reached = false;
+	self.color = _color;
+	
 	self.tree = _tree;
+	
+	self.max_radius_reached = false;
+	self.fading_out = false;
 	self.emitting = true;
 
 func process(delta: float) -> void:

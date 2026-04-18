@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://dlk68f604osgy"]
+
+[ext_resource type="Script" uid="uid://co7muj7r25e8p" path="res://entities/key/key.gd" id="1_yymwm"]
+[ext_resource type="PackedScene" uid="uid://b4vd0bjvg7e6n" path="res://components/echo_signal_emitter/echo_signal_emitter_component.tscn" id="2_3u2ct"]
+[ext_resource type="AudioStream" uid="uid://cbu8a4pd20b0g" path="res://assets/audio/key/key_echo_ping.mp3" id="3_3u2ct"]
+[ext_resource type="AudioStream" uid="uid://brwnkiblg3vsb" path="res://assets/audio/key/key_ambient_hum_loop.mp3" id="4_3u2ct"]
+[ext_resource type="Texture2D" uid="uid://ed58wbys7f7e" path="res://assets/textures/flare.png" id="5_k62fj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t15lu"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0.296875, 1)
+
+[sub_resource type="Curve" id="Curve_t15lu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.32417583, 1), 0.0, 0.0, 0, 0, Vector2(0.6895605, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vusxe"]
+curve = SubResource("Curve_t15lu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ktc0"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.14999999
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_vusxe")
+color = Color(0, 1, 0.29803923, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5cxd"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_k62fj")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_i5kk3"]
+material = SubResource("StandardMaterial3D_y5cxd")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_k62fj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sphere:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sphere/AmbientHumAudioPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D/OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:material:emission")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0.296875, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sphere/GPUParticles3D:process_material:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0.29803923, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sphere/SphereVibrateScaleAnchor:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vusxe"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+step = 0.025
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sphere/EchoPingEmitter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_echo"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sphere:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999905, 0.19999981, 6, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(1.1, 1.1, 1.1), Vector3(0.9, 0.9, 0.9), Vector3(1.2, 1.2, 1.2), Vector3(0.5, 0.5, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sphere/AmbientHumAudioPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D/OmniLight3D:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8499999, 6.025, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:material:emission")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.85, 6.025, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 1, 0.296875, 1), Color(0, 1, 0.296875, 1), Color(0, 0, 0, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sphere/GPUParticles3D:process_material:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.85, 6.025, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0.29748532, 0), Color(0, 1, 0.29803923, 1), Color(0, 1, 0.29803923, 1), Color(0, 1, 0.29748532, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sphere/SphereVibrateScaleAnchor:scale")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.050000012, 0.100000024, 0.15000004, 0.19999999, 0.25000006, 0.3, 0.34999996, 0.40000004, 0.4500001, 0.50000006, 0.55, 0.6000001, 0.65000015, 0.7000001, 0.75000006, 0.8, 0.8500002, 0.90000015, 0.9500001, 1, 1.0500002, 1.1000001, 1.1500001, 1.2, 1.25, 1.3000001, 1.3500001, 1.4000001, 1.45, 1.5, 1.55, 1.6000001, 1.6500001, 1.7, 1.75, 1.8000002, 1.8500001, 1.9000001, 1.95, 2, 2.0500002, 2.1000001, 2.15, 2.2, 2.2500002, 2.3000002, 2.3500001, 2.4, 2.45, 2.5, 2.5500002, 2.6000001, 2.65, 2.7, 2.75, 2.8000002, 2.8500001, 2.9, 2.95, 3.0000002, 3.0500002, 3.1000001, 3.15, 3.2, 3.2500002, 3.3000002, 3.3500001, 3.4, 3.4500003, 3.5000002, 3.5500002, 3.6000001, 3.65, 3.7000003, 3.7500002, 3.8000002, 3.8500001, 3.9, 3.95, 4, 4.05, 4.1000004, 4.15, 4.2000003, 4.2500005, 4.3, 4.3500004, 4.4, 4.4500003, 4.5000005, 4.55, 4.6000004, 4.6500006, 4.7000003, 4.75, 4.8, 4.8500004, 4.9, 4.9500003, 5, 5.05, 5.1000004, 5.15, 5.2000003, 5.2500005, 5.3, 5.3500004, 5.4, 5.4500003, 5.5000005, 5.55, 5.6000004, 5.6500006, 5.7000003, 5.7500005, 5.8, 5.8500004, 5.9000006, 5.9500003, 6, 6.05, 6.1, 6.15, 6.2, 6.25, 6.3, 6.35, 6.4, 6.4500003, 6.5, 6.55, 6.6, 6.65, 6.7000003, 6.75, 6.8, 6.8500004, 6.9, 6.9500003, 7, 7.05, 7.1000004, 7.15, 7.2000003, 7.2500005, 7.3, 7.3500004, 7.4, 7.4500003, 7.5000005, 7.55, 7.6000004, 7.6500006, 7.7000003, 7.7500005, 7.8, 7.8500004, 7.9000006, 7.9500003, 8, 8.05, 8.1, 8.150001, 8.200001, 8.25, 8.3, 8.35, 8.400001, 8.450001, 8.500001, 8.55, 8.6, 8.650001, 8.700001, 8.750001, 8.8, 8.85, 8.900001, 8.950001, 9.000001, 9.050001, 9.1, 9.150001, 9.200001, 9.250001, 9.300001, 9.35, 9.400001, 9.450001, 9.500001, 9.550001, 9.6, 9.650001, 9.700001, 9.75, 9.8, 9.85, 9.900001, 9.950001, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ktc0"]
+_data = {
+&"RESET": SubResource("Animation_k62fj"),
+&"idle": SubResource("Animation_vusxe")
+}
+
+[node name="Key" type="Node3D" unique_id=549883607]
+script = ExtResource("1_yymwm")
+
+[node name="Sphere" type="Node3D" parent="." unique_id=1663429386]
+
+[node name="SphereVibrateScaleAnchor" type="Node3D" parent="Sphere" unique_id=2023084586]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Sphere/SphereVibrateScaleAnchor" unique_id=2012094317]
+radius = 0.2
+rings = 12
+material = SubResource("StandardMaterial3D_t15lu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sphere/SphereVibrateScaleAnchor/CSGSphere3D" unique_id=1732437677]
+light_color = Color(0, 1, 0.3671875, 1)
+
+[node name="EchoPingEmitter" parent="Sphere" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_3u2ct")]
+unique_name_in_owner = true
+echo_ping_audio_player = NodePath("../EchoPingAudioPlayer")
+echo_ping_radius = 15.0
+echo_ping_visibility = 0.5
+echo_ping_color = 1
+
+[node name="EchoPingAudioPlayer" type="AudioStreamPlayer3D" parent="Sphere" unique_id=517826852]
+stream = ExtResource("3_3u2ct")
+max_distance = 30.0
+
+[node name="AmbientHumAudioPlayer" type="AudioStreamPlayer3D" parent="Sphere" unique_id=2131332101]
+stream = ExtResource("4_3u2ct")
+max_distance = 20.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Sphere" unique_id=1607393183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1676014, 0)
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_8ktc0")
+draw_pass_1 = SubResource("QuadMesh_i5kk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1980441137]
+libraries/ = SubResource("AnimationLibrary_8ktc0")
+autoplay = &"idle"

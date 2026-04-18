@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var echo_ping_emitter: EchoSignalEmitterComponent = $%EchoPingEmitter
@@ -29,10 +29,12 @@ const SNEAK_STEP_ECHO_RADIUS: float = 0.0;
 const MOUSE_SENSITIVITY: float = 0.001;
 const CAMERA_MAX_X_ANGLE: float = 45;
 
+static var instance: Player = null
+
 func _ready() -> void:
 	footstep_component.footstep.connect(on_footstep)
 	base_step_volume = footstep_audio_player.volume_linear
-	print(base_step_volume)
+	instance = self
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("LEFT", "RIGHT", "FORWARD", "BACKWARD")
@@ -48,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
+		
 
 	move_and_slide()
 	

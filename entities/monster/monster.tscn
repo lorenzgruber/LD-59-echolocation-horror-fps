@@ -1,39 +1,46 @@
 [gd_scene format=3 uid="uid://csmo1yyvhnm5q"]
 
 [ext_resource type="PackedScene" uid="uid://mbd5lb1p30h" path="res://entities/monster/monster_inherited.tscn" id="1_4k2ca"]
+[ext_resource type="Script" uid="uid://dodn1fopfrjg5" path="res://entities/monster/monster.gd" id="1_un211"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un211"]
-radius = 1.0
+radius = 0.9
 height = 3.5
 
 [node name="Monster" type="CharacterBody3D" unique_id=611558888]
+script = ExtResource("1_un211")
 
 [node name="MonsterInherited" parent="." unique_id=958800708 instance=ExtResource("1_4k2ca")]
 
-[node name="Skeleton3D" parent="MonsterInherited/Armature" parent_id_path=PackedInt32Array(958800708, 876314264) index="0" unique_id=1536676173]
-bones/0/position = Vector3(0.21013147, -0.18318196, 0.15066339)
-bones/2/rotation = Quaternion(0.23209104, -3.478697e-07, -4.7034783e-07, 0.97269416)
-bones/4/rotation = Quaternion(-0.6061932, -0.084944665, -0.0668402, 0.7879383)
-bones/6/rotation = Quaternion(0.21014577, 0.04286384, -0.22205251, 0.9511541)
-bones/7/rotation = Quaternion(-0.038002893, 0.05475737, 0.8783859, 0.47328192)
-bones/10/rotation = Quaternion(-0.28215322, 0.14461866, -0.24654746, 0.9157999)
-bones/11/rotation = Quaternion(-0.02105468, -0.10037372, -0.4866512, 0.8675554)
-bones/13/rotation = Quaternion(0.8596383, -0.0653021, 0.5016533, -0.07142657)
-bones/14/rotation = Quaternion(-0.2211725, -0.006772645, -0.62899417, 0.74525386)
-bones/15/rotation = Quaternion(0.0036542006, -0.05842845, -0.61192054, 0.78874975)
-bones/16/rotation = Quaternion(0.8122096, -0.3707478, -0.4303414, 0.13292095)
-bones/17/rotation = Quaternion(-0.24386491, 0.006160195, 0.6935289, 0.6778714)
-bones/18/rotation = Quaternion(0.08386143, 0.020424379, 0.051487457, 0.9949368)
-bones/20/position = Vector3(0.6697957, -1.0422357, 1.6984383)
-bones/22/position = Vector3(0.65151, -1.5341339, -0.92130995)
-bones/24/position = Vector3(-0.50908214, -1.0226965, 2.7737918)
-bones/26/position = Vector3(-0.6703316, -1.5698638, 0.6786529)
-
-[node name="AnimationPlayer" parent="MonsterInherited" index="2" unique_id=1613752299]
-autoplay = &"Walk"
+[node name="Skeleton3D" parent="MonsterInherited/Armature" parent_id_path=PackedInt32Array(958800708, 1629355154) index="0" unique_id=501481108]
+bones/0/position = Vector3(1.4030641e-14, 0.08295453, 0.03459593)
+bones/2/rotation = Quaternion(0.07325871, -6.4173463e-07, -1.7726414e-07, 0.99731296)
+bones/3/rotation = Quaternion(-0.13403954, 7.191308e-07, 3.133155e-07, 0.990976)
+bones/4/rotation = Quaternion(-0.46411106, 1.832122e-07, 6.520617e-07, 0.885777)
+bones/6/rotation = Quaternion(0.17826799, -0.0050050756, -0.06483771, 0.9818308)
+bones/7/rotation = Quaternion(-0.024443075, 0.09478935, 0.5649686, 0.81928515)
+bones/8/rotation = Quaternion(0.2021661, -0.008761607, -0.24428852, 0.94835395)
+bones/10/rotation = Quaternion(0.13741878, -0.047573987, 0.020906037, 0.989149)
+bones/11/rotation = Quaternion(-0.022013264, -0.09890951, -0.5088064, 0.85489666)
+bones/13/rotation = Quaternion(0.8597143, 0.10232077, 0.49998417, 0.020915337)
+bones/14/rotation = Quaternion(-0.23972242, -0.0062805447, -0.6817464, 0.6911697)
+bones/15/rotation = Quaternion(0.056654666, -0.01718605, -0.31351125, 0.9477371)
+bones/16/rotation = Quaternion(0.8597141, -0.102320634, -0.49998483, 0.020915201)
+bones/17/rotation = Quaternion(-0.23972313, 0.0062802304, 0.6817463, 0.6911696)
+bones/18/rotation = Quaternion(0.056654733, 0.017185502, 0.31351152, 0.947737)
+bones/20/position = Vector3(0.66979575, -1.0403167, 1.9822674)
+bones/22/position = Vector3(0.65427464, -1.4500268, -0.34036785)
+bones/24/position = Vector3(-0.6980431, -1.0851578, 2.002788)
+bones/26/position = Vector3(-0.65427464, -1.4500268, -0.34036785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=14357389]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.00354, 5.9604645e-08)
 shape = SubResource("CapsuleShape3D_un211")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1138198179]
+
+[node name="NavigationUpdateTimer" type="Timer" parent="." unique_id=1919852413]
+wait_time = 0.5
+autostart = true
 
 [editable path="MonsterInherited"]

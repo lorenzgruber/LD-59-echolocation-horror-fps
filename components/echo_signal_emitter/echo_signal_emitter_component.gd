@@ -5,7 +5,7 @@ extends Node3D
 
 func _input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("ECHO") and echo_cooldown_timer.is_stopped()):
-		var echo_ping := EchoPing.new(global_position, 50.0);
+		var echo_ping := EchoPing.new(global_position, 20.0, get_tree());
 		EchoPingManager.emit_echo(echo_ping);
 		echo_ping_audio_player.play();
 		echo_cooldown_timer.start();

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctn4bhb63xqnk" path="res://entities/player/player.gd" id="1_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://b4vd0bjvg7e6n" path="res://components/echo_signal_emitter/echo_signal_emitter_component.tscn" id="2_hqtel"]
-[ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echo_geometry/echolocation_geometry.material" id="3_sweqy"]
+[ext_resource type="AudioStream" uid="uid://d0yoamsofwhb2" path="res://assets/audio/sonar_ping.wav" id="3_a1qjk"]
 [ext_resource type="AudioStream" uid="uid://cfsuy2xmarv1w" path="res://assets/audio/player_footstep-01.mp3" id="4_wvtmh"]
 [ext_resource type="AudioStream" uid="uid://c3nks687nbwf" path="res://assets/audio/player_footstep-02.mp3" id="5_7thud"]
 [ext_resource type="AudioStream" uid="uid://cyawuf0hx0kb5" path="res://assets/audio/player_footstep-03.mp3" id="6_a1qjk"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://m6wmk8lsoiab" path="res://assets/audio/player_footstep-07.mp3" id="10_j3ovn"]
 [ext_resource type="PackedScene" uid="uid://bfwh06guao7vo" path="res://components/footstep/footstep_component.tscn" id="11_7thud"]
 [ext_resource type="AudioStream" uid="uid://c5aqnhq7mhfbb" path="res://assets/audio/player_footstep-08.mp3" id="11_afbqv"]
-[ext_resource type="AudioStream" uid="uid://bfhvte21h1j5p" path="res://assets/audio/677069__xkeril__footsteps-stone-sneaker.wav" id="12_j3ovn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
 
@@ -39,17 +38,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59513026, 0)
 [node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=1185320935]
 unique_name_in_owner = true
 
-[node name="EchoSignalEmitterComponent" parent="CameraPivot" unique_id=545550957 instance=ExtResource("2_hqtel")]
-echo_geometry_material = ExtResource("3_sweqy")
+[node name="EchoPingEmitter" parent="CameraPivot" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
+unique_name_in_owner = true
+echo_ping_audio_player = NodePath("../EchoPingAudioPlayer")
+echo_ping_radius = 20.0
+echo_ping_visibility = 1.0
 
-[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=619262945]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7705085, 0)
+[node name="EchoPingAudioPlayer" type="AudioStreamPlayer3D" parent="CameraPivot" unique_id=1506313955]
+stream = ExtResource("3_a1qjk")
+
+[node name="EchoPingCooldownTimer" type="Timer" parent="CameraPivot" unique_id=237127233]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Footsteps" type="Node3D" parent="." unique_id=380062992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.882315, -0.38049865)
+
+[node name="FootstepComponent" parent="Footsteps" unique_id=1604980274 instance=ExtResource("11_7thud")]
+unique_name_in_owner = true
+footstep_distance = 2.0
+
+[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=619262945]
+unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3wlsy")
 bus = &"Footsteps"
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=217785608]
-stream = ExtResource("12_j3ovn")
-bus = &"Footsteps"
+[node name="LeftFootOrigin" type="Marker3D" parent="Footsteps" unique_id=209213287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, 0)
 
-[node name="FootstepComponent" parent="." unique_id=1604980274 instance=ExtResource("11_7thud")]
-footstep_distance = 2.0
+[node name="LeftFootEchoEmitter" parent="Footsteps/LeftFootOrigin" unique_id=1664261078 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
+unique_name_in_owner = true
+echo_ping_audio_player = NodePath("../../FootstepAudioPlayer")
+echo_ping_radius = 3.0
+echo_ping_visibility = 0.1
+
+[node name="RightFootOrigin" type="Marker3D" parent="Footsteps" unique_id=1631124727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
+
+[node name="RightFootEchoEmitter" parent="Footsteps/RightFootOrigin" unique_id=449185874 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
+unique_name_in_owner = true
+echo_ping_audio_player = NodePath("../../FootstepAudioPlayer")
+echo_ping_radius = 3.0
+echo_ping_visibility = 0.1

@@ -1,11 +1,10 @@
-extends Node3D
+class_name EchoSignalEmitterComponent extends Node3D 
 
-@onready var echo_ping_audio_player: AudioStreamPlayer3D = $EchoPingAudioPlayer
-@onready var echo_cooldown_timer: Timer = $EchoCooldownTimer
+@export var echo_ping_audio_player: AudioStreamPlayer3D
+@export var echo_ping_radius: float
+@export var echo_ping_visibility: float
 
-func _input(event: InputEvent) -> void:
-	if (Input.is_action_just_pressed("ECHO") and echo_cooldown_timer.is_stopped()):
-		var echo_ping := EchoPing.new(global_position, 20.0, get_tree());
-		EchoPingManager.emit_echo(echo_ping);
-		echo_ping_audio_player.play();
-		echo_cooldown_timer.start();
+func emit_echo() -> void:
+	var echo_ping := EchoPing.new(global_position, echo_ping_radius, echo_ping_visibility, get_tree());
+	EchoPingManager.emit_echo(echo_ping);
+	echo_ping_audio_player.play();

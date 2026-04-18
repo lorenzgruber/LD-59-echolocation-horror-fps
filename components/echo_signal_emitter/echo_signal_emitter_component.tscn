@@ -1,13 +1,7 @@
 [gd_scene format=3 uid="uid://b4vd0bjvg7e6n"]
 
 [ext_resource type="Script" uid="uid://ptscm8q8ila8" path="res://components/echo_signal_emitter/echo_signal_emitter_component.gd" id="1_tun3d"]
-[ext_resource type="AudioStream" uid="uid://d0yoamsofwhb2" path="res://assets/audio/sonar_ping.wav" id="2_qwd4q"]
 
 [node name="EchoSignalEmitterComponent" type="Node3D" unique_id=545550957]
 script = ExtResource("1_tun3d")
-
-[node name="EchoPingAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=317197942]
-stream = ExtResource("2_qwd4q")
-
-[node name="EchoCooldownTimer" type="Timer" parent="." unique_id=465443162]
-one_shot = true
+echo_ping_radius = null

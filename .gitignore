@@ -3,9 +3,7 @@
 /android/
 
 # Exported game binary
-*.pck
-*.exe
-*.dll
+export/
 
 # OS-specific ignores
 .DS_Store

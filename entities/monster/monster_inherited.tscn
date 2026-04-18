@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://mbd5lb1p30h"]
+
+[ext_resource type="PackedScene" uid="uid://mdrrok3x6o5s" path="res://assets/models/monster/Sewerfiend.glb" id="1_4k2ca"]
+[ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echo_geometry/echolocation_geometry.material" id="2_un211"]
+
+[node name="Monster" unique_id=958800708 instance=ExtResource("1_4k2ca")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(876314264) index="0" unique_id=1536676173]
+bones/0/position = Vector3(0.21013147, -0.18318196, 0.15066339)
+bones/0/rotation = Quaternion(0.57972276, -3.8853386e-07, -2.7643364e-07, 0.81481385)
+bones/1/rotation = Quaternion(0.046137545, -3.5724685e-07, -6.050032e-08, 0.9989351)
+bones/2/rotation = Quaternion(0.23209104, -3.478697e-07, -4.7034783e-07, 0.97269416)
+bones/3/rotation = Quaternion(-0.13403927, 5.9067537e-07, 2.3968204e-07, 0.99097604)
+bones/4/rotation = Quaternion(-0.6061932, -0.084944665, -0.0668402, 0.7879383)
+bones/6/rotation = Quaternion(0.21014577, 0.04286384, -0.22205251, 0.9511541)
+bones/7/rotation = Quaternion(-0.038002893, 0.05475737, 0.8783859, 0.47328192)
+bones/8/rotation = Quaternion(0.20216624, -0.008761528, -0.24428889, 0.9483538)
+bones/10/rotation = Quaternion(-0.28215322, 0.14461866, -0.24654746, 0.9157999)
+bones/11/rotation = Quaternion(-0.02105468, -0.10037372, -0.4866512, 0.8675554)
+bones/13/rotation = Quaternion(0.8596383, -0.0653021, 0.5016533, -0.07142657)
+bones/14/rotation = Quaternion(-0.2211725, -0.006772645, -0.62899417, 0.74525386)
+bones/15/rotation = Quaternion(0.0036542006, -0.05842845, -0.61192054, 0.78874975)
+bones/16/rotation = Quaternion(0.8122096, -0.3707478, -0.4303414, 0.13292095)
+bones/17/rotation = Quaternion(-0.24386491, 0.006160195, 0.6935289, 0.6778714)
+bones/18/rotation = Quaternion(0.08386143, 0.020424379, 0.051487457, 0.9949368)
+bones/19/position = Vector3(0.96304584, -0.48391435, 1.3039463)
+bones/19/rotation = Quaternion(0.6932829, 0.5916897, -0.3297733, -0.24599119)
+bones/20/position = Vector3(0.6697957, -1.0422357, 1.6984383)
+bones/20/rotation = Quaternion(0.6806005, 0.49961725, -0.19935897, -0.49741486)
+bones/21/position = Vector3(0.48243648, -0.4584227, -0.9389269)
+bones/22/position = Vector3(0.65151, -1.5341339, -0.92130995)
+bones/23/rotation = Quaternion(0.6932829, -0.5916897, 0.3297733, -0.24599119)
+bones/24/position = Vector3(-0.50908214, -1.0226965, 2.7737918)
+bones/24/rotation = Quaternion(0.6806005, -0.49961725, 0.19935897, -0.49741486)
+bones/26/position = Vector3(-0.6703316, -1.5698638, 0.6786529)
+
+[node name="weirdo_low" parent="Armature/Skeleton3D" index="0" unique_id=1492410656]
+surface_material_override/0 = ExtResource("2_un211")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1613752299]
+autoplay = &"Walk"

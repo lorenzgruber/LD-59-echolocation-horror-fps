@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dlk68f604osgy" path="res://entities/key/key.tscn" id="2_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bwon163ox2jcm" path="res://entities/player/player.tscn" id="2_tefeu"]
 [ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echo_geometry/echolocation_geometry.material" id="3_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://bivjoyj3mcgod" path="res://assets/Screenshot 2026-04-18 at 10.55.40.png" id="4_tipki"]
+[ext_resource type="PackedScene" uid="uid://mbd5lb1p30h" path="res://entities/monster/monster_inherited.tscn" id="4_85g3d"]
 [ext_resource type="Shader" uid="uid://ckwr1wq0i7mhj" path="res://resources/shaders/cctv.gdshader" id="5_85g3d"]
 [ext_resource type="AudioStream" uid="uid://dcogvon41no0w" path="res://assets/audio/ambience/478812__ianstargem__ambience-4.wav" id="6_tefeu"]
 [ext_resource type="AudioStream" uid="uid://bcvh1263codim" path="res://assets/audio/ambience/138408__robinhood76__03480-static-white-noise.wav" id="7_o6xl0"]
@@ -155,6 +155,8 @@ transform = Transform3D(0.6084706, 0, -0.7935764, 0, 1, 0, 0.7935764, 0, 0.60847
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=382546998]
 environment = SubResource("Environment_h2yge")
 
+[node name="Monster" parent="World" unique_id=958800708 instance=ExtResource("4_85g3d")]
+
 [node name="Sound" type="Node" parent="." unique_id=113021516]
 
 [node name="DarkAmbience" type="AudioStreamPlayer" parent="Sound" unique_id=2087790957]
@@ -172,15 +174,6 @@ process_mode = 3
 script = ExtResource("1_tbgi4")
 
 [node name="ScreenSpaceShaders" type="CanvasLayer" parent="." unique_id=1177919585]
-
-[node name="DebugTexture" type="TextureRect" parent="ScreenSpaceShaders" unique_id=1289560745]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_tipki")
 
 [node name="CCTV" type="ColorRect" parent="ScreenSpaceShaders" unique_id=1970675418]
 material = SubResource("ShaderMaterial_1bvp3")

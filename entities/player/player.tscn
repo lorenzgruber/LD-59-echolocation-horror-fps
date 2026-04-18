@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dl8w2weas76y7" path="res://assets/audio/footsteps/player_footstep-05.mp3" id="8_afbqv"]
 [ext_resource type="AudioStream" uid="uid://cahrkk6dnobid" path="res://assets/audio/footsteps/player_footstep-06.mp3" id="9_gx6sm"]
 [ext_resource type="AudioStream" uid="uid://m6wmk8lsoiab" path="res://assets/audio/footsteps/player_footstep-07.mp3" id="10_j3ovn"]
-[ext_resource type="PackedScene" uid="uid://bfwh06guao7vo" path="res://components/footstep/footstep_component.tscn" id="11_7thud"]
+[ext_resource type="PackedScene" uid="uid://cj3y8c1d18s0x" path="res://components/footstep/footstep_component.tscn" id="11_7thud"]
 [ext_resource type="AudioStream" uid="uid://c5aqnhq7mhfbb" path="res://assets/audio/footsteps/player_footstep-08.mp3" id="11_afbqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
@@ -52,32 +52,12 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="Footsteps" type="Node3D" parent="." unique_id=380062992]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.882315, -0.38049865)
+[node name="FootstepComponent" parent="." unique_id=1123308240 node_paths=PackedStringArray("footstep_audio_player") instance=ExtResource("11_7thud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.882, -0.38)
+footstep_distance = 1.5
+footstep_audio_player = NodePath("FootstepAudioPlayer")
 
-[node name="FootstepComponent" parent="Footsteps" unique_id=1604980274 instance=ExtResource("11_7thud")]
-unique_name_in_owner = true
-footstep_distance = 2.0
-
-[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=619262945]
+[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="FootstepComponent" unique_id=619262945]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3wlsy")
 bus = &"Footsteps"
-
-[node name="LeftFootOrigin" type="Marker3D" parent="Footsteps" unique_id=209213287]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, 0)
-
-[node name="LeftFootEchoEmitter" parent="Footsteps/LeftFootOrigin" unique_id=1664261078 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
-unique_name_in_owner = true
-echo_ping_audio_player = NodePath("../../FootstepAudioPlayer")
-echo_ping_radius = 3.0
-echo_ping_visibility = 0.1
-
-[node name="RightFootOrigin" type="Marker3D" parent="Footsteps" unique_id=1631124727]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
-
-[node name="RightFootEchoEmitter" parent="Footsteps/RightFootOrigin" unique_id=449185874 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
-unique_name_in_owner = true
-echo_ping_audio_player = NodePath("../../FootstepAudioPlayer")
-echo_ping_radius = 3.0
-echo_ping_visibility = 0.1

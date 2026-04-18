@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bfwh06guao7vo"]
+[gd_scene format=3 uid="uid://cj3y8c1d18s0x"]
 
-[ext_resource type="Script" uid="uid://cckq7g8totanx" path="res://components/footstep/footstep_component.gd" id="1_vngjw"]
+[ext_resource type="Script" uid="uid://cbg5iw7osk8h0" path="res://components/footstep/footstep_component.gd" id="1_vngjw"]
 
-[node name="FootstepComponent" type="Node" unique_id=1604980274]
+[node name="FootstepComponent" type="Node3D" unique_id=1123308240]
 script = ExtResource("1_vngjw")

@@ -2,6 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://mbd5lb1p30h" path="res://entities/monster/monster_inherited.tscn" id="1_4k2ca"]
 [ext_resource type="Script" uid="uid://dodn1fopfrjg5" path="res://entities/monster/monster.gd" id="1_un211"]
+[ext_resource type="PackedScene" uid="uid://cj3y8c1d18s0x" path="res://components/footstep/footstep_component.tscn" id="3_o1qde"]
+[ext_resource type="AudioStream" uid="uid://cg83fw6jx0qm1" path="res://assets/audio/footsteps/monster_footstep-01.mp3" id="4_40dka"]
+[ext_resource type="AudioStream" uid="uid://dc23srler2pqk" path="res://assets/audio/footsteps/monster_footstep-02.mp3" id="5_xlk6p"]
+[ext_resource type="AudioStream" uid="uid://byu6aamb1c1mq" path="res://assets/audio/footsteps/monster_footstep-03.mp3" id="6_86lao"]
+[ext_resource type="AudioStream" uid="uid://d0v1v0lx6ylls" path="res://assets/audio/footsteps/812538__yoyamen1212__big-monster-stomp.wav" id="7_hpky2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_28eux"]
+random_pitch = 1.122462
+streams_count = 3
+stream_0/stream = ExtResource("4_40dka")
+stream_1/stream = ExtResource("5_xlk6p")
+stream_2/stream = ExtResource("6_86lao")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un211"]
 radius = 0.9
@@ -33,6 +45,16 @@ bones/22/position = Vector3(0.65427464, -1.4500268, -0.34036785)
 bones/24/position = Vector3(-0.6980431, -1.0851578, 2.002788)
 bones/26/position = Vector3(-0.65427464, -1.4500268, -0.34036785)
 
+[node name="FootstepComponent" parent="." unique_id=1123308240 node_paths=PackedStringArray("footstep_audio_player") instance=ExtResource("3_o1qde")]
+footstep_distance = 1.0
+footstep_audio_player = NodePath("FootstepAudioPlayer")
+
+[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="FootstepComponent" unique_id=979111143]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_28eux")
+max_distance = 20.0
+bus = &"Footstep Monster"
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=14357389]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.00354, 5.9604645e-08)
 shape = SubResource("CapsuleShape3D_un211")
@@ -42,5 +64,9 @@ shape = SubResource("CapsuleShape3D_un211")
 [node name="NavigationUpdateTimer" type="Timer" parent="." unique_id=1919852413]
 wait_time = 0.5
 autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1983729924]
+stream = ExtResource("7_hpky2")
+bus = &"Footstep Monster"
 
 [editable path="MonsterInherited"]

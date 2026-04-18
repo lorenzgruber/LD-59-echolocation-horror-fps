@@ -1,0 +1,29 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://bk83ypkxvrpr7"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_fxi2g"]
+resource_name = "Reverb"
+room_size = 0.5
+wet = 0.3
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_fxi2g"]
+resource_name = "LowPassFilter"
+cutoff_hz = 800.0
+
+[resource]
+bus/0/send = &"Footsteps"
+bus/1/name = &"Footsteps"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_fxi2g")
+bus/1/effect/0/enabled = true
+bus/2/name = &"Static Noise"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectLowPassFilter_fxi2g")
+bus/2/effect/0/enabled = true

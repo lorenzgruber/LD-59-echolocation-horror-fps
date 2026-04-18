@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Exported game binary
+*.pck
+*.exe
+*.dll
+
+# OS-specific ignores
+.DS_Store
+
+# Rider
+.idea/

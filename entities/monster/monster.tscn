@@ -19,6 +19,10 @@ stream_2/stream = ExtResource("6_86lao")
 radius = 0.9
 height = 3.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40dka"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
 [node name="Monster" type="CharacterBody3D" unique_id=611558888]
 script = ExtResource("1_un211")
 
@@ -60,6 +64,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1
 shape = SubResource("CapsuleShape3D_un211")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1138198179]
+debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="." unique_id=1919852413]
 wait_time = 0.5
@@ -68,5 +73,10 @@ autostart = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1983729924]
 stream = ExtResource("7_hpky2")
 bus = &"Footstep Monster"
+
+[node name="DebugSphere" type="CSGSphere3D" parent="." unique_id=2015887179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4108908, 0)
+layers = 4
+material = SubResource("StandardMaterial3D_40dka")
 
 [editable path="MonsterInherited"]

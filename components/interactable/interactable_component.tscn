@@ -1,0 +1,231 @@
+[gd_scene format=3 uid="uid://bgv0gybtw35xo"]
+
+[ext_resource type="Script" uid="uid://domkros0dubsp" path="res://components/interactable/interactable_component.gd" id="1_d3y1u"]
+[ext_resource type="Texture2D" uid="uid://suy0y4dtbuh0" path="res://assets/textures/key_prompt_frame.png" id="2_yp7s8"]
+[ext_resource type="FontFile" uid="uid://ddciu3udce3rq" path="res://assets/fonts/PublicPixel.ttf" id="3_k508k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0xhsq"]
+radius = 1.0004588
+
+[sub_resource type="QuadMesh" id="QuadMesh_0xhsq"]
+size = Vector2(1.5, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yp7s8"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k508k"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_yp7s8")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Animation" id="Animation_yp7s8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelQuadMesh:mesh:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_k508k"]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelQuadMesh:mesh:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_hb1ku"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelQuadMesh:mesh:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_n23fl"]
+resource_name = "interact"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelQuadMesh:mesh:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1.8, 1.8), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n23fl"]
+_data = {
+&"RESET": SubResource("Animation_yp7s8"),
+&"fade_in": SubResource("Animation_k508k"),
+&"fade_out": SubResource("Animation_hb1ku"),
+&"interact": SubResource("Animation_n23fl")
+}
+
+[node name="InteractableComponent" type="Node3D" unique_id=1328555702]
+script = ExtResource("1_d3y1u")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=842578170]
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2013022885]
+shape = SubResource("SphereShape3D_0xhsq")
+
+[node name="LabelQuadMesh" type="MeshInstance3D" parent="." unique_id=677357067]
+mesh = SubResource("QuadMesh_0xhsq")
+surface_material_override/0 = SubResource("StandardMaterial3D_k508k")
+
+[node name="SubViewport" type="SubViewport" parent="LabelQuadMesh" unique_id=1606723736]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="LabelContainer" type="HBoxContainer" parent="LabelQuadMesh/SubViewport" unique_id=846088477]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -29.0
+offset_right = 451.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 8
+theme_override_constants/separation = 48
+
+[node name="Control" type="Control" parent="LabelQuadMesh/SubViewport/LabelContainer" unique_id=1695801311]
+custom_minimum_size = Vector2(105, 104)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LabelQuadMesh/SubViewport/LabelContainer/Control" unique_id=1549305492]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -58.0
+offset_right = 75.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yp7s8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="KeyPromptLabel" type="Label" parent="LabelQuadMesh/SubViewport/LabelContainer/Control" unique_id=307693273]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -36.0
+offset_right = 35.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_k508k")
+theme_override_font_sizes/font_size = 64
+text = "E"
+
+[node name="Label" type="Label" parent="LabelQuadMesh/SubViewport/LabelContainer" unique_id=2133683811]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k508k")
+theme_override_font_sizes/font_size = 64
+text = "Pick up"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1484627407]
+libraries/ = SubResource("AnimationLibrary_n23fl")

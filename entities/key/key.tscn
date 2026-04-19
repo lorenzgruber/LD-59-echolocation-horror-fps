@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://brwnkiblg3vsb" path="res://assets/audio/key/key_ambient_hum_loop.mp3" id="4_3u2ct"]
 [ext_resource type="Texture2D" uid="uid://ed58wbys7f7e" path="res://assets/textures/flare.png" id="5_k62fj"]
 [ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="6_t15lu"]
+[ext_resource type="PackedScene" uid="uid://bgv0gybtw35xo" path="res://components/interactable/interactable_component.tscn" id="7_vusxe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t15lu"]
 albedo_color = Color(0, 0, 0, 1)
@@ -43,6 +44,19 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_i5kk3"]
 material = SubResource("StandardMaterial3D_y5cxd")
 size = Vector2(0.1, 0.1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vusxe"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ktc0"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_vusxe")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="Animation" id="Animation_k62fj"]
 length = 0.001
@@ -277,8 +291,18 @@ lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_8ktc0")
 draw_pass_1 = SubResource("QuadMesh_i5kk3")
 
+[node name="InteractableComponent" parent="Sphere" unique_id=1328555702 instance=ExtResource("7_vusxe")]
+unique_name_in_owner = true
+label_text = "Pick up"
+
+[node name="LabelQuadMesh" parent="Sphere/InteractableComponent" index="1" unique_id=677357067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85396945, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_8ktc0")
+
 [node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("6_t15lu")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1980441137]
 libraries/ = SubResource("AnimationLibrary_8ktc0")
 autoplay = &"idle"
+
+[editable path="Sphere/InteractableComponent"]

@@ -36,7 +36,6 @@ func _physics_process(delta: float) -> void:
 func update_navigation_target() -> void:
 	var player_position := Player.instance.global_position
 	navigation_agent.target_position = player_position
-	print("Updating navigation target to: " + str(player_position));
 	
 func get_move_speed() -> float:
 	if (state == States.WALK): return WALK_SPEED;

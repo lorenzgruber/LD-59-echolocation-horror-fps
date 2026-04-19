@@ -57,16 +57,13 @@ func _physics_process(delta: float) -> void:
 	
 func _input(event: InputEvent) -> void:
 	if (Input.is_action_pressed("RUN") and state == States.WALK):
-		state = States.RUN
-		update_footstep_volume()
+		set_state( States.RUN)
 	
 	if (Input.is_action_pressed("SNEAK") and state == States.WALK):
-		state = States.SNEAK
-		update_footstep_volume()
+		set_state( States.SNEAK)
 		
-	if ( (Input.is_action_just_released("RUN") or Input.is_action_just_released("SNEAK")) and state != States.WALK):	
-		state = States.WALK
-		update_footstep_volume()
+	if ( (Input.is_action_just_released("RUN") and state == States.RUN) or (Input.is_action_just_released("SNEAK") and state == States.SNEAK)):	
+		set_state( States.WALK)
 	
 	if (Input.is_action_just_pressed("ECHO") and echo_cooldown_timer.is_stopped()):
 		echo_ping_emitter.emit_echo()
@@ -77,6 +74,10 @@ func _input(event: InputEvent) -> void:
 		camera_pivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		var camera_rotation_x: float = clamp(camera_pivot.rotation_degrees.x, -CAMERA_MAX_X_ANGLE, CAMERA_MAX_X_ANGLE)
 		camera_pivot.rotation_degrees.x = camera_rotation_x
+
+func set_state(_state: States) -> void:
+	self.state = _state
+	update_footstep_volume()
 		
 func get_move_speed() -> float:
 	if (state == States.WALK): return WALK_SPEED;

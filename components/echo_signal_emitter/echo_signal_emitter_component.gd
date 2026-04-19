@@ -1,6 +1,6 @@
 class_name EchoSignalEmitterComponent extends Node3D 
 
-enum EchoPingColor {PLAYER, KEY, MONSTER}
+enum EchoPingColor {PLAYER, KEY_1, KEY_2, KEY_3, MONSTER}
 
 @export var echo_ping_audio_player: AudioStreamPlayer3D
 @export var echo_ping_radius: float
@@ -15,7 +15,9 @@ func emit_echo() -> void:
 
 func get_echo_ping_color() -> Color: 
 	match echo_ping_color:
-		EchoPingColor.KEY: return Constants.KEY_ECHO_COLOR
+		EchoPingColor.KEY_1: return Constants.KEY_ECHO_COLOR_1
+		EchoPingColor.KEY_2: return Constants.KEY_ECHO_COLOR_2
+		EchoPingColor.KEY_3: return Constants.KEY_ECHO_COLOR_3
 		EchoPingColor.MONSTER: return Constants.MONSTER_ECHO_COLOR
 		EchoPingColor.PLAYER: return Constants.PLAYER_ECHO_COLOR
 		_: return Constants.PLAYER_ECHO_COLOR

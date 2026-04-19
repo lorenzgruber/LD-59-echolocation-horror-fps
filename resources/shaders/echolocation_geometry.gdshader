@@ -14,7 +14,8 @@ uniform float echo_ring_afterglow_intensity : hint_range(0.0, 10.0, 0.01) = 1.0;
 
 uniform sampler2D height_map;
 uniform float height_bump_strength : hint_range(0.0, 5.0, 0.01) = 0.1;
-uniform float height_texture_scale : hint_range(0.0, 5.0, 0.01) = 0.2;
+uniform float height_texture_scale : hint_range(0.0, 5.0, 0.001) = 0.2;
+uniform vec3 height_texture_offset = vec3(0);
 uniform float height_after_glow_affect : hint_range(0.0, 1.0, 0.01) = 0.7;
 
 varying vec3 world_position;
@@ -28,7 +29,7 @@ void vertex() {
 }
 
 void fragment() {
-	float height_val = get_height_val(world_normal, height_map, world_position, height_texture_scale);
+	float height_val = get_height_val(world_normal, height_map, world_position, height_texture_scale, height_texture_offset);
 	
 	for (int i = 0; i < echo_ping_count; i++) {
 		vec4 origin_and_radius = texelFetch(echo_ping_data, ivec2(i, 0), 0);
@@ -53,4 +54,5 @@ void fragment() {
 	}
 	
 	ALBEDO = vec3(0);
+	//ALBEDO = vec3(height_val);
 }

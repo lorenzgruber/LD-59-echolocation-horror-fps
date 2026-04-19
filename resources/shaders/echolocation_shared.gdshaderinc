@@ -6,15 +6,15 @@ vec3 get_world_normal(mat3 _MODEL_NORMAL_MATRIX, vec3 _NORMAL) {
 	return abs(_MODEL_NORMAL_MATRIX * _NORMAL);
 }
 
-float get_height_val(vec3 _world_normal, sampler2D _height_map, vec3 _world_position, float _height_texture_scale) {
+float get_height_val(vec3 _world_normal, sampler2D _height_map, vec3 _world_position, float _height_texture_scale, vec3 _height_texture_offset) {
 	// 1. Normalize the weights so they always add up to 1.0
     vec3 weights = _world_normal / (_world_normal.x + _world_normal.y + _world_normal.z);
 
     // 2. Sample from three directions using World Position
     // This ensures that even if you move/rotate the wall, the texture stays pinned to the world
-    float x_tex = texture(_height_map, _world_position.zy * _height_texture_scale).r;
-    float y_tex = texture(_height_map, _world_position.xz * _height_texture_scale).r;
-    float z_tex = texture(_height_map, _world_position.xy * _height_texture_scale).r;
+    float x_tex = texture(_height_map, _world_position.zy * _height_texture_scale  + _height_texture_offset.x).r;
+    float y_tex = texture(_height_map, _world_position.xz * _height_texture_scale  + _height_texture_offset.y).r;
+    float z_tex = texture(_height_map, _world_position.xy * _height_texture_scale  + _height_texture_offset.z).r;
     
     // 3. Blend them
     return (x_tex * weights.x) + (y_tex * weights.y) + (z_tex * weights.z);

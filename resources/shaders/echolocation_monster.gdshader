@@ -30,7 +30,7 @@ void vertex() {
 }
 
 void fragment() {
-	float height_val = get_height_val(world_normal, height_map, world_position, height_texture_scale);
+	float height_val = get_height_val(world_normal, height_map, world_position, height_texture_scale, vec3(0));
 	
 	for (int i = 0; i < echo_ping_count; i++) {
 		vec4 origin_and_radius = texelFetch(echo_ping_data, ivec2(i, 0), 0);

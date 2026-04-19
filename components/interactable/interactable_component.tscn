@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://ddciu3udce3rq" path="res://assets/fonts/PublicPixel.ttf" id="3_k508k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0xhsq"]
-radius = 1.0004588
+radius = 3.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_0xhsq"]
 size = Vector2(1.5, 1.5)
@@ -179,11 +179,12 @@ scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 8
 theme_override_constants/separation = 48
 
-[node name="Control" type="Control" parent="LabelQuadMesh/SubViewport/LabelContainer" unique_id=1695801311]
+[node name="KeyPrompt" type="Control" parent="LabelQuadMesh/SubViewport/LabelContainer" unique_id=1695801311]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(105, 104)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LabelQuadMesh/SubViewport/LabelContainer/Control" unique_id=1549305492]
+[node name="TextureRect" type="TextureRect" parent="LabelQuadMesh/SubViewport/LabelContainer/KeyPrompt" unique_id=1549305492]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -201,7 +202,7 @@ texture = ExtResource("2_yp7s8")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="KeyPromptLabel" type="Label" parent="LabelQuadMesh/SubViewport/LabelContainer/Control" unique_id=307693273]
+[node name="KeyPromptLabel" type="Label" parent="LabelQuadMesh/SubViewport/LabelContainer/KeyPrompt" unique_id=307693273]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8

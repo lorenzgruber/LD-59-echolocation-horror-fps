@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlk68f604osgy"]
 
-[ext_resource type="Script" uid="uid://co7muj7r25e8p" path="res://entities/key/key.gd" id="1_yymwm"]
+[ext_resource type="Script" uid="uid://co7muj7r25e8p" path="res://entities/key_item/key_item.gd" id="1_yymwm"]
 [ext_resource type="PackedScene" uid="uid://b4vd0bjvg7e6n" path="res://components/echo_signal_emitter/echo_signal_emitter_component.tscn" id="2_3u2ct"]
 [ext_resource type="AudioStream" uid="uid://cbu8a4pd20b0g" path="res://assets/audio/key/key_echo_ping.mp3" id="3_3u2ct"]
 [ext_resource type="AudioStream" uid="uid://brwnkiblg3vsb" path="res://assets/audio/key/key_ambient_hum_loop.mp3" id="4_3u2ct"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bgv0gybtw35xo" path="res://components/interactable/interactable_component.tscn" id="7_vusxe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t15lu"]
+resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
 emission = Color(0, 1, 0.296875, 1)
@@ -21,6 +22,7 @@ point_count = 4
 curve = SubResource("Curve_t15lu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ktc0"]
+resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 1.0
 spread = 180.0
@@ -32,9 +34,12 @@ scale_curve = SubResource("CurveTexture_vusxe")
 color = Color(0, 1, 0.29803923, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5cxd"]
+resource_local_to_scene = true
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("5_k62fj")
+emission_enabled = true
+emission = Color(0.125, 1, 0, 1)
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -42,17 +47,18 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_i5kk3"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_y5cxd")
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vusxe"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_j6d6h"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ktc0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qhou"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_vusxe")
+albedo_texture = SubResource("ViewportTexture_j6d6h")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -75,7 +81,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:scale")
+tracks/1/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,7 +105,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D/OmniLight3D:light_energy")
+tracks/3/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh/OmniLight3D:light_energy")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -110,8 +116,8 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:material:emission")
+tracks/4/enabled = false
+tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -143,6 +149,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission_energy_multiplier")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_vusxe"]
@@ -179,7 +197,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:scale")
+tracks/2/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -203,7 +221,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D/OmniLight3D:light_energy")
+tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh/OmniLight3D:light_energy")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -214,8 +232,8 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sphere/SphereVibrateScaleAnchor/CSGSphere3D:material:emission")
+tracks/5/enabled = false
+tracks/5/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -234,7 +252,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.85, 6.025, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 1, 0.29748532, 0), Color(0, 1, 0.29803923, 1), Color(0, 1, 0.29803923, 1), Color(0, 1, 0.29748532, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -247,6 +265,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission_energy_multiplier")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.85, 6.025, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ktc0"]
@@ -262,12 +292,13 @@ script = ExtResource("1_yymwm")
 
 [node name="SphereVibrateScaleAnchor" type="Node3D" parent="Sphere" unique_id=2023084586]
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Sphere/SphereVibrateScaleAnchor" unique_id=2012094317]
+[node name="SphereMesh" type="CSGSphere3D" parent="Sphere/SphereVibrateScaleAnchor" unique_id=2012094317]
+unique_name_in_owner = true
 radius = 0.2
 rings = 12
 material = SubResource("StandardMaterial3D_t15lu")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Sphere/SphereVibrateScaleAnchor/CSGSphere3D" unique_id=1732437677]
+[node name="OmniLight3D" type="OmniLight3D" parent="Sphere/SphereVibrateScaleAnchor/SphereMesh" unique_id=1732437677]
 light_color = Color(0, 1, 0.3671875, 1)
 
 [node name="EchoPingEmitter" parent="Sphere" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_3u2ct")]
@@ -286,6 +317,7 @@ stream = ExtResource("4_3u2ct")
 max_distance = 20.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Sphere" unique_id=1607393183]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1676014, 0)
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_8ktc0")
@@ -297,7 +329,7 @@ label_text = "Pick up"
 
 [node name="LabelQuadMesh" parent="Sphere/InteractableComponent" index="1" unique_id=677357067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85396945, 0, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_8ktc0")
+surface_material_override/0 = SubResource("StandardMaterial3D_6qhou")
 
 [node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("6_t15lu")]
 

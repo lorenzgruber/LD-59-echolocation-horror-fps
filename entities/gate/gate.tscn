@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://d30rsvrhs43bv"]
+
+[ext_resource type="Script" uid="uid://dotuxvyjpxgj4" path="res://entities/gate/gate.gd" id="1_0wpd7"]
+[ext_resource type="Shader" uid="uid://wyy1wcqknf2a" path="res://resources/shaders/echolocation_geometry.gdshader" id="1_mq4g3"]
+[ext_resource type="Texture2D" uid="uid://6wadnyud6hsf" path="res://assets/textures/gate_x256.png" id="2_bekog"]
+[ext_resource type="PackedScene" uid="uid://bgv0gybtw35xo" path="res://components/interactable/interactable_component.tscn" id="2_n2m8a"]
+[ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="5_v010g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wpd7"]
+render_priority = 0
+shader = ExtResource("1_mq4g3")
+shader_parameter/echo_ring_width = 0.10000000149012
+shader_parameter/echo_ring_intensity = 9.99999977648
+shader_parameter/echo_ring_afterglow_width = 30.000000447036
+shader_parameter/echo_ring_afterglow_intensity = 0.0499999988824
+shader_parameter/height_map = ExtResource("2_bekog")
+shader_parameter/height_bump_strength = 0.1
+shader_parameter/height_texture_scale = 0.20800000988
+shader_parameter/height_texture_offset = Vector3(0, 0, -0.015)
+shader_parameter/height_after_glow_affect = 0.999999977648
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0wpd7"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrfwu"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_0wpd7")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0wpd7"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v010g"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_nrfwu"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wpd7"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0.29803923, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="Animation" id="Animation_v010g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall/Key/KeySymbol:surface_material_override/0:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall/Key/KeySymbol/OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nrfwu"]
+resource_name = "open"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall/Key/KeySymbol:surface_material_override/0:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall/Key/KeySymbol/OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.0333333, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0), Vector3(0, 8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0wpd7"]
+resource_name = "unlock"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v010g"]
+_data = {
+&"RESET": SubResource("Animation_v010g"),
+&"open": SubResource("Animation_nrfwu"),
+&"unlock": SubResource("Animation_0wpd7")
+}
+
+[node name="Gate" type="Node3D" unique_id=2048521342]
+script = ExtResource("1_0wpd7")
+
+[node name="Wall" type="CSGBox3D" parent="." unique_id=450268536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
+collision_mask = 0
+size = Vector3(3, 5, 1)
+material = SubResource("ShaderMaterial_0wpd7")
+
+[node name="InteractableComponent" parent="Wall" unique_id=1328555702 instance=ExtResource("2_n2m8a")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0466614, 0)
+label_text = "Unlock"
+disabled_text = "Key missing"
+enabled = false
+
+[node name="LabelQuadMesh" parent="Wall/InteractableComponent" index="1" unique_id=677357067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+surface_material_override/0 = SubResource("StandardMaterial3D_nrfwu")
+
+[node name="EchoSignalReceiverComponent" parent="Wall" unique_id=1206163352 instance=ExtResource("5_v010g")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6616516, 0)
+
+[node name="Key" type="Node3D" parent="Wall" unique_id=2127213977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029275656, 0)
+
+[node name="Base" type="MeshInstance3D" parent="Wall/Key" unique_id=817607136]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.304)
+mesh = SubResource("CylinderMesh_0wpd7")
+surface_material_override/0 = SubResource("StandardMaterial3D_v010g")
+
+[node name="KeySymbol" type="MeshInstance3D" parent="Wall/Key" unique_id=114299881]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.477)
+mesh = SubResource("SphereMesh_nrfwu")
+surface_material_override/0 = SubResource("StandardMaterial3D_0wpd7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Wall/Key/KeySymbol" unique_id=486440819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41019487)
+light_color = Color(0, 1, 0.298, 1)
+light_energy = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=768056106]
+libraries/ = SubResource("AnimationLibrary_v010g")
+
+[editable path="Wall/InteractableComponent"]

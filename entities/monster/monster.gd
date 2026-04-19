@@ -3,9 +3,12 @@ extends CharacterBody3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var navigation_update_timer: Timer = $NavigationUpdateTimer
 @onready var animation_player: AnimationPlayer = $MonsterInherited/AnimationPlayer
+@onready var echo_signal_receiver: EchoSignalReceiverComponent = $EchoSignalReceiverComponent
 
-enum States {WALK, RUN}
-var state: States = States.WALK
+var eyes_material : StandardMaterial3D
+
+enum States {PATROL, HUNT}
+var state: States
 
 const WALK_SPEED: float = 1.0
 const RUN_SPEED: float = 3.0
@@ -15,7 +18,9 @@ const RUN_ANIMATION_SPEED: float = 1.0
 
 func _ready() -> void:
 	navigation_update_timer.timeout.connect(update_navigation_target)
-	update_animation_speed()
+	echo_signal_receiver.echo_signal_received.connect(on_echo_signal_received)
+	eyes_material = (get_node("MonsterInherited/Armature/Skeleton3D/weirdo_low") as MeshInstance3D).get_surface_override_material(1)
+	set_state(States.PATROL)
 	
 func _physics_process(delta: float) -> void:
 	var next_position := navigation_agent.get_next_path_position()
@@ -38,12 +43,35 @@ func update_navigation_target() -> void:
 	navigation_agent.target_position = player_position
 	
 func get_move_speed() -> float:
-	if (state == States.WALK): return WALK_SPEED;
+	if (state == States.PATROL): return WALK_SPEED;
 	else: return RUN_SPEED;
 	
 func update_animation_speed() -> void:
 	var speed: float;
-	if (state == States.WALK): speed = WALK_ANIMATION_SPEED;
+	if (state == States.PATROL): speed = WALK_ANIMATION_SPEED;
 	else: speed = RUN_ANIMATION_SPEED;
 	animation_player.speed_scale = speed
 	
+func on_echo_signal_received() -> void:
+	print("Echo signal received by monster")
+	if (state == States.PATROL): set_state(States.HUNT)
+	
+func set_state(_state: States) -> void:
+	on_state_exit(state)
+	self.state = _state
+	on_state_enter(state)
+	
+func on_state_enter(_state: States) -> void:
+	update_animation_speed()
+	if (_state == States.PATROL):
+		set_eyes_glowing(false)	
+	if (_state == States.HUNT):
+		set_eyes_glowing(true)	
+	
+func on_state_exit(_state: States) -> void:
+	pass
+
+func set_eyes_glowing(glowing: bool) -> void:
+	var final_color: Color = Constants.MONSTER_ECHO_COLOR if glowing else Color.BLACK
+	var tween := create_tween();
+	tween.tween_property(eyes_material, "emission", final_color, 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK);

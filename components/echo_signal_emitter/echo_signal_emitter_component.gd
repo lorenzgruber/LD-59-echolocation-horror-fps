@@ -6,9 +6,10 @@ enum EchoPingColor {PLAYER, KEY, MONSTER}
 @export var echo_ping_radius: float
 @export var echo_ping_visibility: float
 @export var echo_ping_color: EchoPingColor = EchoPingColor.PLAYER
+@export var echo_ping_is_reactive: bool = false
 
 func emit_echo() -> void:
-	var echo_ping := EchoPing.new(global_position, echo_ping_radius, echo_ping_visibility, get_echo_ping_color(), get_tree());
+	var echo_ping := EchoPing.new(global_position, echo_ping_radius, echo_ping_visibility, get_echo_ping_color(), echo_ping_is_reactive, get_tree());
 	EchoPingManager.emit_echo(echo_ping);
 	echo_ping_audio_player.play();
 

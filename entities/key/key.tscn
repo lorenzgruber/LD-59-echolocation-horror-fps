@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cbu8a4pd20b0g" path="res://assets/audio/key/key_echo_ping.mp3" id="3_3u2ct"]
 [ext_resource type="AudioStream" uid="uid://brwnkiblg3vsb" path="res://assets/audio/key/key_ambient_hum_loop.mp3" id="4_3u2ct"]
 [ext_resource type="Texture2D" uid="uid://ed58wbys7f7e" path="res://assets/textures/flare.png" id="5_k62fj"]
+[ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="6_t15lu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t15lu"]
 albedo_color = Color(0, 0, 0, 1)
@@ -275,6 +276,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1676014, 0)
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_8ktc0")
 draw_pass_1 = SubResource("QuadMesh_i5kk3")
+
+[node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("6_t15lu")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1980441137]
 libraries/ = SubResource("AnimationLibrary_8ktc0")

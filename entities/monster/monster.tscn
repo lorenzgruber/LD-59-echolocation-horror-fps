@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dc23srler2pqk" path="res://assets/audio/footsteps/monster_footstep-02.mp3" id="5_xlk6p"]
 [ext_resource type="AudioStream" uid="uid://byu6aamb1c1mq" path="res://assets/audio/footsteps/monster_footstep-03.mp3" id="6_86lao"]
 [ext_resource type="AudioStream" uid="uid://d0v1v0lx6ylls" path="res://assets/audio/footsteps/812538__yoyamen1212__big-monster-stomp.wav" id="7_hpky2"]
+[ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="7_xlk6p"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_28eux"]
 random_pitch = 1.122462
@@ -24,30 +25,11 @@ emission_enabled = true
 emission = Color(1, 0, 0, 1)
 
 [node name="Monster" type="CharacterBody3D" unique_id=611558888]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_un211")
 
 [node name="MonsterInherited" parent="." unique_id=958800708 instance=ExtResource("1_4k2ca")]
-
-[node name="Skeleton3D" parent="MonsterInherited/Armature" parent_id_path=PackedInt32Array(958800708, 1629355154) index="0" unique_id=501481108]
-bones/0/position = Vector3(1.4030641e-14, 0.08295453, 0.03459593)
-bones/2/rotation = Quaternion(0.07325871, -6.4173463e-07, -1.7726414e-07, 0.99731296)
-bones/3/rotation = Quaternion(-0.13403954, 7.191308e-07, 3.133155e-07, 0.990976)
-bones/4/rotation = Quaternion(-0.46411106, 1.832122e-07, 6.520617e-07, 0.885777)
-bones/6/rotation = Quaternion(0.17826799, -0.0050050756, -0.06483771, 0.9818308)
-bones/7/rotation = Quaternion(-0.024443075, 0.09478935, 0.5649686, 0.81928515)
-bones/8/rotation = Quaternion(0.2021661, -0.008761607, -0.24428852, 0.94835395)
-bones/10/rotation = Quaternion(0.13741878, -0.047573987, 0.020906037, 0.989149)
-bones/11/rotation = Quaternion(-0.022013264, -0.09890951, -0.5088064, 0.85489666)
-bones/13/rotation = Quaternion(0.8597143, 0.10232077, 0.49998417, 0.020915337)
-bones/14/rotation = Quaternion(-0.23972242, -0.0062805447, -0.6817464, 0.6911697)
-bones/15/rotation = Quaternion(0.056654666, -0.01718605, -0.31351125, 0.9477371)
-bones/16/rotation = Quaternion(0.8597141, -0.102320634, -0.49998483, 0.020915201)
-bones/17/rotation = Quaternion(-0.23972313, 0.0062802304, 0.6817463, 0.6911696)
-bones/18/rotation = Quaternion(0.056654733, 0.017185502, 0.31351152, 0.947737)
-bones/20/position = Vector3(0.66979575, -1.0403167, 1.9822674)
-bones/22/position = Vector3(0.65427464, -1.4500268, -0.34036785)
-bones/24/position = Vector3(-0.6980431, -1.0851578, 2.002788)
-bones/26/position = Vector3(-0.65427464, -1.4500268, -0.34036785)
 
 [node name="FootstepComponent" parent="." unique_id=1123308240 node_paths=PackedStringArray("footstep_audio_player") instance=ExtResource("3_o1qde")]
 footstep_distance = 1.0
@@ -63,8 +45,10 @@ bus = &"Footstep Monster"
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.00354, 5.9604645e-08)
 shape = SubResource("CapsuleShape3D_un211")
 
+[node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("7_xlk6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.547544, 0)
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1138198179]
-debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="." unique_id=1919852413]
 wait_time = 0.5
@@ -78,5 +62,3 @@ bus = &"Footstep Monster"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4108908, 0)
 layers = 4
 material = SubResource("StandardMaterial3D_40dka")
-
-[editable path="MonsterInherited"]

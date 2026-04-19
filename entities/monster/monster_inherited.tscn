@@ -1,46 +1,66 @@
 [gd_scene format=3 uid="uid://mbd5lb1p30h"]
 
 [ext_resource type="PackedScene" uid="uid://mdrrok3x6o5s" path="res://assets/models/monster/Sewerfiend.glb" id="1_4k2ca"]
-[ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echo_geometry/echolocation_geometry.material" id="2_un211"]
-[ext_resource type="Shader" uid="uid://bbpgygov2f3rw" path="res://entities/monster/monster_eyes.gdshader" id="3_l1lf7"]
+[ext_resource type="Shader" uid="uid://cbm120rhqndxu" path="res://resources/shaders/echolocation_monster.gdshader" id="2_ajrkc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3xdx"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i3xdx"]
+frequency = 0.0598
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mqs2w"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_i3xdx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1lf7"]
 render_priority = 0
-shader = ExtResource("3_l1lf7")
-shader_parameter/pupil_color = Color(1, 0, 0, 1)
+shader = ExtResource("2_ajrkc")
+shader_parameter/echo_color = Color(1, 0, 0, 1)
+shader_parameter/echo_ring_width = 0.10000000149012
+shader_parameter/echo_ring_intensity = 9.99999977648
+shader_parameter/echo_ring_afterglow_width = 30.000000447036
+shader_parameter/echo_ring_afterglow_intensity = 0.0999999977648
+shader_parameter/height_map = SubResource("NoiseTexture2D_mqs2w")
+shader_parameter/height_bump_strength = 0.22999999485904
+shader_parameter/height_texture_scale = 0.2
+shader_parameter/height_after_glow_affect = 0.999999977648
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajrkc"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
 
 [node name="Monster" unique_id=1027844122 instance=ExtResource("1_4k2ca")]
 
 [node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1629355154) index="0" unique_id=501481108]
-bones/0/position = Vector3(0.21013145, -0.18318154, 0.15066344)
+bones/0/position = Vector3(1.4030641e-14, 0.08295453, 0.03459593)
 bones/0/rotation = Quaternion(0.57972264, -4.4045956e-07, -3.133776e-07, 0.8148139)
 bones/1/rotation = Quaternion(0.046137664, -3.4718485e-07, -6.591603e-08, 0.9989351)
-bones/2/rotation = Quaternion(0.23209113, -6.33862e-07, -4.5310748e-07, 0.97269416)
-bones/3/rotation = Quaternion(-0.1340395, 7.191308e-07, 3.1331552e-07, 0.990976)
-bones/4/rotation = Quaternion(-0.60619324, -0.084944524, -0.06684007, 0.78793824)
-bones/6/rotation = Quaternion(0.21014562, 0.042863596, -0.22205245, 0.95115423)
-bones/7/rotation = Quaternion(-0.038002636, 0.054757755, 0.87838554, 0.47328246)
-bones/8/rotation = Quaternion(0.2021661, -0.008761603, -0.24428852, 0.94835395)
-bones/10/rotation = Quaternion(-0.2821535, 0.14461862, -0.24654758, 0.91579986)
-bones/11/rotation = Quaternion(-0.021054627, -0.1003741, -0.4866505, 0.86755574)
-bones/13/rotation = Quaternion(0.8596386, -0.06530204, 0.50165284, -0.07142649)
-bones/14/rotation = Quaternion(-0.2211729, -0.00677199, -0.6289935, 0.7452542)
-bones/15/rotation = Quaternion(0.0036539896, -0.058428228, -0.61192054, 0.78874964)
-bones/16/rotation = Quaternion(0.8122098, -0.37074816, -0.43034086, 0.13292101)
-bones/17/rotation = Quaternion(-0.24386595, 0.0061593736, 0.69352806, 0.677872)
-bones/18/rotation = Quaternion(0.083861545, 0.020423654, 0.05148772, 0.9949368)
+bones/2/rotation = Quaternion(0.07325871, -6.4173463e-07, -1.7726414e-07, 0.99731296)
+bones/3/rotation = Quaternion(-0.13403954, 7.191308e-07, 3.133155e-07, 0.990976)
+bones/4/rotation = Quaternion(-0.46411106, 1.832122e-07, 6.520617e-07, 0.885777)
+bones/6/rotation = Quaternion(0.17826799, -0.0050050756, -0.06483771, 0.9818308)
+bones/7/rotation = Quaternion(-0.024443075, 0.09478935, 0.5649686, 0.81928515)
+bones/8/rotation = Quaternion(0.2021661, -0.008761607, -0.24428852, 0.94835395)
+bones/10/rotation = Quaternion(0.13741878, -0.047573987, 0.020906037, 0.989149)
+bones/11/rotation = Quaternion(-0.022013264, -0.09890951, -0.5088064, 0.85489666)
+bones/13/rotation = Quaternion(0.8597143, 0.10232077, 0.49998417, 0.020915337)
+bones/14/rotation = Quaternion(-0.23972242, -0.0062805447, -0.6817464, 0.6911697)
+bones/15/rotation = Quaternion(0.056654666, -0.01718605, -0.31351125, 0.9477371)
+bones/16/rotation = Quaternion(0.8597141, -0.102320634, -0.49998483, 0.020915201)
+bones/17/rotation = Quaternion(-0.23972313, 0.0062802304, 0.6817463, 0.6911696)
+bones/18/rotation = Quaternion(0.056654733, 0.017185502, 0.31351152, 0.947737)
 bones/19/position = Vector3(0.9630457, -0.48391438, 1.3039463)
-bones/20/position = Vector3(0.6697956, -1.0422356, 1.6984384)
+bones/20/position = Vector3(0.66979575, -1.0403167, 1.9822674)
 bones/20/rotation = Quaternion(0.6806006, 0.49961722, -0.19935898, -0.4974148)
 bones/21/position = Vector3(0.4824365, -0.4584227, -0.9389268)
-bones/22/position = Vector3(0.6515099, -1.5341338, -0.9213102)
-bones/24/position = Vector3(-0.50908214, -1.0226964, 2.773792)
+bones/22/position = Vector3(0.65427464, -1.4500268, -0.34036785)
+bones/24/position = Vector3(-0.6980431, -1.0851578, 2.002788)
 bones/24/rotation = Quaternion(0.6806006, -0.49961722, 0.19935898, -0.4974148)
-bones/26/position = Vector3(-0.67033154, -1.5698637, 0.67865324)
+bones/26/position = Vector3(-0.65427464, -1.4500268, -0.34036785)
 
 [node name="weirdo_low" parent="Armature/Skeleton3D" index="0" unique_id=1450337958]
-surface_material_override/0 = ExtResource("2_un211")
-surface_material_override/1 = SubResource("ShaderMaterial_i3xdx")
+surface_material_override/0 = SubResource("ShaderMaterial_l1lf7")
+surface_material_override/1 = SubResource("StandardMaterial3D_ajrkc")
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=202824792]
 autoplay = &"Walk"

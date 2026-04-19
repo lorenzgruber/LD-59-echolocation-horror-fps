@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bxv0opk3hrwvp"]
+
+[ext_resource type="Script" uid="uid://d1orc4wiu1pn8" path="res://components/echo_signal_receiver/echo_signal_receiver_component.gd" id="1_g0501"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g0501"]
+
+[node name="EchoSignalReceiverComponent" type="Node3D" unique_id=1206163352]
+script = ExtResource("1_g0501")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=830572777]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=268236964]
+shape = SubResource("SphereShape3D_g0501")

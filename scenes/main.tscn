@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://bf2gae4murdde" path="res://core/systems/pause_controller.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dlk68f604osgy" path="res://entities/key/key.tscn" id="2_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bwon163ox2jcm" path="res://entities/player/player.tscn" id="2_tefeu"]
-[ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echo_geometry/echolocation_geometry.material" id="3_o6xl0"]
+[ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echolocation/echolocation_walls.material" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://csmo1yyvhnm5q" path="res://entities/monster/monster.tscn" id="4_85g3d"]
+[ext_resource type="Material" uid="uid://0aqvyb6gc8l5" path="res://resources/materials/echolocation/echolocation_floor.material" id="4_eb6dy"]
 [ext_resource type="Shader" uid="uid://ckwr1wq0i7mhj" path="res://resources/shaders/cctv.gdshader" id="5_85g3d"]
 [ext_resource type="AudioStream" uid="uid://dcogvon41no0w" path="res://assets/audio/ambience/478812__ianstargem__ambience-4.wav" id="6_tefeu"]
 [ext_resource type="AudioStream" uid="uid://bcvh1263codim" path="res://assets/audio/ambience/138408__robinhood76__03480-static-white-noise.wav" id="7_o6xl0"]
@@ -15,6 +16,7 @@
 [sub_resource type="NavigationMesh" id="NavigationMesh_85g3d"]
 vertices = PackedVector3Array(-4.5, 0.01999998, -72, -3.25, 0.01999998, -72, -2.75, 0.01999998, -72.5, -0.5, 0.01999998, -79.25, -7.25, 0.01999998, -79.25, -5, 0.01999998, -72.5, -7.25, 0.01999998, -72.5, -0.5, 0.01999998, -72.5, 15.75, 0.01999998, -57.25, 15.25, 0.01999998, -56.75, 16.75, 0.01999998, -56.75, -4.25, 0.01999998, -58.25, -4.75, 0.01999998, -57.75, -3.25, 0.01999998, -57.75, -3.5, 0.01999998, -63.75, -3.5, 0.01999998, -66, 15.75, 0.01999998, -63.75, 16.5, 0.01999998, -65.25, -2.75, 0.01999998, -64.5, -2.75, 0.01999998, -65.25, 15, 0.01999998, -64.5, -23.25, 0.01999998, -49, -22.5, 0.01999998, -49, -22.5, 0.01999998, -50.75, -23.25, 0.01999998, -50.75, -23.25, 0.01999998, -57.25, -21.75, 0.01999998, -56.25, -22.5, 0.01999998, -57, -24, 0.01999998, -51.5, -21.75, 0.01999998, -51.5, -24.25, 0.01999998, -56.25, -36.25, 0.01999998, -49.5, -35.5, 0.01999998, -49.5, -35.5, 0.01999998, -52.75, -36.25, 0.01999998, -54.25, -28.25, 0.01999998, -55.25, -29.25, 0.01999998, -54.25, -29, 0.01999998, -53.5, -28.25, 0.01999998, -52.75, -34.75, 0.01999998, -53.5, -21.75, 0.01999998, -66.5, -20.5, 0.01999998, -66.5, -20.5, 0.01999998, -70.25, -25.25, 0.01999998, -70.25, -25.25, 0.01999998, -66.5, -24, 0.01999998, -66.5, -28.25, 0.01999998, -56.25, -28.25, 0.01999998, -51.5, -23.25, 0.01999998, -65.75, -22.5, 0.01999998, -65.75, -20, 0.01999998, -51.5, -20, 0.01999998, -56.25, 40.5, 0.01999998, -65.75, 41, 0.01999998, -66.25, 41, 0.01999998, -67.5, 40.5, 0.01999998, -68, 38.25, 0.01999998, -63.5, 40.5, 0.01999998, -63.5, 36.75, 0.01999998, -54.75, 37.5, 0.01999998, -54.75, 37.5, 0.01999998, -62.75, 36.75, 0.01999998, -62.75, 36, 0.01999998, -63.5, 40.5, 0.01999998, -70.25, 33.75, 0.01999998, -70.25, 33.75, 0.01999998, -63.5, 58, 0.01999998, -66.5, 58.75, 0.01999998, -65.75, 58.75, 0.01999998, -67.25, 50.5, 0.01999998, -54.5, 50.5, 0.01999998, -57.25, 49.25, 0.01999998, -57.25, 46.75, 0.01999998, -57.25, 44.75, 0.01999998, -57.25, 44.75, 0.01999998, -54.75, 48.5, 0.01999998, -58, 47.75, 0.01999998, -58.25, 47, 0.01999998, -66.5, 47.75, 0.01999998, -65.75, 48.5, 0.01999998, -65.75, 49.25, 0.01999998, -66.5, 57.75, 0.01999998, -51.25, 56.75, 0.01999998, -51.25, 56.75, 0.01999998, -50.5, 65.5, 0.01999998, -50.5, 66.25, 0.01999998, -57.5, 68, 0.01999998, -57.5, 68, 0.01999998, -58.25, 66.25, 0.01999998, -58.25, 58.75, 0.01999998, -52.25, 65.5, 0.01999998, -56.75, 65.5, 0.01999998, -59, 65.5, 0.01999998, -67.25, 74.75, 0.01999998, -58.25, 75, 0.01999998, -57.5, 75.75, 0.01999998, -56.75, 82.5, 0.01999998, -54.5, 82.5, 0.01999998, -61.25, 75.75, 0.01999998, -59.25, 75.75, 0.01999998, -61.25, 75.75, 0.01999998, -54.5, -1.25, 0.01999998, -48.75, -1.25, 0.01999998, -47, -0.5, 0.01999998, -47, -0.5, 0.01999998, -48.75, -0.5, 0.01999998, -51, -0.5, 0.01999998, -57.25, -2.75, 0.01999998, -57.25, -2, 0.01999998, -49.5, 0.25, 0.01999998, -49.5, 0.25, 0.01999998, -50.25, -5.25, 0.01999998, -57.25, -7.25, 0.01999998, -55.25, -8.25, 0.01999998, -54.25, -8, 0.01999998, -53.5, -7.25, 0.01999998, -52.75, -17.5, 0.01999998, -51.5, -17.5, 0.01999998, -52.75, -17.5, 0.01999998, -55, -17.5, 0.01999998, -56.25, -7.25, 0.01999998, -57.25, -16.75, 0.01999998, -53.5, -16.75, 0.01999998, -54.25, 9.25, 0.01999998, -49.5, 9.25, 0.01999998, -50.25, -7.25, 0.01999998, -49.5, 10.75, 0.01999998, -50.25, 11, 0.01999998, -49.5, 19.5, 0.01999998, -48.75, 20.25, 0.01999998, -49.5, 20.25, 0.01999998, -50.25, 19.5, 0.01999998, -51, 11.75, 0.01999998, -48.75, 15, 0.01999998, -46.5, 11.75, 0.01999998, -51.25, 15.5, 0.01999998, -46, 16.75, 0.01999998, -46, 17.25, 0.01999998, -46.5, 17.25, 0.01999998, -56.25, 14.75, 0.01999998, -56.25, 19.5, 0.01999998, -56.25, 19.5, 0.01999998, -46.5, 25.75, 0.01999998, -48.75, 25.75, 0.01999998, -45.5, 26.5, 0.01999998, -45.5, 26.5, 0.01999998, -50.25, 11.75, 0.01999998, -56.25, 25, 0.01999998, -49.5, 11.75, 0.01999998, -46.5, 36.75, 0.01999998, -53.25, 37.5, 0.01999998, -53, 44.25, 0.01999998, -46.5, 43.75, 0.01999998, -52.25, 38.25, 0.01999998, -52.25, 34.25, 0.01999998, -46.5, 35.75, 0.01999998, -52.25, 32.75, 0.01999998, -52.25, 33.5, 0.01999998, -45.75, 32.75, 0.01999998, -40.75, 33.5, 0.01999998, -40.75, 44.25, 0.01999998, -52.75, 48.25, 0.01999998, -46.5, 50.5, 0.01999998, -46.5, 50.5, 0.01999998, -49.75, 46.75, 0.01999998, -45.75, 46.75, 0.01999998, -41.75, 47.5, 0.01999998, -41.75, 47.5, 0.01999998, -45.75, 44.75, 0.01999998, -53.25, 50.5, 0.01999998, -52, 46, 0.01999998, -46.5, 51.25, 0.01999998, -50.5, 51.25, 0.01999998, -51.25, -18.25, 0.01999998, -13.25, -19, 0.01999998, -12.5, -17.5, 0.01999998, -12.5, -8.75, 0.01999998, -18.25, -8.75, 0.01999998, -19.75, -9.25, 0.01999998, -19.25, -14.5, 0.01999998, -36, -14.5, 0.01999998, -37.25, -16.75, 0.01999998, -37.25, -16.75, 0.01999998, -31.5, -14.5, 0.01999998, -31.5, -14.5, 0.01999998, -33.75, -13.75, 0.01999998, -35.25, -22.5, 0.01999998, -45, -23.25, 0.01999998, -43.5, -17.5, 0.01999998, -17.75, -17.5, 0.01999998, -20, -21.75, 0.01999998, -44.25, -19, 0.01999998, -43.5, -17.5, 0.01999998, -44.25, -16.75, 0.01999998, -19.25, -16.75, 0.01999998, -18.5, -18.25, 0.01999998, -42.75, -17.5, 0.01999998, -38, -18.25, 0.01999998, -38.25, -13.75, 0.01999998, -34.5, -5.75, 0.01999998, -34.5, -5.75, 0.01999998, -35.25, -19.25, 0.01999998, -37.25, -17.5, 0.01999998, -30.75, -18.25, 0.01999998, -30.75, -19, 0.01999998, -31.5, -21.25, 0.01999998, -37.25, -21.25, 0.01999998, -31.5, -2.25, 0.01999998, -37.25, -3.25, 0.01999998, -37.25, -3.25, 0.01999998, -36.25, -4.25, 0.01999998, -35.25, -4, 0.01999998, -34.5, 8.5, 0.01999998, -36, 8.5, 0.01999998, -37.25, 0.25, 0.01999998, -37.25, -3.25, 0.01999998, -33.75, 8.5, 0.01999998, -33.75, 9, 0.01999998, -34.25, 9, 0.01999998, -35.5, 8.5, 0.01999998, -31.5, -3.25, 0.01999998, -31.5, -1.25, 0.01999998, -38.25, -0.5, 0.01999998, -38, 32.75, 0.01999998, -39.25, 33.5, 0.01999998, -39, 17.25, 0.01999998, -35.25, 14.75, 0.01999998, -35.25, 34.25, 0.01999998, -38.25, 31.75, 0.01999998, -38.25, 37.25, 0.01999998, -34.5, 39, 0.01999998, -34.5, 39, 0.01999998, -35.25, 37.25, 0.01999998, -35.25, 15.75, 0.01999998, -36.25, 16.5, 0.01999998, -36, 36.5, 0.01999998, -33.75, 36.5, 0.01999998, -36, 27.75, 0.01999998, -35.25, 28, 0.01999998, -34.5, 28.75, 0.01999998, -33.75, 28.75, 0.01999998, -36.25, 36.5, 0.01999998, -38.25, 28.75, 0.01999998, -38.25, 28.75, 0.01999998, -31.5, 36.5, 0.01999998, -31.5, -45.25, 0.01999998, -32.25, -46.75, 0.01999998, -32.25, -46.75, 0.01999998, -31.5, -45, 0.01999998, -31.5, -29.25, 0.01999998, -30.75, -29.25, 0.01999998, -14, -28.5, 0.01999998, -14, -28.5, 0.01999998, -32.25, -44.25, 0.01999998, -30.75, -42.25, 0.01999998, -34.25, -44.25, 0.01999998, -33.25, -42, 0.01999998, -27.5, -41.5, 0.01999998, -27, -40.25, 0.01999998, -27, -39.75, 0.01999998, -27.5, -44.25, 0.01999998, -34.25, -37.5, 0.01999998, -30.75, -36.75, 0.01999998, -31.5, -36.75, 0.01999998, -32.25, -37.5, 0.01999998, -33, -39.75, 0.01999998, -34.25, -40.5, 0.01999998, -35, -41.25, 0.01999998, -35.25, -37.5, 0.01999998, -34.25, -45.25, 0.01999998, -42.25, -45.25, 0.01999998, -41.5, -42, 0.01999998, -41.5, -40.5, 0.01999998, -42.25, -30, 0.01999998, -31.5, -41.25, 0.01999998, -40.75, -44.25, 0.01999998, -27.5, -37.5, 0.01999998, -27.5, 46.75, 0.01999998, -40.25, 47.5, 0.01999998, -40, 43.75, 0.01999998, -35.25, 44, 0.01999998, -34.5, 48.25, 0.01999998, -39.25, 45.75, 0.01999998, -39.25, 44.75, 0.01999998, -36.25, 46.75, 0.01999998, -27.75, 46.75, 0.01999998, -26, 47.5, 0.01999998, -26, 47.5, 0.01999998, -27.75, 44.75, 0.01999998, -33.75, 46, 0.01999998, -28.5, 48.25, 0.01999998, -28.5, 49.5, 0.01999998, -39.25, 49.5, 0.01999998, -28.5, 44.75, 0.01999998, -28.5, 44.75, 0.01999998, -39.25, -57.25, 0.01999998, -19.25, -58.75, 0.01999998, -19.25, -58.75, 0.01999998, -18.5, -57, 0.01999998, -18.5, -56.25, 0.01999998, -17.75, -56.25, 0.01999998, -13.5, -51.5, 0.01999998, -13.5, -51.5, 0.01999998, -17.75, -51, 0.01999998, -18.25, -51, 0.01999998, -19.5, -51.5, 0.01999998, -20, -56.25, 0.01999998, -20.25, -53.5, 0.01999998, -30.75, -52.75, 0.01999998, -31.5, -54.25, 0.01999998, -32.25, -55.25, 0.01999998, -24.25, -56.25, 0.01999998, -24.25, -51.5, 0.01999998, -24.25, -52.75, 0.01999998, -24.25, -53.5, 0.01999998, -25, -54.25, 0.01999998, -25.25, -42.25, 0.01999998, -11.25, -43.25, 0.01999998, -11.25, -43.25, 0.01999998, -9, -38.5, 0.01999998, -8.75, -38.5, 0.01999998, -11.25, -39.75, 0.01999998, -11.25, -40.5, 0.01999998, -12, -41.25, 0.01999998, -12.25, -42, 0.01999998, -18.5, -42.25, 0.01999998, -19.25, -41.25, 0.01999998, -17.75, -41.25, 0.01999998, -20.25, 46.75, 0.01999998, -22.25, 47.5, 0.01999998, -22, 45.75, 0.01999998, -21.25, 44.75, 0.01999998, -16.5, 49.5, 0.01999998, -16.5, 48.25, 0.01999998, -21.25, 44.75, 0.01999998, -21.25, 49.5, 0.01999998, -21.25, -8.25, 0.01999998, -17.75, -1, 0.01999998, -15.5, -8.25, 0.01999998, -20.25, 8.5, 0.01999998, -17.75, 9.25, 0.01999998, -18.5, 9.25, 0.01999998, -19.25, 8.5, 0.01999998, -20, 1.25, 0.01999998, -15.5, -0.25, 0.01999998, -14.75, -0.25, 0.01999998, -8.5, 0.5, 0.01999998, -8.5, 0.5, 0.01999998, -14.75, 8.5, 0.01999998, -22.25, -8.25, 0.01999998, -22.25, 17.5, 0.01999998, -18.5, 17.5, 0.01999998, -19.25, -8.25, 0.01999998, -15.5, 8.5, 0.01999998, -15.5, -75.25, 0.01999998, -12.5, -70.5, 0.01999998, -12.5, -70.5, 0.01999998, -17.75, -75.25, 0.01999998, -19.25, -69.75, 0.01999998, -18.5, -28.5, 0.01999998, -13, -29.25, 0.01999998, -7.25, -30.25, 0.01999998, -6.25, -31.75, 0.01999998, -6.25, -31.75, 0.01999998, -5.5, -30, 0.01999998, -5.5, -25, 0.01999998, -1.5, -24.25, 0.01999998, -0.75, -23.5, 0.01999998, -0.75, -29.25, 0.01999998, -4.75, -22.75, 0.01999998, -1.5, -25.25, 0.01999998, 5.75, -28.25, 0.01999998, 5.75, -28.25, 0.01999998, 6.5, -23.5, 0.01999998, 6.5, -27.75, 0.01999998, -12.25, -24.25, 0.01999998, 4.75, -29.25, 0.01999998, -1.5, -17.5, 0.01999998, -1.5, -41.25, 0.01999998, 1, -40.5, 0.01999998, 1, -40.5, 0.01999998, -0.75, -41.25, 0.01999998, -0.75, -44.25, 0.01999998, -6.25, -44, 0.01999998, -5.5, -43.25, 0.01999998, -4.75, -43.25, 0.01999998, -7.25, -42, 0.01999998, -1.5, -39.75, 0.01999998, -1.5, -51.25, 0.01999998, -6.25, -49.75, 0.01999998, -5.5, -51.25, 0.01999998, -1.5, -50.5, 0.01999998, -1.5, -50.5, 0.01999998, -4.75, -37.75, 0.01999998, -5.5, -37.75, 0.01999998, -6.25, -38.5, 0.01999998, -1.5, -38.5, 0.01999998, -4.75, -43.25, 0.01999998, -1.5, -38.5, 0.01999998, -7, -41.25, 0.01999998, 5.75, -40.5, 0.01999998, 6, -42.25, 0.01999998, 6.75, -44.25, 0.01999998, 11.5, -37.5, 0.01999998, 11.5, -39.75, 0.01999998, 6.75, -44.25, 0.01999998, 6.75, -37.5, 0.01999998, 6.75)
 polygons = [PackedInt32Array(0, 5, 1), PackedInt32Array(1, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(5, 6, 4), PackedInt32Array(3, 7, 2), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(14, 13, 11), PackedInt32Array(0, 1, 15), PackedInt32Array(8, 16, 10), PackedInt32Array(10, 16, 17), PackedInt32Array(18, 14, 19), PackedInt32Array(19, 14, 15), PackedInt32Array(17, 16, 20), PackedInt32Array(14, 11, 15), PackedInt32Array(15, 11, 0), PackedInt32Array(18, 19, 20), PackedInt32Array(20, 19, 17), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(27, 26, 25), PackedInt32Array(28, 23, 24), PackedInt32Array(23, 28, 29), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 30), PackedInt32Array(26, 30, 25), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 35), PackedInt32Array(38, 35, 30), PackedInt32Array(38, 30, 28), PackedInt32Array(39, 33, 34), PackedInt32Array(42, 41, 40), PackedInt32Array(45, 44, 43), PackedInt32Array(35, 46, 30), PackedInt32Array(28, 47, 38), PackedInt32Array(48, 45, 49), PackedInt32Array(49, 45, 40), PackedInt32Array(40, 45, 43), PackedInt32Array(40, 43, 42), PackedInt32Array(37, 39, 36), PackedInt32Array(36, 39, 34), PackedInt32Array(26, 51, 29), PackedInt32Array(29, 51, 50), PackedInt32Array(48, 49, 25), PackedInt32Array(25, 49, 27), PackedInt32Array(54, 53, 52), PackedInt32Array(54, 52, 55), PackedInt32Array(55, 52, 56), PackedInt32Array(52, 57, 56), PackedInt32Array(61, 60, 58), PackedInt32Array(58, 60, 59), PackedInt32Array(61, 62, 60), PackedInt32Array(60, 62, 56), PackedInt32Array(56, 62, 55), PackedInt32Array(65, 64, 62), PackedInt32Array(62, 64, 55), PackedInt32Array(55, 64, 63), PackedInt32Array(68, 67, 66), PackedInt32Array(71, 70, 69), PackedInt32Array(74, 73, 72), PackedInt32Array(75, 71, 76), PackedInt32Array(76, 71, 72), PackedInt32Array(72, 71, 69), PackedInt32Array(72, 69, 74), PackedInt32Array(78, 77, 79), PackedInt32Array(79, 77, 80), PackedInt32Array(66, 80, 68), PackedInt32Array(68, 80, 54), PackedInt32Array(80, 77, 54), PackedInt32Array(77, 53, 54), PackedInt32Array(78, 79, 76), PackedInt32Array(76, 79, 75), PackedInt32Array(82, 81, 83), PackedInt32Array(83, 81, 84), PackedInt32Array(88, 87, 85), PackedInt32Array(85, 87, 86), PackedInt32Array(90, 89, 91), PackedInt32Array(91, 89, 67), PackedInt32Array(85, 90, 88), PackedInt32Array(88, 90, 91), PackedInt32Array(81, 89, 84), PackedInt32Array(84, 89, 90), PackedInt32Array(68, 92, 67), PackedInt32Array(67, 92, 91), PackedInt32Array(87, 93, 86), PackedInt32Array(86, 93, 94), PackedInt32Array(94, 93, 95), PackedInt32Array(95, 93, 98), PackedInt32Array(95, 98, 97), PackedInt32Array(95, 97, 96), PackedInt32Array(98, 99, 97), PackedInt32Array(96, 100, 95), PackedInt32Array(104, 103, 101), PackedInt32Array(101, 103, 102), PackedInt32Array(107, 106, 105), PackedInt32Array(110, 109, 105), PackedInt32Array(105, 109, 104), PackedInt32Array(105, 104, 101), PackedInt32Array(105, 101, 108), PackedInt32Array(13, 107, 12), PackedInt32Array(12, 107, 111), PackedInt32Array(113, 112, 107), PackedInt32Array(114, 113, 115), PackedInt32Array(115, 113, 107), PackedInt32Array(115, 107, 105), PackedInt32Array(115, 105, 108), PackedInt32Array(117, 116, 50), PackedInt32Array(51, 119, 118), PackedInt32Array(112, 120, 111), PackedInt32Array(121, 117, 122), PackedInt32Array(122, 117, 118), PackedInt32Array(118, 117, 50), PackedInt32Array(118, 50, 51), PackedInt32Array(122, 113, 121), PackedInt32Array(121, 113, 114), PackedInt32Array(110, 124, 109), PackedInt32Array(109, 124, 123), PackedInt32Array(108, 125, 115), PackedInt32Array(112, 111, 107), PackedInt32Array(124, 126, 123), PackedInt32Array(123, 126, 127), PackedInt32Array(129, 128, 130), PackedInt32Array(130, 128, 131), PackedInt32Array(127, 126, 132), PackedInt32Array(132, 126, 134), PackedInt32Array(132, 134, 133), PackedInt32Array(135, 133, 136), PackedInt32Array(136, 133, 137), PackedInt32Array(10, 138, 9), PackedInt32Array(9, 138, 139), PackedInt32Array(128, 137, 133), PackedInt32Array(138, 140, 131), PackedInt32Array(128, 133, 131), PackedInt32Array(131, 133, 134), PackedInt32Array(131, 134, 139), PackedInt32Array(131, 139, 138), PackedInt32Array(128, 141, 137), PackedInt32Array(143, 142, 144), PackedInt32Array(144, 142, 145), PackedInt32Array(134, 146, 139), PackedInt32Array(145, 142, 147), PackedInt32Array(133, 148, 132), PackedInt32Array(129, 130, 147), PackedInt32Array(147, 130, 145), PackedInt32Array(58, 59, 149), PackedInt32Array(149, 59, 150), PackedInt32Array(152, 151, 153), PackedInt32Array(153, 151, 154), PackedInt32Array(150, 153, 149), PackedInt32Array(149, 153, 155), PackedInt32Array(155, 153, 154), PackedInt32Array(157, 156, 154), PackedInt32Array(154, 156, 155), PackedInt32Array(159, 158, 157), PackedInt32Array(157, 158, 156), PackedInt32Array(152, 160, 151), PackedInt32Array(163, 162, 161), PackedInt32Array(167, 166, 164), PackedInt32Array(164, 166, 165), PackedInt32Array(74, 69, 168), PackedInt32Array(168, 69, 169), PackedInt32Array(164, 170, 167), PackedInt32Array(167, 170, 161), PackedInt32Array(161, 170, 163), PackedInt32Array(171, 163, 172), PackedInt32Array(172, 163, 169), PackedInt32Array(168, 169, 160), PackedInt32Array(160, 169, 163), PackedInt32Array(160, 163, 170), PackedInt32Array(160, 170, 151), PackedInt32Array(172, 82, 171), PackedInt32Array(171, 82, 83), PackedInt32Array(175, 174, 173), PackedInt32Array(178, 177, 176), PackedInt32Array(181, 180, 179), PackedInt32Array(184, 183, 182), PackedInt32Array(181, 179, 185), PackedInt32Array(22, 186, 21), PackedInt32Array(21, 186, 187), PackedInt32Array(189, 188, 173), PackedInt32Array(187, 186, 190), PackedInt32Array(192, 191, 190), PackedInt32Array(190, 191, 187), PackedInt32Array(194, 188, 193), PackedInt32Array(193, 188, 189), PackedInt32Array(195, 191, 192), PackedInt32Array(188, 175, 173), PackedInt32Array(197, 195, 196), PackedInt32Array(196, 195, 192), PackedInt32Array(185, 200, 198), PackedInt32Array(198, 200, 199), PackedInt32Array(196, 181, 197), PackedInt32Array(197, 181, 201), PackedInt32Array(202, 203, 182), PackedInt32Array(203, 204, 182), PackedInt32Array(182, 204, 185), PackedInt32Array(185, 204, 181), PackedInt32Array(181, 204, 201), PackedInt32Array(205, 201, 206), PackedInt32Array(206, 201, 204), PackedInt32Array(184, 185, 198), PackedInt32Array(202, 189, 203), PackedInt32Array(203, 189, 173), PackedInt32Array(185, 184, 182), PackedInt32Array(193, 178, 194), PackedInt32Array(194, 178, 176), PackedInt32Array(209, 208, 207), PackedInt32Array(200, 210, 199), PackedInt32Array(199, 210, 211), PackedInt32Array(214, 213, 212), PackedInt32Array(211, 210, 215), PackedInt32Array(215, 210, 209), PackedInt32Array(217, 216, 218), PackedInt32Array(218, 216, 212), PackedInt32Array(212, 216, 214), PackedInt32Array(216, 219, 214), PackedInt32Array(214, 219, 220), PackedInt32Array(102, 103, 221), PackedInt32Array(221, 103, 222), PackedInt32Array(215, 209, 207), PackedInt32Array(222, 214, 221), PackedInt32Array(221, 214, 207), PackedInt32Array(207, 214, 215), PackedInt32Array(215, 214, 220), PackedInt32Array(158, 159, 223), PackedInt32Array(223, 159, 224), PackedInt32Array(217, 226, 225), PackedInt32Array(224, 227, 223), PackedInt32Array(223, 227, 228), PackedInt32Array(232, 231, 229), PackedInt32Array(229, 231, 230), PackedInt32Array(233, 135, 234), PackedInt32Array(234, 135, 136), PackedInt32Array(229, 235, 232), PackedInt32Array(232, 235, 236), PackedInt32Array(234, 225, 233), PackedInt32Array(233, 225, 226), PackedInt32Array(238, 237, 239), PackedInt32Array(239, 237, 240), PackedInt32Array(239, 240, 228), PackedInt32Array(227, 241, 236), PackedInt32Array(240, 242, 228), PackedInt32Array(237, 238, 225), PackedInt32Array(225, 238, 217), PackedInt32Array(227, 236, 235), PackedInt32Array(217, 218, 226), PackedInt32Array(227, 235, 228), PackedInt32Array(228, 235, 244), PackedInt32Array(228, 244, 239), PackedInt32Array(239, 244, 243), PackedInt32Array(246, 245, 247), PackedInt32Array(247, 245, 248), PackedInt32Array(250, 249, 251), PackedInt32Array(251, 249, 252), PackedInt32Array(248, 245, 253), PackedInt32Array(253, 245, 255), PackedInt32Array(253, 255, 254), PackedInt32Array(257, 256, 258), PackedInt32Array(258, 256, 259), PackedInt32Array(255, 260, 254), PackedInt32Array(262, 261, 263), PackedInt32Array(263, 261, 264), PackedInt32Array(264, 261, 265), PackedInt32Array(265, 267, 266), PackedInt32Array(265, 268, 264), PackedInt32Array(270, 269, 271), PackedInt32Array(271, 269, 272), PackedInt32Array(249, 273, 252), PackedInt32Array(274, 271, 272), PackedInt32Array(267, 274, 266), PackedInt32Array(266, 274, 272), PackedInt32Array(256, 275, 253), PackedInt32Array(261, 276, 259), PackedInt32Array(262, 263, 273), PackedInt32Array(273, 263, 252), PackedInt32Array(253, 254, 267), PackedInt32Array(256, 253, 259), PackedInt32Array(259, 253, 261), PackedInt32Array(261, 253, 265), PackedInt32Array(265, 253, 267), PackedInt32Array(165, 166, 277), PackedInt32Array(277, 166, 278), PackedInt32Array(231, 279, 230), PackedInt32Array(230, 279, 280), PackedInt32Array(278, 281, 277), PackedInt32Array(277, 281, 282), PackedInt32Array(282, 281, 283), PackedInt32Array(287, 286, 284), PackedInt32Array(284, 286, 285), PackedInt32Array(280, 279, 288), PackedInt32Array(288, 279, 283), PackedInt32Array(284, 289, 287), PackedInt32Array(287, 289, 290), PackedInt32Array(290, 289, 288), PackedInt32Array(281, 291, 283), PackedInt32Array(283, 291, 288), PackedInt32Array(288, 291, 290), PackedInt32Array(290, 291, 292), PackedInt32Array(289, 293, 288), PackedInt32Array(283, 294, 282), PackedInt32Array(296, 295, 297), PackedInt32Array(297, 295, 298), PackedInt32Array(302, 301, 299), PackedInt32Array(299, 301, 300), PackedInt32Array(299, 298, 295), PackedInt32Array(304, 303, 302), PackedInt32Array(304, 302, 305), PackedInt32Array(305, 302, 299), PackedInt32Array(305, 299, 306), PackedInt32Array(306, 299, 295), PackedInt32Array(309, 308, 307), PackedInt32Array(306, 311, 310), PackedInt32Array(313, 312, 305), PackedInt32Array(314, 313, 315), PackedInt32Array(315, 313, 310), PackedInt32Array(310, 313, 306), PackedInt32Array(306, 313, 305), PackedInt32Array(314, 315, 307), PackedInt32Array(307, 315, 309), PackedInt32Array(247, 308, 246), PackedInt32Array(246, 308, 309), PackedInt32Array(318, 317, 316), PackedInt32Array(321, 320, 319), PackedInt32Array(322, 321, 323), PackedInt32Array(323, 321, 316), PackedInt32Array(316, 321, 318), PackedInt32Array(318, 321, 319), PackedInt32Array(325, 324, 304), PackedInt32Array(304, 324, 303), PackedInt32Array(324, 325, 326), PackedInt32Array(326, 325, 327), PackedInt32Array(326, 327, 322), PackedInt32Array(322, 327, 258), PackedInt32Array(322, 323, 326), PackedInt32Array(258, 327, 257), PackedInt32Array(285, 286, 328), PackedInt32Array(328, 286, 329), PackedInt32Array(329, 333, 328), PackedInt32Array(328, 333, 330), PackedInt32Array(330, 333, 331), PackedInt32Array(331, 333, 332), PackedInt32Array(331, 334, 330), PackedInt32Array(333, 335, 332), PackedInt32Array(177, 338, 176), PackedInt32Array(176, 338, 336), PackedInt32Array(336, 338, 337), PackedInt32Array(340, 339, 341), PackedInt32Array(341, 339, 342), PackedInt32Array(342, 339, 343), PackedInt32Array(347, 346, 344), PackedInt32Array(344, 346, 345), PackedInt32Array(338, 349, 337), PackedInt32Array(337, 349, 343), PackedInt32Array(343, 349, 342), PackedInt32Array(342, 349, 348), PackedInt32Array(344, 337, 347), PackedInt32Array(347, 337, 343), PackedInt32Array(341, 351, 340), PackedInt32Array(340, 351, 350), PackedInt32Array(337, 352, 336), PackedInt32Array(339, 353, 343), PackedInt32Array(355, 354, 356), PackedInt32Array(356, 354, 357), PackedInt32Array(297, 358, 296), PackedInt32Array(296, 358, 357), PackedInt32Array(358, 356, 357), PackedInt32Array(251, 359, 250), PackedInt32Array(250, 359, 360), PackedInt32Array(362, 361, 363), PackedInt32Array(363, 361, 364), PackedInt32Array(365, 367, 366), PackedInt32Array(368, 364, 361), PackedInt32Array(367, 365, 369), PackedInt32Array(369, 365, 368), PackedInt32Array(369, 368, 361), PackedInt32Array(369, 361, 360), PackedInt32Array(371, 370, 372), PackedInt32Array(372, 370, 373), PackedInt32Array(374, 360, 359), PackedInt32Array(373, 370, 375), PackedInt32Array(365, 376, 368), PackedInt32Array(366, 367, 375), PackedInt32Array(375, 367, 373), PackedInt32Array(174, 175, 374), PackedInt32Array(374, 175, 360), PackedInt32Array(360, 175, 369), PackedInt32Array(369, 175, 377), PackedInt32Array(381, 380, 378), PackedInt32Array(378, 380, 379), PackedInt32Array(383, 382, 384), PackedInt32Array(384, 382, 385), PackedInt32Array(381, 386, 380), PackedInt32Array(380, 386, 387), PackedInt32Array(383, 389, 382), PackedInt32Array(382, 389, 388), PackedInt32Array(391, 390, 392), PackedInt32Array(392, 390, 388), PackedInt32Array(394, 362, 393), PackedInt32Array(393, 362, 363), PackedInt32Array(389, 392, 388), PackedInt32Array(396, 395, 387), PackedInt32Array(386, 397, 384), PackedInt32Array(386, 384, 387), PackedInt32Array(387, 384, 396), PackedInt32Array(396, 384, 398), PackedInt32Array(398, 384, 385), PackedInt32Array(393, 396, 394), PackedInt32Array(394, 396, 398), PackedInt32Array(398, 385, 319), PackedInt32Array(319, 385, 318), PackedInt32Array(378, 379, 399), PackedInt32Array(399, 379, 400), PackedInt32Array(400, 404, 399), PackedInt32Array(399, 404, 401), PackedInt32Array(401, 404, 402), PackedInt32Array(402, 404, 403), PackedInt32Array(402, 405, 401), PackedInt32Array(404, 406, 403)]
+geometry_collision_mask = 4278190080
 cell_height = 0.01
 agent_height = 2.0
 agent_radius = 1.0
@@ -64,12 +66,15 @@ shader_parameter/alpha = 1.0
 [node name="World" type="Node3D" parent="." unique_id=2076819926]
 
 [node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
-transform = Transform3D(0.6084706, 0, -0.7935764, 0, 1, 0, 0.7935764, 0, 0.6084706, -4.0898876, 1, 1.6179781)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
 
 [node name="Keys" type="Node3D" parent="World" unique_id=1485673073]
 
 [node name="Key" parent="World/Keys" unique_id=549883607 instance=ExtResource("2_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73, 1, -13)
+
+[node name="Key2" parent="World/Keys" unique_id=1232448078 instance=ExtResource("2_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -4)
 
 [node name="Level" type="Node3D" parent="World" unique_id=1694937844]
 
@@ -77,6 +82,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73, 1, -13)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 5.5, -37.5)
 layers = 2
 use_collision = true
+collision_layer = 0
+collision_mask = 0
 size = Vector3(191, 1, 121)
 material = ExtResource("3_o6xl0")
 
@@ -86,1829 +93,2133 @@ navigation_mesh = SubResource("NavigationMesh_85g3d")
 [node name="Floor" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=287067110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 1, 11)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor2" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=768544907]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -11)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 7)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor3" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=991050119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(19, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor5" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2092188793]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor6" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2030190842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -0.5, -22)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 17)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor29" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1427977071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -0.5, -42)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 7)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor40" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=192263092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.5, -43.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 10)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor43" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1529438616]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 13)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor45" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1651436480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -0.5, -60.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 6)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor49" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=491692459]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -0.5, -46.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 4)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor46" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1922921182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -0.5, -41)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor56" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1965465236]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, -0.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor57" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1602359230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, -0.5, -62)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 7)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor58" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=545012815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, -0.5, -43)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 5)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor59" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2086417524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, -0.5, -42.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 6)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor60" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2051509139]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, -0.5, -25)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 5)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor31" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=131660660]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -0.5, -48)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 5)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor36" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1437723776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -0.5, -50.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 4)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor32" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1651507403]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -0.5, -61.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor37" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=348800480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -0.5, -68.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 6)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor30" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1571193868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, -0.5, -44)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor38" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1618037588]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.5, -35)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor33" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1973429970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, -0.5, -54)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor34" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=639044493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.5, -54)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor42" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1982000991]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -0.5, -50)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor47" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=188096033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, -0.5, -35)
 use_collision = true
+collision_mask = 0
 size = Vector3(18, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor52" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1864264369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, -0.5, -35)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor53" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1445161928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, -0.5, -51)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor54" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1197103610]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, -0.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor55" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2077573274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.5, -0.5, -67)
 use_collision = true
+collision_mask = 0
 size = Vector3(16, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor48" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1462613973]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -0.5, -50)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor44" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1131034775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(20, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor35" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2072764958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -0.5, -54)
 use_collision = true
+collision_mask = 0
 size = Vector3(13, 1, 7)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor28" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=417893613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -0.5, -34.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor41" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=405398757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -53.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 10)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor50" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=876127433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -0.5, -51.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 1, 12)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor61" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=286942192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, -0.5, -35)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor62" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1346962534]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, -0.5, -34)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 13)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor63" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=861040783]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 7)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor64" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=302994586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, -0.5, -49.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(20, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor65" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1513959756]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5, -0.5, -56)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 1, 5)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor66" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1575178679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, -0.5, -67)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor67" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=542088365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, -0.5, -59)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 19)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor68" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=942116169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, -0.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor51" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=925598605]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -76)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor39" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1339465844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, -34.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(14, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor7" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1067515525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -0.5, -22)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 17)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor8" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1168438077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, -0.5, -7)
 use_collision = true
+collision_mask = 0
 size = Vector3(14, 1, 13)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor9" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2108431778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -0.5, 3.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor10" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1151817467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -0.5, 6)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor11" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=217230367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, -0.5, -6)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor12" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1001584159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5, -0.5, -6)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor13" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1861963846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, -0.5, -2.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 4)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor15" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=142116384]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -0.5, 2.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 6)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor17" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1944927518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -0.5, -19.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 14)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor22" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=169231955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, -0.5, -29.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor26" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=73244036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -0.5, -39.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 1, 8)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor18" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1127225043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor23" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2059043697]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, -0.5, -32)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor24" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1163300458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -0.5, -32)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor27" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2087013813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5, -0.5, -42)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor20" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1192336748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(12, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor16" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1938208703]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -0.5, 9)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 7)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor14" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=68119328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -0.5, -6.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 12)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor19" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1884117903]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 13)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor25" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=784415119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -0.5, -31)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor21" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=920257639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73, -0.5, -16)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 1, 9)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Floor4" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1796602323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 1, 3)
-material = ExtResource("3_o6xl0")
+material = ExtResource("4_eb6dy")
 
 [node name="Wall" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2143950314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 4)
 use_collision = true
+collision_mask = 0
 size = Vector3(13, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall4" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=14147447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, -8)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall8" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1927405885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, -14)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall17" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1790254932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, -17)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall22" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2125662440]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 2.5, -14)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall35" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=624771256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall85" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1107535422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 2.5, -36)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall89" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=635651006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5, 2.5, -40)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall90" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=284172833]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 2.5, -44)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall86" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2135569128]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 2.5, -36)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall81" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1855877533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall82" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1427028088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.5, 2.5, -34)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall36" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=784446963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5, 2.5, -34)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall23" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=279797887]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, 0)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall24" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1817524944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 2.5, 0)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall32" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1379128247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 2.5, -4)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall33" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2012961219]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 2.5, -8)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall45" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=701513841]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.5, 2.5, -8)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall47" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=728905891]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.5, 2.5, -4)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall50" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=37368228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 2.5, 0)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall40" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=373437689]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 2.5, -13)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall41" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=355354384]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 2.5, -13)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall61" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1118073582]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 2.5, -17)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall65" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=218262930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.5, 2.5, -26)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall66" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1506223130]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.5, 2.5, -26)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall62" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=638424605]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 2.5, -21)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall77" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=536835285]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5, 2.5, -26)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall78" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=359073164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, 2.5, -26)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall72" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=422951415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68, 2.5, -21)
 use_collision = true
+collision_mask = 0
 size = Vector3(19, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall73" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1532888116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 2.5, -17)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall70" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2001537185]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 2.5, -12)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall76" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1454135516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73, 2.5, -11)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall51" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=73671851]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 2.5, 0)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall52" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=735673698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 2.5, 0)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall55" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1344598728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 2.5, 5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall56" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1929003201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 2.5, 5)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall59" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1638530014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 2.5, 13)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall27" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1000998635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 2.5, 4)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall28" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2144701013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 2.5, 8)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall18" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=896788821]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, -21)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall92" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1612620919]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall97" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1083135365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, -33)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall148" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1452090683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 2.5, -33)
 use_collision = true
+collision_mask = 0
 size = Vector3(16, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall149" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=525608411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 2.5, -37)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall178" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1128520092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 2.5, -40)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall183" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1993883955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 2.5, -37)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall184" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=596697019]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 2.5, -33)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall182" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=259881164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 2.5, -40)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall209" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1578314557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 2.5, -41)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall210" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1876907525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2.5, -41)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall213" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1226849020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2.5, -27)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall218" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=219481442]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2.5, -23)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall219" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1489823695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 2.5, -23)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall222" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=12662844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 2.5, -15)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall214" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1019563450]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 2.5, -27)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall187" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1558165541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 2.5, -45)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall223" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1711389000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 2.5, -45)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall225" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2107703279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5, 2.5, -49)
 use_collision = true
+collision_mask = 0
 size = Vector3(14, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall226" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2121639108]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, 2.5, -53)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall230" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=821916166]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, 2.5, -56)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall231" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=825501185]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, 2.5, -60)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall234" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1838752765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.5, 2.5, -63)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall235" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=503300953]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.5, 2.5, -53)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall188" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1396855932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 2.5, -54)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall192" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=733472879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 2.5, -62)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall197" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=705566426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 2.5, -72)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall193" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=478468881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 2.5, -62)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall198" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2068300323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 2.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall202" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1093566540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5, 2.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall199" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1513852487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, 2.5, -69)
 use_collision = true
+collision_mask = 0
 size = Vector3(24, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall189" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=224237332]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 2.5, -54)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall203" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=167578976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 2.5, -59)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall204" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1674708566]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 2.5, -59)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall179" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1941240653]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(12, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall150" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=719258243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2.5, -37)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall98" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=39893588]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, -37)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall99" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=907228145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2.5, -39)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall143" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=794426807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.5, -39)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall144" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1120550962]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -39)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall145" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2076233608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(14, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall103" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1346265219]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, -46)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall107" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=976861907]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, -50)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall131" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1715842263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, -48)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall137" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2086805208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, -48)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall155" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1039974144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 2.5, -45)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall157" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1793773409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall168" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=866330745]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -63)
 use_collision = true
+collision_mask = 0
 size = Vector3(15, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall170" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=738902650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2.5, -67)
 use_collision = true
+collision_mask = 0
 size = Vector3(20, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall160" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=73348510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall156" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1263094569]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2.5, -45)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall163" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1291414202]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 2.5, -52)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall167" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1418521358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.5, -44)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall164" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=885250220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.5, -48)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall135" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1985187327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, -52)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall132" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=877622933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2.5, -59)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall138" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1066845948]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.5, -59)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall171" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=312736301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.5, -71)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall175" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=162708979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, -81)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall172" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1310172925]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, -71)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall127" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=904678750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 2.5, -52)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall128" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1572237970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 2.5, -56)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall117" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=50283111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall120" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1340773354]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 2.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall121" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=344045339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 2.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall108" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1878126192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 2.5, -50)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall116" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1116174654]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall124" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1129156854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, -72)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall111" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1871375054]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 2.5, -52)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall115" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2140852650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 2.5, -48)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall112" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1009389608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 2.5, -56)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall104" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1359428733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, -42)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall100" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1590335368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2.5, -39)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall93" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1612428554]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall12" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=395866674]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -24)
 use_collision = true
+collision_mask = 0
 size = Vector3(21, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall9" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1708500271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -14)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall15" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=836575750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 2.5, -17)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall16" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1344344763]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 2.5, -21)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall5" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=399913240]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, -8)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall2" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=691710185]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 2.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall3" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1670346253]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 2.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall6" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=773550663]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0000002, 2.5, -11)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall7" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=151707489]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.9999998, 2.5, -11)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall10" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1551345062]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 2.5, -16)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall19" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=623138843]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2.5, -8.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(18, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall21" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=781135929]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2.5, -25)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall20" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=428547814]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 2.5, -22)
 use_collision = true
+collision_mask = 0
 size = Vector3(15, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall94" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1742107247]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23, 2.5, -34.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall95" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1080016756]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 2.5, -31.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall96" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1267329094]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 2.5, -38)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall141" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2119108535]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 2.5, -38)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall142" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1184951126]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 2.5, -31.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall146" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1148794559]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2.5, -31.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall147" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=480091212]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2.5, -38)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall151" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1321603368]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 2.5, -41)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall153" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1583331837]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2.5, -46.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall154" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=676061644]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2.5, -55)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall161" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1292630315]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21, 2.5, -55)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall162" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=369234100]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21, 2.5, -46.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall165" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1761676232]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24, 2.5, -46.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall166" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=343822092]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, 2.5, -48.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall158" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1561238120]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 2.5, -61)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall159" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=213300848]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 2.5, -62.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall152" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1064268990]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 2.5, -41)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall176" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=624859689]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27, 2.5, -38)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall177" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1680237499]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27, 2.5, -32)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall180" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2016021892]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 38, 2.5, -32)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall181" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=57293185]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 38, 2.5, -38)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall211" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=263419316]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 43, 2.5, -38.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall215" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2039419536]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 43, 2.5, -30.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall216" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2022735352]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 45, 2.5, -25)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall220" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1354518150]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 43, 2.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall221" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1475222952]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 51, 2.5, -19)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall217" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1769625634]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 49, 2.5, -25)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall212" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=872014343]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 51, 2.5, -34)
 use_collision = true
+collision_mask = 0
 size = Vector3(13, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall185" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1714455563]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31, 2.5, -47.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(14, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall186" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=347570919]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 35, 2.5, -42.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall190" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=880086331]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 35, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall194" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=422129721]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 32, 2.5, -66.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall195" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=822349901]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 42, 2.5, -63.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall200" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=865835215]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 46, 2.5, -62)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall201" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=721779831]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 2.5, -62)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall227" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=313549040]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 57, 2.5, -58.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(12, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall228" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=447021220]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 67, 2.5, -52.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall232" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2023053164]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 74, 2.5, -55)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall236" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=266363181]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 84, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall233" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=626250042]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 74, 2.5, -61)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall229" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1833035328]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 67, 2.5, -64.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall196" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1609740449]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 42, 2.5, -70)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall191" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=379651284]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 39, 2.5, -58)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall205" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=371323273]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 43, 2.5, -56.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall207" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=657947170]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 45, 2.5, -43)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall208" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1124671414]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 49, 2.5, -43)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall206" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=353458491]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 52, 2.5, -55.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall224" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=839937509]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 52, 2.5, -47.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall101" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=633687860]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2.5, -43)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall133" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=642686917]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 2.5, -44)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall136" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1617103485]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 2.5, -55)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall134" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=176130709]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 2.5, -44)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall102" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1368059137]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 2.5, -41)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall105" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=367917106]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, 2.5, -48)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall118" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=185427600]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, 2.5, -61.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall109" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=958201031]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 2.5, -51)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall126" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1510067269]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2.5, -51)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall129" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1728039357]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 2.5, -50)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall130" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=974767198]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 2.5, -57.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall139" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=712214056]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 2.5, -65)
 use_collision = true
+collision_mask = 0
 size = Vector3(11, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall140" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=986954708]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 2.5, -61.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall169" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=987468349]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 2.5, -68.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall173" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1651829915]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.9999999, 2.5, -76)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall174" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2031638662]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 2.5, -76)
 use_collision = true
+collision_mask = 0
 size = Vector3(9, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall113" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=812633777]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -34, 2.5, -50)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall114" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=288110743]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -38, 2.5, -52)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall110" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2082668750]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 2.5, -57)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall125" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=127654125]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2.5, -57)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall106" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=505215336]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25, 2.5, -46)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall119" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1992931324]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25, 2.5, -61.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall122" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1089133131]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27, 2.5, -68)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall123" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=803361556]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19, 2.5, -68)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall25" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1573648017]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, 2.5, 3.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall26" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1554679112]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -26, 2.5, 1.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall30" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=504791549]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -31, 2.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall37" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1263129887]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -37, 2.5, -10.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall44" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=4541533]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -45, 2.5, -10.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall42" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=167146578]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -39, 2.5, -19.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(12, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall43" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1267478033]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -43, 2.5, -15.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall63" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=684143797]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 2.5, -14.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall64" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=61470935]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 2.5, -23.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall69" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=737252918]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -58, 2.5, -23.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall71" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1041529342]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -58, 2.5, -14.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall74" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1189996182]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -69, 2.5, -13.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall75" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=19886700]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -77, 2.5, -15.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(10, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall67" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=2135376054]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -52, 2.5, -28.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall79" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1609341172]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36, 2.5, -28)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall83" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=810424111]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36, 2.5, -35.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(2, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall91" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1654012878]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -47, 2.5, -42)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall87" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1411266811]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -39, 2.5, -40)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall88" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1070759642]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -43, 2.5, -38)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall84" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=175453063]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -46, 2.5, -35)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall80" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1067732183]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -46, 2.5, -28)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall68" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=634442571]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -56, 2.5, -30)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall60" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1484908270]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -43, 2.5, -23)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall53" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=104587980]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -39, 2.5, 2.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall54" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1661195836]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -43, 2.5, 2.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(4, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall57" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=622792820]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -46, 2.5, 8.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall58" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1147887026]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36, 2.5, 8.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(8, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall38" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=962441521]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -37, 2.5, -10.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(6, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall39" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=779767093]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -37, 2.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall46" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1695508002]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -45, 2.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall48" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=490508186]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -49, 2.5, -2)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall49" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1272433297]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -53, 2.5, -4)
 use_collision = true
+collision_mask = 0
 size = Vector3(7, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall31" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=193758935]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -31, 2.5, -18.5)
 use_collision = true
+collision_mask = 0
 size = Vector3(22, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall34" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1187979206]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27, 2.5, -24)
 use_collision = true
+collision_mask = 0
 size = Vector3(19, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall29" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=903355475]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 2.5, 6)
 use_collision = true
+collision_mask = 0
 size = Vector3(5, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall14" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1240633713]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2.5, -16)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall11" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1440902746]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 2.5, -22)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Wall13" type="CSGBox3D" parent="World/Level/NavigationRegion3D" unique_id=1726516931]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2.5, -22)
 use_collision = true
+collision_mask = 0
 size = Vector3(3, 5, 1)
 material = ExtResource("3_o6xl0")
 
 [node name="Monster" parent="World" unique_id=611558888 instance=ExtResource("4_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 0, -21)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, -19)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=382546998]
 environment = SubResource("Environment_h2yge")

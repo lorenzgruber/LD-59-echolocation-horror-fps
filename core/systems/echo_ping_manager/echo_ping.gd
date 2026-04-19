@@ -5,6 +5,7 @@ var radius: float
 var max_radius: float
 var visibility: float
 var color: Color
+var is_reactive: bool
 
 var tree: SceneTree;
 
@@ -14,12 +15,13 @@ var emitting : bool;
 
 const ECHO_SPEED := 10.0;
 
-func _init(_origin: Vector3, _max_radius: float, _visibility: float, _color: Color, _tree: SceneTree) -> void:
+func _init(_origin: Vector3, _max_radius: float, _visibility: float, _color: Color, _is_reactive: bool, _tree: SceneTree) -> void:
 	self.origin = _origin;
 	self.radius = 0.0;
 	self.max_radius = _max_radius;
 	self.visibility = _visibility;
 	self.color = _color;
+	self.is_reactive = _is_reactive;
 	
 	self.tree = _tree;
 	

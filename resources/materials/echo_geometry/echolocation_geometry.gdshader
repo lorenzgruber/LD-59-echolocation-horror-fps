@@ -1,9 +1,7 @@
 shader_type spatial;
 
-uniform vec3[10] echo_origin;
-uniform float[10] echo_radius;
-uniform float[10] echo_visibility;
-uniform vec3[10] echo_color;
+global uniform sampler2D echo_ping_data;
+global uniform int echo_ping_count;
 
 uniform float echo_ring_width : hint_range(0.0, 10.0, 0.1) = 1.0;
 uniform float echo_ring_intensity : hint_range(0.0, 10.0, 0.01) = 1.0;
@@ -39,12 +37,11 @@ void fragment() {
     // 3. Blend them
     float height_val = (x_tex * weights.x) + (y_tex * weights.y) + (z_tex * weights.z);
 	
-	for (int i = 0; i < 10; i++) {
-		float visibility = echo_visibility[i];
-		if (visibility <= 0.0) break;
-		vec3 origin = echo_origin[i];
-		float radius = echo_radius[i];
-		vec3 color = echo_color[i];
+	for (int i = 0; i < echo_ping_count; i++) {
+		vec4 origin_and_radius = texelFetch(echo_ping_data, ivec2(i, 0), 0);
+		vec4 color = texelFetch(echo_ping_data, ivec2(i, 1), 0);
+		vec3 origin = origin_and_radius.rgb;
+		float radius = origin_and_radius.a;
 		
 		float dist = distance(origin, world_position);
 		dist = dist - (height_val * height_bump_strength);
@@ -57,10 +54,10 @@ void fragment() {
 		afterglow_strength *= smoothstep(radius - echo_ring_afterglow_width, radius, dist);
 		afterglow_strength *= echo_ring_afterglow_intensity;
 		
-		float echo_strength = (echo_ring_strength + afterglow_strength) * visibility;
+		float echo_strength = (echo_ring_strength + afterglow_strength) * color.a;
 		echo_strength -= (1.0 - height_val) * echo_strength * height_after_glow_affect;
 		
-		EMISSION = max(EMISSION, color * echo_strength);
+		EMISSION = max(EMISSION, color.rgb * echo_strength);
 	}
 	
 	ALBEDO = vec3(0);

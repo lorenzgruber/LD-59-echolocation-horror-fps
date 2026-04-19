@@ -88,11 +88,11 @@ anti_aliasing/quality/screen_space_aa=2
 
 [shader_globals]
 
-echo_origin={
-"type": "vec3",
-"value": Vector3(0, 0, 0)
+echo_ping_data={
+"type": "sampler2D",
+"value": ""
 }
-echo_radius={
-"type": "float",
-"value": 0.0
+echo_ping_count={
+"type": "int",
+"value": 0
 }

@@ -1,43 +1,39 @@
 extends Node
 
-var echo_geometry_material : ShaderMaterial = load("res://resources/materials/echo_geometry/echolocation_geometry.material");
-
 var echo_pings : Array[EchoPing];
 const MAX_ECHO_PINGS := 10; 
 
-var foo : int = 0;
+var data_texture_src_image : Image;
+var data_texture : ImageTexture;
 
 func _ready() -> void:
-	pass
+	# create a RGBF texture with 2 pixels per echo ping
+	# 1. pixel = origin vector (X,Y,Z) and radius
+	# 2. pixel = color (R,G,B,A)
+	data_texture_src_image = Image.create(MAX_ECHO_PINGS, 2, false, Image.FORMAT_RGBAF);
+	data_texture = ImageTexture.create_from_image(data_texture_src_image);
+	RenderingServer.global_shader_parameter_set("echo_ping_data", data_texture);
 
 func _process(delta: float) -> void:
-	var echo_origin : Array[Vector3] = [];
-	var echo_radius : Array[float] = [];
-	var echo_visibility : Array[float] = [];
-	var echo_color : Array[Color] = [];
+	RenderingServer.global_shader_parameter_set("echo_ping_count", echo_pings.size());
 	
 	var dead_ping_indices : Array[int] = [];
-	
+
 	for i in echo_pings.size():	
 		var echo_ping: EchoPing = echo_pings[i];
 		echo_ping.process(delta);
 		
-		echo_origin.append(echo_ping.origin);
-		echo_radius.append(echo_ping.radius);
-		echo_visibility.append(echo_ping.visibility);
-		echo_color.append(echo_ping.color);
+		data_texture_src_image.set_pixel(i, 0, Color(echo_ping.origin.x, echo_ping.origin.y, echo_ping.origin.z, echo_ping.radius));
+		data_texture_src_image.set_pixel(i, 1, Color(echo_ping.color.r, echo_ping.color.g, echo_ping.color.b, echo_ping.visibility));
 		
 		if (echo_ping.emitting == false):
 			dead_ping_indices.append(i);
-	
+			
 	dead_ping_indices.reverse();
 	for i in dead_ping_indices:	
 		echo_pings.remove_at(i);
-	
-	echo_geometry_material.set_shader_parameter("echo_origin", echo_origin);
-	echo_geometry_material.set_shader_parameter("echo_radius", echo_radius);
-	echo_geometry_material.set_shader_parameter("echo_visibility", echo_visibility);
-	echo_geometry_material.set_shader_parameter("echo_color", echo_color);
+
+	data_texture.update(data_texture_src_image);	
 
 func emit_echo(echo_ping: EchoPing) -> void:
 	if (echo_pings.size() >= MAX_ECHO_PINGS):		
@@ -45,4 +41,3 @@ func emit_echo(echo_ping: EchoPing) -> void:
 		echo_pings.pop_front();
 		
 	echo_pings.append(echo_ping);
-	

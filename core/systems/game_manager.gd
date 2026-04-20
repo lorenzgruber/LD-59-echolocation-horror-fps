@@ -3,6 +3,8 @@ extends Node
 @export var keys_container: Node3D
 @export var gates_container: Node3D
 @export var monster_navigation_manager: MonsterNavigationManager
+@export var wall_map: WallMap
+@export var player: Player
 
 var key_1_collected: bool = false
 var key_2_collected: bool = false
@@ -12,6 +14,8 @@ var gate_2_opened: bool = false
 var gate_3_opened: bool = false
 
 func _ready() -> void:
+	wall_map.collected.connect(on_wall_map_collected)
+
 	var keys := keys_container.get_children()
 	for key : Node in keys:
 		if (key is not KeyItem): continue
@@ -22,8 +26,8 @@ func _ready() -> void:
 		if (gate is not Gate): continue
 		( gate as Gate ).gate_opened.connect(on_gate_opened)
 
-func _process(delta: float) -> void:
-	pass
+func on_wall_map_collected() -> void:
+	player.is_map_unlocked = true
 
 func on_key_collected(key_type: KeyItem.KeyType) -> void:
 	match key_type:

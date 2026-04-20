@@ -17,6 +17,7 @@ var state: States
 @onready var hunt_light: OmniLight3D = $HuntLight
 
 @export var navigation_manager: MonsterNavigationManager
+@export var player: Player;
 
 var current_room: int
 var prev_room: int = -1
@@ -63,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func set_navigation_target_to_player() -> void:
-	var player_position := Player.instance.global_position
+	var player_position := player.global_position
 	navigation_agent.target_position = player_position
 	debug_log("Setting navigation target to player")
 
@@ -85,12 +86,12 @@ func update_animation_speed() -> void:
 	else: speed = IDLE_ANIMATION_SPEED;
 	animation_player.speed_scale = speed
 
-func on_player_detection_area_entered(player: Node3D) -> void:
-	on_player_sound_detected(player.global_position)
+func on_player_detection_area_entered(_player: Node3D) -> void:
+	on_player_sound_detected(_player.global_position)
 	
 func on_player_sound_detected(origin: Vector3) -> void:
 	last_player_sound_origin = origin
-	var distance_to_player := global_position.distance_to(Player.instance.global_position)
+	var distance_to_player := global_position.distance_to(player.global_position)
 	var initiate_hunt := distance_to_player <= 30.0 and has_line_of_sight_to_player()
 	
 	if(initiate_hunt and state != States.HUNT_INITIAL and state != States.HUNT):
@@ -104,9 +105,9 @@ func on_player_sound_detected(origin: Vector3) -> void:
 	
 func has_line_of_sight_to_player() -> bool:
 	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(line_of_sight_origin.global_position, Player.instance.global_position)
+	var query := PhysicsRayQueryParameters3D.create(line_of_sight_origin.global_position, player.global_position)
 	var result := space_state.intersect_ray(query)
-	return result.collider == Player.instance
+	return result.collider == player
 	
 func on_navigation_target_reached() -> void:
 	if (state == States.PATROL or state == States.INVESTIGATE or state == States.HUNT):

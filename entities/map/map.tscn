@@ -1,0 +1,205 @@
+[gd_scene format=3 uid="uid://b5lh6nx3k7p1o"]
+
+[ext_resource type="Script" uid="uid://vs8sojdcsum5" path="res://entities/map/map.gd" id="1_326jl"]
+[ext_resource type="Shader" uid="uid://wyy1wcqknf2a" path="res://resources/shaders/echolocation_geometry.gdshader" id="1_jhf06"]
+[ext_resource type="Texture2D" uid="uid://cr0b53tth402m" path="res://assets/textures/map/map_base.png" id="2_eoafl"]
+[ext_resource type="Texture2D" uid="uid://dx0vq0gw6rvai" path="res://assets/textures/map/map_outline.png" id="3_326jl"]
+[ext_resource type="Texture2D" uid="uid://c502ueork3wl0" path="res://assets/textures/map/key_circle.png" id="4_rxsem"]
+[ext_resource type="Texture2D" uid="uid://bok2uftx6ovdu" path="res://assets/textures/map/key_triangle.png" id="5_edmgv"]
+[ext_resource type="Texture2D" uid="uid://csvh4g2ybwft7" path="res://assets/textures/map/key_square.png" id="6_2krni"]
+[ext_resource type="Texture2D" uid="uid://puicuxkayfvo" path="res://assets/textures/map/lock_circle.png" id="7_vix08"]
+[ext_resource type="Texture2D" uid="uid://dnfxv4u8l44ug" path="res://assets/textures/map/lock_square.png" id="8_mueq4"]
+[ext_resource type="Texture2D" uid="uid://xwuxm1ikyec4" path="res://assets/textures/map/player_marker_base.png" id="10_edmgv"]
+[ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="10_rxsem"]
+[ext_resource type="Texture2D" uid="uid://cbv15t8prn8h4" path="res://assets/textures/map/player_marker_outline.png" id="11_2krni"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yq7ol"]
+frequency = 0.065
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2baiq"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_yq7ol")
+seamless = true
+seamless_blend_skirt = 0.208
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ih5ls"]
+render_priority = 0
+shader = ExtResource("1_jhf06")
+shader_parameter/echo_ring_width = 0.10000000149012
+shader_parameter/echo_ring_intensity = 9.99999977648
+shader_parameter/echo_ring_afterglow_width = 10.000000149012
+shader_parameter/echo_ring_afterglow_intensity = 0.0499999988824
+shader_parameter/height_map = SubResource("NoiseTexture2D_2baiq")
+shader_parameter/height_bump_strength = 0.1
+shader_parameter/height_texture_scale = 0.2
+shader_parameter/height_texture_offset = Vector3(0, 0, 0)
+shader_parameter/height_after_glow_affect = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_ptnyh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rqb5"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("2_eoafl")
+emission_enabled = true
+emission = Color(0.014602661, 0.094079375, 0.12890625, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjkxo"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("3_326jl")
+emission_enabled = true
+emission = Color(0.08544922, 0.42219347, 0.4375, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_urjrd"]
+size = Vector2(0.025, 0.025)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82qkk"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("4_rxsem")
+emission_enabled = true
+emission = Color(0, 1, 0.298, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4861"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("5_edmgv")
+emission_enabled = true
+emission = Color(0, 0.6509804, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgt3x"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("6_2krni")
+emission_enabled = true
+emission = Color(0.8666667, 0, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gm8uw"]
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_woxv4"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("7_vix08")
+emission_enabled = true
+emission = Color(0, 1, 0.2980392, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vlwf4"]
+load_path = "res://.godot/imported/lock_circle.png-9fa7246de400cc79546bdf1a91a7bbbd.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc0nq"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_vlwf4")
+emission_enabled = true
+emission = Color(0, 0.6509804, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7n67"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("8_mueq4")
+emission_enabled = true
+emission = Color(0.8666667, 0, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_vix08"]
+size = Vector2(0.035, 0.035)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mueq4"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("10_edmgv")
+emission_enabled = true
+emission = Color(0.045654297, 0.2512376, 0.34375, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yq7ol"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("11_2krni")
+emission_enabled = true
+emission = Color(0.106277466, 0.7475185, 0.77734375, 1)
+
+[node name="Map" type="Node3D" unique_id=2133034918]
+script = ExtResource("1_326jl")
+
+[node name="Base" type="CSGBox3D" parent="." unique_id=1778044609]
+size = Vector3(1.2, 0.7, 0.05)
+material = SubResource("ShaderMaterial_ih5ls")
+
+[node name="BaseTexture" type="MeshInstance3D" parent="." unique_id=1907248861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03)
+mesh = SubResource("QuadMesh_ptnyh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rqb5")
+
+[node name="OutlineTexture" type="MeshInstance3D" parent="." unique_id=1776597651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.031)
+mesh = SubResource("QuadMesh_ptnyh")
+surface_material_override/0 = SubResource("StandardMaterial3D_cjkxo")
+
+[node name="Key_1" type="MeshInstance3D" parent="." unique_id=1922671351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44902623, -0.115290515, 0.032)
+mesh = SubResource("QuadMesh_urjrd")
+surface_material_override/0 = SubResource("StandardMaterial3D_82qkk")
+
+[node name="Key_2" type="MeshInstance3D" parent="." unique_id=1053920899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04235655, 0.24396111, 0.032)
+mesh = SubResource("QuadMesh_urjrd")
+surface_material_override/0 = SubResource("StandardMaterial3D_m4861")
+
+[node name="Key_3" type="MeshInstance3D" parent="." unique_id=165210245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4446826, 0.13948077, 0.032)
+mesh = SubResource("QuadMesh_urjrd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jgt3x")
+
+[node name="Lock_1" type="MeshInstance3D" parent="." unique_id=631867593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12694371, -0.048884265, 0.032)
+mesh = SubResource("QuadMesh_gm8uw")
+surface_material_override/0 = SubResource("StandardMaterial3D_woxv4")
+
+[node name="Lock_2" type="MeshInstance3D" parent="." unique_id=1475015931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106759906, 0.011510022, 0.032)
+mesh = SubResource("QuadMesh_gm8uw")
+surface_material_override/0 = SubResource("StandardMaterial3D_bc0nq")
+
+[node name="Lock_3" type="MeshInstance3D" parent="." unique_id=59577893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046274066, -0.08648192, 0.032)
+mesh = SubResource("QuadMesh_gm8uw")
+surface_material_override/0 = SubResource("StandardMaterial3D_v7n67")
+
+[node name="PlayerMarker" type="Node3D" parent="." unique_id=321203591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0055360794, -0.087768555, 0.04)
+
+[node name="PlayerMarkerBase" type="MeshInstance3D" parent="PlayerMarker" unique_id=1576569913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.002)
+mesh = SubResource("QuadMesh_vix08")
+surface_material_override/0 = SubResource("StandardMaterial3D_mueq4")
+
+[node name="PlayerMarkerOutline" type="MeshInstance3D" parent="PlayerMarker" unique_id=1818015240]
+mesh = SubResource("QuadMesh_vix08")
+surface_material_override/0 = SubResource("StandardMaterial3D_yq7ol")
+
+[node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("10_rxsem")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=505641247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, -0.0004272461, 0)
+visible = false
+size = Vector3(0.95581055, 0.56018066, 1)

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://q4f677130omi"]
+
+[ext_resource type="PackedScene" uid="uid://b5lh6nx3k7p1o" path="res://entities/map/map.tscn" id="1_2sv7f"]
+[ext_resource type="Script" uid="uid://n0s33nvx4qmu" path="res://scenes/wall_map.gd" id="1_e6au5"]
+[ext_resource type="PackedScene" uid="uid://bgv0gybtw35xo" path="res://components/interactable/interactable_component.tscn" id="2_68ekf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e6au5"]
+resource_local_to_scene = true
+radius = 2.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qocny"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cecli"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_qocny")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="WallMap" type="Node3D" unique_id=1257022023]
+script = ExtResource("1_e6au5")
+
+[node name="Map" parent="." unique_id=2133034918 instance=ExtResource("1_2sv7f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="InteractableComponent" parent="." unique_id=1328555702 instance=ExtResource("2_68ekf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08941555, 0, 0.19902182)
+label_text = "Pick up map"
+
+[node name="CollisionShape3D" parent="InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1328555702, 842578170) index="0" unique_id=2013022885]
+shape = SubResource("SphereShape3D_e6au5")
+
+[node name="LabelQuadMesh" parent="InteractableComponent" index="1" unique_id=677357067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0.37837934)
+surface_material_override/0 = SubResource("StandardMaterial3D_cecli")
+
+[editable path="InteractableComponent"]

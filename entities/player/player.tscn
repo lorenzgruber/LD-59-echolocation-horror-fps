@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctn4bhb63xqnk" path="res://entities/player/player.gd" id="1_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://b4vd0bjvg7e6n" path="res://components/echo_signal_emitter/echo_signal_emitter_component.tscn" id="2_hqtel"]
+[ext_resource type="PackedScene" uid="uid://b5lh6nx3k7p1o" path="res://entities/map/map.tscn" id="2_j3ovn"]
 [ext_resource type="AudioStream" uid="uid://d0yoamsofwhb2" path="res://assets/audio/player/sonar_ping.wav" id="3_a1qjk"]
 [ext_resource type="AudioStream" uid="uid://cfsuy2xmarv1w" path="res://assets/audio/footsteps/player_footstep-01.mp3" id="4_wvtmh"]
 [ext_resource type="AudioStream" uid="uid://c3nks687nbwf" path="res://assets/audio/footsteps/player_footstep-02.mp3" id="5_7thud"]
@@ -30,6 +31,98 @@ stream_7/stream = ExtResource("11_afbqv")
 emission_enabled = true
 emission = Color(0, 1, 1, 1)
 
+[sub_resource type="Animation" id="Animation_j3ovn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/MapPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/MapPivot/Map:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_afbqv"]
+resource_name = "close_map"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/MapPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.08726646, 0, 0), Vector3(0.08726646, 0, 0), Vector3(-1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/MapPivot/Map:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_gx6sm"]
+resource_name = "open_map"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/MapPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.275, 0.35, 0.425, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(0.08726646, 0, 0), Vector3(-0.04363323, 0, 0), Vector3(0.017453292, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/MapPivot/Map:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqrof"]
+_data = {
+&"RESET": SubResource("Animation_j3ovn"),
+&"close_map": SubResource("Animation_afbqv"),
+&"open_map": SubResource("Animation_gx6sm")
+}
+
 [node name="Player" type="CharacterBody3D" unique_id=447243112]
 collision_layer = 2
 collision_mask = 5
@@ -44,6 +137,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59513026, 0)
 [node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=1185320935]
 unique_name_in_owner = true
 cull_mask = 3
+
+[node name="MapPivot" type="Node3D" parent="CameraPivot" unique_id=1340526549]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Map" parent="CameraPivot/MapPivot" unique_id=2133034918 instance=ExtResource("2_j3ovn")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7812462)
+visible = false
+show_player_marker = true
 
 [node name="EchoPingEmitter" parent="CameraPivot" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
 unique_name_in_owner = true
@@ -76,3 +178,6 @@ bus = &"Footsteps"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4116466, 0)
 layers = 4
 material = SubResource("StandardMaterial3D_a1qjk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=762104009]
+libraries/ = SubResource("AnimationLibrary_yqrof")

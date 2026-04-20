@@ -4,11 +4,14 @@ class_name Player extends CharacterBody3D
 @onready var camera: Camera3D = %Camera
 @onready var echo_ping_emitter: EchoSignalEmitterComponent = $%EchoPingEmitter
 @onready var echo_cooldown_timer: Timer = $%EchoPingCooldownTimer
-
 @onready var footstep_component: FootstepComponent = $FootstepComponent
 @onready var footstep_audio_player: AudioStreamPlayer3D = $%FootstepAudioPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var map: Map = $%Map
 
-enum States {WALK, RUN, SNEAK}
+@export var is_map_unlocked: bool = false
+
+enum States {WALK, RUN, SNEAK, MAP}
 var state: States = States.WALK
 
 var base_step_volume: float = 0.0
@@ -28,12 +31,9 @@ const SNEAK_STEP_RANGE: float = 0.0
 const MOUSE_SENSITIVITY: float = 0.001;
 const CAMERA_MAX_X_ANGLE: float = 45;
 
-static var instance: Player = null
-
 func _ready() -> void:
 	base_step_volume = footstep_audio_player.volume_linear
 	set_state(States.WALK)
-	instance = self
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("LEFT", "RIGHT", "FORWARD", "BACKWARD")
@@ -56,13 +56,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _input(event: InputEvent) -> void:
+	if(is_map_unlocked and Input.is_action_pressed("MAP") and state != States.MAP):
+		set_state( States.MAP)
+		
+	if(is_map_unlocked and Input.is_action_just_released("MAP") and state == States.MAP):
+		set_state( States.WALK)
+		
 	if (Input.is_action_pressed("RUN") and state == States.WALK):
 		set_state( States.RUN)
-	
+		
 	if (Input.is_action_pressed("SNEAK") and state == States.WALK):
 		set_state( States.SNEAK)
 		
-	if ( (Input.is_action_just_released("RUN") and state == States.RUN) or (Input.is_action_just_released("SNEAK") and state == States.SNEAK)):	
+	if ((Input.is_action_just_released("RUN") and state == States.RUN) or (Input.is_action_just_released("SNEAK") and state == States.SNEAK)):	
 		set_state( States.WALK)
 	
 	if (Input.is_action_just_pressed("ECHO") and echo_cooldown_timer.is_stopped()):
@@ -74,16 +80,33 @@ func _input(event: InputEvent) -> void:
 		camera_pivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		var camera_rotation_x: float = clamp(camera_pivot.rotation_degrees.x, -CAMERA_MAX_X_ANGLE, CAMERA_MAX_X_ANGLE)
 		camera_pivot.rotation_degrees.x = camera_rotation_x
+		map.player_rotation = rotation_degrees.y
 
 func set_state(_state: States) -> void:
+	on_state_exited(state)
 	self.state = _state
+	on_state_entered(_state)
 	update_footstep_volume()
 	update_footstep_range()
+
+func on_state_entered(_state: States) -> void:
+	debug_log( "entering state: " + str(_state))
+	if (_state == States.MAP):
+#		map.is_echo_reactive = true		
+		map.player_position = global_position
+		animation_player.play("open_map")
+	
+func on_state_exited(_state: States) -> void:
+	debug_log( "exiting state: " + str(_state))
+	if (_state == States.MAP):
+#		map.is_echo_reactive = false		
+		animation_player.play("close_map")
 		
 func get_move_speed() -> float:
 	if (state == States.WALK): return WALK_SPEED;
 	elif (state == States.RUN): return RUN_SPEED
-	else: return SNEAK_SPEED
+	elif (state == States.SNEAK): return SNEAK_SPEED
+	else: return 0
 		
 func update_footstep_volume() -> void:
 	var percent: float;
@@ -99,3 +122,6 @@ func update_footstep_range() -> void:
 	elif (state == States.RUN): step_range = RUN_STEP_RANGE;
 	else: step_range = SNEAK_STEP_RANGE;
 	footstep_component.footstep_detection_range = step_range;
+	
+func debug_log(value: Variant) -> void:
+	print("[Player] " + value)

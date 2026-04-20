@@ -5,7 +5,8 @@
 [ext_resource type="FontFile" uid="uid://ddciu3udce3rq" path="res://assets/fonts/PublicPixel.ttf" id="3_k508k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0xhsq"]
-radius = 3.0
+resource_local_to_scene = true
+radius = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_0xhsq"]
 size = Vector2(1.5, 1.5)

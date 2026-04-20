@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bcrlckgl2nmih"]
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+ambient_light_energy = 0.0
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.5
+fog_mode = 1
+fog_light_color = Color(0.04396057, 0.09046364, 0.16796875, 1)
+fog_density = 1.0
+
+[node name="MainWorldEnvironment" type="WorldEnvironment" unique_id=1395156402]
+environment = SubResource("Environment_h2yge")

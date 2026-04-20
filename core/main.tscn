@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://l41shpj4ftg"]
+
+[ext_resource type="Script" uid="uid://qjaq778gcxun" path="res://core/main.gd" id="1_xiose"]
+[ext_resource type="PackedScene" uid="uid://8uuogeisd5si" path="res://ui/main_ui.tscn" id="2_3gdo0"]
+[ext_resource type="PackedScene" uid="uid://dlvv8hnlryq2m" path="res://core/systems/screen_space_shader_manager/screen_space_shader_manager.tscn" id="2_csopv"]
+[ext_resource type="PackedScene" uid="uid://ddrl5c5yjypi" path="res://core/systems/ambient_sound_manager/ambient_sound_manager.tscn" id="3_csopv"]
+
+[node name="main" type="Node" unique_id=1379091810]
+script = ExtResource("1_xiose")
+debug_mode = true
+
+[node name="ScreenSpaceShaderManager" parent="." unique_id=960731647 instance=ExtResource("2_csopv")]
+
+[node name="MainUi" parent="." unique_id=254328839 instance=ExtResource("2_3gdo0")]
+
+[node name="AmbientSoundManager" parent="." unique_id=567610688 instance=ExtResource("3_csopv")]
+
+[node name="ActiveLevel" type="Node" parent="." unique_id=676031397]

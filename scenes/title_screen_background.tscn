@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://b88mv2e0d5qau"]
+
+[ext_resource type="PackedScene" uid="uid://dlk68f604osgy" path="res://entities/key_item/key_item.tscn" id="1_kwimq"]
+[ext_resource type="Texture2D" uid="uid://ed58wbys7f7e" path="res://assets/textures/flare.png" id="2_4i71t"]
+[ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echolocation/echolocation_walls.material" id="2_h7cdj"]
+[ext_resource type="Material" uid="uid://0aqvyb6gc8l5" path="res://resources/materials/echolocation/echolocation_floor.material" id="3_4i71t"]
+[ext_resource type="PackedScene" uid="uid://bcrlckgl2nmih" path="res://resources/main_world_environment.tscn" id="4_kvrx7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvrx7"]
+resource_local_to_scene = true
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0.296875, 1)
+
+[sub_resource type="Curve" id="Curve_t15lu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.32417583, 1), 0.0, 0.0, 0, 0, Vector2(0.6895605, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vusxe"]
+curve = SubResource("Curve_t15lu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cfs6k"]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.14999999
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_vusxe")
+color = Color(0, 1, 0.29803923, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nm4hk"]
+resource_local_to_scene = true
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_4i71t")
+emission_enabled = true
+emission = Color(0.125, 1, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ch1xh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_nm4hk")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jwpvr"]
+resource_local_to_scene = true
+radius = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ptawp"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuu7n"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_ptawp")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cfs6k"]
+size = Vector2(200, 200)
+
+[node name="TitleScreenBackground" type="Node3D" unique_id=1749064664]
+
+[node name="World" type="Node3D" parent="." unique_id=1842454745]
+
+[node name="Level" type="Node3D" parent="World" unique_id=1250312607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 34)
+
+[node name="Key1" parent="World/Level" unique_id=549883607 instance=ExtResource("1_kwimq")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 1, -31)
+
+[node name="Mesh" parent="World/Level/Key1/KeyInner/VibrateScaleAnchor" parent_id_path=PackedInt32Array(549883607, 2023084586) index="0" unique_id=1614029638]
+material = SubResource("StandardMaterial3D_kvrx7")
+
+[node name="GPUParticles3D" parent="World/Level/Key1/KeyInner" parent_id_path=PackedInt32Array(549883607, 1663429386) index="4" unique_id=1607393183]
+process_material = SubResource("ParticleProcessMaterial_cfs6k")
+draw_pass_1 = SubResource("QuadMesh_ch1xh")
+
+[node name="CollisionShape3D" parent="World/Level/Key1/KeyInner/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(549883607, 1328555702, 842578170) index="0" unique_id=2013022885]
+shape = SubResource("SphereShape3D_jwpvr")
+
+[node name="LabelQuadMesh" parent="World/Level/Key1/KeyInner/InteractableComponent" parent_id_path=PackedInt32Array(549883607, 1328555702) index="1" unique_id=677357067]
+surface_material_override/0 = SubResource("StandardMaterial3D_tuu7n")
+
+[node name="Ceiling" type="MeshInstance3D" parent="World/Level" unique_id=1211873754]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 2, 5, -52)
+mesh = SubResource("PlaneMesh_cfs6k")
+surface_material_override/0 = ExtResource("2_h7cdj")
+
+[node name="Floor20" type="CSGBox3D" parent="World/Level" unique_id=268612134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, -0.5, -37)
+use_collision = true
+collision_mask = 0
+size = Vector3(12, 1, 3)
+material = ExtResource("3_4i71t")
+
+[node name="Floor21" type="CSGBox3D" parent="World/Level" unique_id=310303367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.5, -34)
+use_collision = true
+collision_mask = 0
+size = Vector3(7, 1, 9)
+material = ExtResource("3_4i71t")
+
+[node name="Wall72" type="CSGBox3D" parent="World/Level" unique_id=1534260756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, -39)
+use_collision = true
+collision_mask = 0
+size = Vector3(19, 5, 1)
+material = ExtResource("2_h7cdj")
+
+[node name="Wall73" type="CSGBox3D" parent="World/Level" unique_id=622383554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.5, -35)
+use_collision = true
+collision_mask = 0
+size = Vector3(11, 5, 1)
+material = ExtResource("2_h7cdj")
+
+[node name="Wall76" type="CSGBox3D" parent="World/Level" unique_id=1866048278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, -29)
+use_collision = true
+collision_mask = 0
+size = Vector3(7, 5, 1)
+material = ExtResource("2_h7cdj")
+
+[node name="Wall74" type="CSGBox3D" parent="World/Level" unique_id=1753261973]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 2.5, -31.5)
+use_collision = true
+collision_mask = 0
+size = Vector3(6, 5, 1)
+material = ExtResource("2_h7cdj")
+
+[node name="Wall77" type="CSGBox3D" parent="World/Level" unique_id=839773280]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19, 2.5, -37)
+use_collision = true
+collision_mask = 0
+size = Vector3(5, 5, 1)
+material = ExtResource("2_h7cdj")
+
+[node name="Wall75" type="CSGBox3D" parent="World/Level" unique_id=131511929]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.5, -33.5)
+use_collision = true
+collision_mask = 0
+size = Vector3(10, 5, 1)
+material = ExtResource("2_h7cdj")
+
+[node name="Camera3D" type="Camera3D" parent="World" unique_id=1236773751]
+transform = Transform3D(-0.8482873, 0.061615426, -0.52593946, -0.013252553, 0.99042606, 0.13740651, 0.52937055, 0.12353022, -0.8393493, -1, 2.484398, -2)
+fov = 37.849285
+
+[node name="WorldEnvironment" parent="." unique_id=1395156402 instance=ExtResource("4_kvrx7")]
+
+[editable path="World/Level/Key1"]
+[editable path="World/Level/Key1/KeyInner/InteractableComponent"]

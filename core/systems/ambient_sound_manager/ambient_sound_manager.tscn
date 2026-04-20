@@ -11,3 +11,4 @@ script = ExtResource("1_j0fs4")
 stream = ExtResource("2_tpuj6")
 volume_db = -10.0
 autoplay = true
+bus = &"Ambience"

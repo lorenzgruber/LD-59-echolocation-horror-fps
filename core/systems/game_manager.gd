@@ -1,4 +1,4 @@
-extends Node
+class_name GameManager extends Node
 
 @export var keys_container: Node3D
 @export var gates_container: Node3D
@@ -14,7 +14,10 @@ var gate_1_opened: bool = false
 var gate_2_opened: bool = false
 var gate_3_opened: bool = false
 
+static var instance: GameManager
+
 func _ready() -> void:
+	instance = self
 	wall_map.collected.connect(on_wall_map_collected)
 	exit.level_exited.connect(on_level_exited)
 	player.death.connect(on_player_death)
@@ -28,9 +31,13 @@ func _ready() -> void:
 	for gate : Node in gates:
 		if (gate is not Gate): continue
 		( gate as Gate ).gate_opened.connect(on_gate_opened)
+		
+	await get_tree().create_timer(2.0).timeout
+	MainUi.instance.show_level_start_tutorial()
 
 func on_wall_map_collected() -> void:
 	player.is_map_unlocked = true
+	MainUi.instance.show_map_tutorial()
 
 func on_key_collected(key_type: KeyItem.KeyType) -> void:
 	match key_type:

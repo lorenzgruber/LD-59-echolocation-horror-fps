@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://b0of50hkulya3" path="res://ui/debug_fps_counter/debug_fps_counter.tscn" id="1_3lvfr"]
 [ext_resource type="Script" uid="uid://cpwmrsxbei4eh" path="res://ui/main_ui.gd" id="1_hlo7n"]
 [ext_resource type="PackedScene" uid="uid://iqwk3nwa68qa" path="res://ui/debug_mini_map.tscn" id="2_hlo7n"]
+[ext_resource type="Texture2D" uid="uid://bdk0ygxnisp4s" path="res://assets/textures/echo_escape_logo.png" id="2_x3h8h"]
+[ext_resource type="FontFile" uid="uid://ddciu3udce3rq" path="res://assets/fonts/PublicPixel.ttf" id="3_186kx"]
+[ext_resource type="Texture2D" uid="uid://suy0y4dtbuh0" path="res://assets/textures/key_prompt_frame.png" id="4_ti1yg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3lvfr"]
 content_margin_left = 12.0
@@ -67,6 +70,92 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_x3h8h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/MarginContainer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%StartGameButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qry5k"]
+resource_name = "fade_in"
+length = 10.0
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/MarginContainer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.025, 4.025),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%StartGameButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.025, 3.025, 5.025),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_186kx"]
+_data = {
+&"RESET": SubResource("Animation_x3h8h"),
+&"fade_in": SubResource("Animation_qry5k")
+}
 
 [sub_resource type="Animation" id="Animation_186kx"]
 length = 0.001
@@ -247,7 +336,7 @@ length = 4.766667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../DefeatScreen/ColorRect:color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -259,7 +348,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../DefeatScreen/VBoxContainer/YouDiedLabel:modulate")
+tracks/1/path = NodePath("VBoxContainer/YouDiedLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -271,7 +360,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../DefeatScreen/VBoxContainer/TryAgainButton:modulate")
+tracks/2/path = NodePath("VBoxContainer/TryAgainButton:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -283,7 +372,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../DefeatScreen/VBoxContainer/TryAgainButton:disabled")
+tracks/3/path = NodePath("VBoxContainer/TryAgainButton:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -311,9 +400,157 @@ _data = {
 &"fade_in": SubResource("Animation_3lvfr")
 }
 
-[node name="UI" type="CanvasLayer" unique_id=254328839]
+[sub_resource type="Animation" id="Animation_fa42e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ck7gc"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dvdym"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.4333334, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.4, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73gub"]
+_data = {
+&"RESET": SubResource("Animation_fa42e"),
+&"fade_in": SubResource("Animation_ck7gc"),
+&"fade_out": SubResource("Animation_dvdym")
+}
+
+[node name="MainUi" type="CanvasLayer" unique_id=254328839]
 process_mode = 3
 script = ExtResource("1_hlo7n")
+
+[node name="TitleScreen" type="Control" parent="." unique_id=182841679]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="TitleScreen" unique_id=1501383270]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen" unique_id=1408569197]
+layout_mode = 1
+offset_right = 675.0
+offset_bottom = 844.0
+theme_override_constants/margin_left = 123
+theme_override_constants/margin_top = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/MarginContainer" unique_id=558628911]
+layout_mode = 2
+theme_override_constants/separation = 141
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/MarginContainer/VBoxContainer" unique_id=428692644]
+layout_mode = 2
+theme_override_constants/margin_left = -121
+theme_override_constants/margin_bottom = -183
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreen/MarginContainer/VBoxContainer/MarginContainer" unique_id=1566578228]
+layout_mode = 2
+texture = ExtResource("2_x3h8h")
+expand_mode = 5
+
+[node name="StartGameButton" type="Button" parent="TitleScreen/MarginContainer/VBoxContainer" unique_id=1386334482]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.1640625, 0.1640625, 0.1640625, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3lvfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hlo7n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x3h8h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qry5k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_x3h8h")
+text = "Start"
+
+[node name="TitleScreenAnimationPlayer" type="AnimationPlayer" parent="TitleScreen" unique_id=678788492]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_186kx")
 
 [node name="VictoryScreen" type="Control" parent="." unique_id=1690372248]
 visible = false
@@ -483,12 +720,289 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Paused"
 
-[node name="DebugFpsCounter" parent="." unique_id=356024401 instance=ExtResource("1_3lvfr")]
-
-[node name="DebugMiniMap" parent="." unique_id=1145789005 instance=ExtResource("2_hlo7n")]
+[node name="ScreenTransition" type="Control" parent="." unique_id=2065556922]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SubViewport" parent="DebugMiniMap/MarginContainer/SubViewportContainer" parent_id_path=PackedInt32Array(1145789005, 1823242780) index="0" unique_id=217250501]
+[node name="ColorRect" type="ColorRect" parent="ScreenTransition" unique_id=1102627766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScreenTransitionAnimationPlayer" type="AnimationPlayer" parent="ScreenTransition" unique_id=1880759938]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_73gub")
+
+[node name="TutorialOverlays" type="Control" parent="." unique_id=1307908480]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialOverlays" unique_id=57168715]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 64
+
+[node name="EchoSignalHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=832492151]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "press SPACE to emit echo signals"
+
+[node name="MovementHint" type="HBoxContainer" parent="TutorialOverlays/MarginContainer" unique_id=718282202]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=2049305653]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "press"
+
+[node name="KeyInputs" type="HBoxContainer" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=1144285168]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="KeyPrompt" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=849985367]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 62)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt" unique_id=1161555638]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.5
+anchor_right = 0.34
+anchor_bottom = 0.5
+offset_left = -35.018623
+offset_top = -35.0
+offset_right = 55.239983
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ti1yg")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt" unique_id=763412056]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.224
+anchor_top = 0.32500002
+anchor_right = 0.41000003
+anchor_bottom = 0.35700002
+offset_left = 2.6640224
+offset_top = -6.1499786
+offset_right = 27.260021
+offset_bottom = 35.86602
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "W"
+
+[node name="KeyPrompt2" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=859117052]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 62)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt2" unique_id=733372128]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.5
+anchor_right = 0.34
+anchor_bottom = 0.5
+offset_left = -35.018623
+offset_top = -35.0
+offset_right = 55.239983
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ti1yg")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt2" unique_id=1426202616]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.224
+anchor_top = 0.32500002
+anchor_right = 0.41000003
+anchor_bottom = 0.35700002
+offset_left = 2.6640224
+offset_top = -6.1499786
+offset_right = 27.260021
+offset_bottom = 35.86602
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "A"
+
+[node name="KeyPrompt3" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=310667645]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 62)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt3" unique_id=1532528016]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.5
+anchor_right = 0.34
+anchor_bottom = 0.5
+offset_left = -35.018623
+offset_top = -35.0
+offset_right = 55.239983
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ti1yg")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt3" unique_id=1330493379]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.224
+anchor_top = 0.32500002
+anchor_right = 0.41000003
+anchor_bottom = 0.35700002
+offset_left = 2.6640224
+offset_top = -6.1499786
+offset_right = 27.260021
+offset_bottom = 35.86602
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "S"
+
+[node name="KeyPrompt4" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=1043097972]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 62)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt4" unique_id=246310355]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.5
+anchor_right = 0.34
+anchor_bottom = 0.5
+offset_left = -35.018623
+offset_top = -35.0
+offset_right = 55.239983
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ti1yg")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt4" unique_id=415291986]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.224
+anchor_top = 0.32500002
+anchor_right = 0.41000003
+anchor_bottom = 0.35700002
+offset_left = 2.6640224
+offset_top = -6.1499786
+offset_right = 27.260021
+offset_bottom = 35.86602
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "D"
+
+[node name="Label2" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=886396803]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "to move"
+
+[node name="MapHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=391997453]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "hold TAB to view map"
+
+[node name="MapHint2" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=2001752274]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 32
+text = "Hint: map is reveiled by echo signal"
+
+[node name="DebugOverlays" type="Control" parent="." unique_id=1272345181]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DebugMiniMap" parent="DebugOverlays" unique_id=1145789005 instance=ExtResource("2_hlo7n")]
+visible = false
+layout_mode = 1
+offset_left = 1880.0
+offset_top = 1040.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+
+[node name="SubViewport" parent="DebugOverlays/DebugMiniMap/MarginContainer/SubViewportContainer" parent_id_path=PackedInt32Array(1145789005, 1823242780) index="0" unique_id=217250501]
 render_target_update_mode = 0
 
-[editable path="DebugMiniMap"]
+[node name="DebugFpsCounter" parent="DebugOverlays" unique_id=356024401 instance=ExtResource("1_3lvfr")]
+layout_mode = 1
+
+[editable path="DebugOverlays/DebugMiniMap"]

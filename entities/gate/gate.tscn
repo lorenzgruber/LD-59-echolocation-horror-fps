@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://6wadnyud6hsf" path="res://assets/textures/gate_x256.png" id="2_bekog"]
 [ext_resource type="PackedScene" uid="uid://bgv0gybtw35xo" path="res://components/interactable/interactable_component.tscn" id="2_n2m8a"]
 [ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="5_v010g"]
+[ext_resource type="SphereMesh" uid="uid://4vef5erhhw1j" path="res://resources/meshes/key_1_mesh.tres" id="6_v010g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wpd7"]
 render_priority = 0
@@ -19,18 +20,18 @@ shader_parameter/height_texture_scale = 0.20800000988
 shader_parameter/height_texture_offset = Vector3(0, 0, -0.015)
 shader_parameter/height_after_glow_affect = 0.999999977648
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0wpd7"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_nrfwu"]
 resource_local_to_scene = true
 radius = 3.0466678
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_v010g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_t1wnq"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrfwu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4uuad"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_v010g")
+albedo_texture = SubResource("ViewportTexture_t1wnq")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -43,10 +44,6 @@ height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v010g"]
 albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_nrfwu"]
-radius = 0.3
-height = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wpd7"]
 resource_local_to_scene = true
@@ -162,11 +159,11 @@ disabled_text = "Key missing"
 enabled = false
 
 [node name="CollisionShape3D" parent="Wall/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1328555702, 842578170) index="0" unique_id=2013022885]
-shape = SubResource("SphereShape3D_0wpd7")
+shape = SubResource("SphereShape3D_nrfwu")
 
 [node name="LabelQuadMesh" parent="Wall/InteractableComponent" index="1" unique_id=677357067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-surface_material_override/0 = SubResource("StandardMaterial3D_nrfwu")
+surface_material_override/0 = SubResource("StandardMaterial3D_4uuad")
 
 [node name="EchoSignalReceiverComponent" parent="Wall" unique_id=1206163352 instance=ExtResource("5_v010g")]
 unique_name_in_owner = true
@@ -183,7 +180,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v010g")
 [node name="KeySymbol" type="MeshInstance3D" parent="Wall/Key" unique_id=114299881]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.477)
-mesh = SubResource("SphereMesh_nrfwu")
+mesh = ExtResource("6_v010g")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wpd7")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Wall/Key/KeySymbol" unique_id=486440819]

@@ -21,6 +21,10 @@ signal gate_opened(key_type: KeyType)
 
 var tween: Tween
 
+const key_1_mesh: Mesh = preload("res://resources/meshes/key_1_mesh.tres")
+const key_2_mesh: Mesh = preload("res://resources/meshes/key_2_mesh.tres")
+const key_3_mesh: Mesh = preload("res://resources/meshes/key_3_mesh.tres")
+
 func _ready() -> void:
 	interactable_component.interacted.connect(on_interacted)
 	echo_signal_receiver.echo_signal_received.connect(on_echo_signal_received)
@@ -28,6 +32,7 @@ func _ready() -> void:
 	key_symbol.get_surface_override_material(0).emission = color
 	key_symbol_light.light_color = color
 	update_interactable_component()
+	setup_mesh()
 
 func on_interacted() -> void:
 	if (!is_key_collected): return
@@ -69,3 +74,9 @@ func get_color() -> Color:
 			return Constants.KEY_ECHO_COLOR_3
 		_:
 			return Constants.KEY_ECHO_COLOR_3
+			
+func setup_mesh() -> void:
+	match key_type:
+		KeyType.KEY_1: key_symbol.mesh = key_1_mesh
+		KeyType.KEY_2: key_symbol.mesh = key_2_mesh
+		KeyType.KEY_3: key_symbol.mesh = key_3_mesh

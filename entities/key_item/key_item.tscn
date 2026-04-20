@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co7muj7r25e8p" path="res://entities/key_item/key_item.gd" id="1_yymwm"]
 [ext_resource type="PackedScene" uid="uid://b4vd0bjvg7e6n" path="res://components/echo_signal_emitter/echo_signal_emitter_component.tscn" id="2_3u2ct"]
+[ext_resource type="BoxMesh" uid="uid://1r84pmyryi0a" path="res://resources/meshes/key_3_mesh.tres" id="2_6qhou"]
 [ext_resource type="AudioStream" uid="uid://cbu8a4pd20b0g" path="res://assets/audio/key/key_echo_ping.mp3" id="3_3u2ct"]
 [ext_resource type="AudioStream" uid="uid://brwnkiblg3vsb" path="res://assets/audio/key/key_ambient_hum_loop.mp3" id="4_3u2ct"]
 [ext_resource type="Texture2D" uid="uid://ed58wbys7f7e" path="res://assets/textures/flare.png" id="5_k62fj"]
@@ -10,6 +11,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t15lu"]
 resource_local_to_scene = true
+cull_mode = 2
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
 emission = Color(0, 1, 0.296875, 1)
@@ -51,14 +53,18 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_y5cxd")
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_j6d6h"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_6qhou"]
+resource_local_to_scene = true
+radius = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ro3sc"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qhou"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w67e4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_j6d6h")
+albedo_texture = SubResource("ViewportTexture_ro3sc")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -69,7 +75,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sphere:position")
+tracks/0/path = NodePath("KeyInner:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,7 +87,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:scale")
+tracks/1/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -93,7 +99,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sphere/AmbientHumAudioPlayer:playing")
+tracks/2/path = NodePath("KeyInner/AmbientHumAudioPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -105,7 +111,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh/OmniLight3D:light_energy")
+tracks/3/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh/OmniLight3D:light_energy")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -117,7 +123,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission")
+tracks/4/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:material:emission")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -129,7 +135,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sphere/GPUParticles3D:process_material:color")
+tracks/5/path = NodePath("KeyInner/GPUParticles3D:process_material:color")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -141,7 +147,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sphere/SphereVibrateScaleAnchor:scale")
+tracks/6/path = NodePath("KeyInner/VibrateScaleAnchor:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -153,7 +159,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission_energy_multiplier")
+tracks/7/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:material:emission_energy_multiplier")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -161,6 +167,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vusxe"]
@@ -171,7 +189,7 @@ step = 0.025
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sphere/EchoPingEmitter")
+tracks/0/path = NodePath("KeyInner/EchoPingEmitter")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -185,7 +203,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sphere:position")
+tracks/1/path = NodePath("KeyInner:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -197,7 +215,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:scale")
+tracks/2/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -209,7 +227,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sphere/AmbientHumAudioPlayer:playing")
+tracks/3/path = NodePath("KeyInner/AmbientHumAudioPlayer:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -221,7 +239,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh/OmniLight3D:light_energy")
+tracks/4/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh/OmniLight3D:light_energy")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -233,7 +251,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = false
-tracks/5/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission")
+tracks/5/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:material:emission")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -245,7 +263,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sphere/GPUParticles3D:process_material:color")
+tracks/6/path = NodePath("KeyInner/GPUParticles3D:process_material:color")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -257,7 +275,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sphere/SphereVibrateScaleAnchor:scale")
+tracks/7/path = NodePath("KeyInner/VibrateScaleAnchor:scale")
 tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -269,7 +287,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Sphere/SphereVibrateScaleAnchor/SphereMesh:material:emission_energy_multiplier")
+tracks/8/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:material:emission_energy_multiplier")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -277,6 +295,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("KeyInner/VibrateScaleAnchor/Mesh:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ktc0"]
@@ -288,48 +318,50 @@ _data = {
 [node name="Key" type="Node3D" unique_id=549883607]
 script = ExtResource("1_yymwm")
 
-[node name="Sphere" type="Node3D" parent="." unique_id=1663429386]
+[node name="KeyInner" type="Node3D" parent="." unique_id=1663429386]
 
-[node name="SphereVibrateScaleAnchor" type="Node3D" parent="Sphere" unique_id=2023084586]
+[node name="VibrateScaleAnchor" type="Node3D" parent="KeyInner" unique_id=2023084586]
 
-[node name="SphereMesh" type="CSGSphere3D" parent="Sphere/SphereVibrateScaleAnchor" unique_id=2012094317]
+[node name="Mesh" type="CSGMesh3D" parent="KeyInner/VibrateScaleAnchor" unique_id=1614029638]
 unique_name_in_owner = true
-radius = 0.2
-rings = 12
+mesh = ExtResource("2_6qhou")
 material = SubResource("StandardMaterial3D_t15lu")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Sphere/SphereVibrateScaleAnchor/SphereMesh" unique_id=1732437677]
+[node name="OmniLight3D" type="OmniLight3D" parent="KeyInner/VibrateScaleAnchor/Mesh" unique_id=1732437677]
 light_color = Color(0, 1, 0.3671875, 1)
 
-[node name="EchoPingEmitter" parent="Sphere" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_3u2ct")]
+[node name="EchoPingEmitter" parent="KeyInner" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_3u2ct")]
 unique_name_in_owner = true
 echo_ping_audio_player = NodePath("../EchoPingAudioPlayer")
 echo_ping_radius = 15.0
 echo_ping_visibility = 0.5
 echo_ping_color = 1
 
-[node name="EchoPingAudioPlayer" type="AudioStreamPlayer3D" parent="Sphere" unique_id=517826852]
+[node name="EchoPingAudioPlayer" type="AudioStreamPlayer3D" parent="KeyInner" unique_id=517826852]
 stream = ExtResource("3_3u2ct")
 max_distance = 60.0
 
-[node name="AmbientHumAudioPlayer" type="AudioStreamPlayer3D" parent="Sphere" unique_id=2131332101]
+[node name="AmbientHumAudioPlayer" type="AudioStreamPlayer3D" parent="KeyInner" unique_id=2131332101]
 stream = ExtResource("4_3u2ct")
 max_distance = 20.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Sphere" unique_id=1607393183]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="KeyInner" unique_id=1607393183]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1676014, 0)
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_8ktc0")
 draw_pass_1 = SubResource("QuadMesh_i5kk3")
 
-[node name="InteractableComponent" parent="Sphere" unique_id=1328555702 instance=ExtResource("7_vusxe")]
+[node name="InteractableComponent" parent="KeyInner" unique_id=1328555702 instance=ExtResource("7_vusxe")]
 unique_name_in_owner = true
 label_text = "Pick up"
 
-[node name="LabelQuadMesh" parent="Sphere/InteractableComponent" index="1" unique_id=677357067]
+[node name="CollisionShape3D" parent="KeyInner/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1328555702, 842578170) index="0" unique_id=2013022885]
+shape = SubResource("SphereShape3D_6qhou")
+
+[node name="LabelQuadMesh" parent="KeyInner/InteractableComponent" index="1" unique_id=677357067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85396945, 0, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_6qhou")
+surface_material_override/0 = SubResource("StandardMaterial3D_w67e4")
 
 [node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("6_t15lu")]
 
@@ -337,4 +369,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6qhou")
 libraries/ = SubResource("AnimationLibrary_8ktc0")
 autoplay = &"idle"
 
-[editable path="Sphere/InteractableComponent"]
+[editable path="KeyInner/InteractableComponent"]

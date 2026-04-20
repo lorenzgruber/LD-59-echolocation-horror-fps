@@ -20,6 +20,23 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_jkv2x"]
 size = Vector2(200, 200)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_muem4"]
+resource_local_to_scene = true
+radius = 2.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dp3eg"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqmmt"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_dp3eg")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbj1t"]
 load_path = "res://.godot/imported/gate_x256.png-9d603b6f6f586ac572ad59e9b855d0bb.s3tc.ctex"
 
@@ -213,7 +230,7 @@ script = ExtResource("2_jbj1t")
 [node name="World" type="Node3D" parent="." unique_id=2076819926]
 
 [node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.894844, 1, 15.5718155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.894844, 1, 15.5718155)
 
 [node name="Monster" parent="World" unique_id=611558888 node_paths=PackedStringArray("navigation_manager", "player") instance=ExtResource("4_85g3d")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57, 0, 16)
@@ -229,7 +246,16 @@ mesh = SubResource("PlaneMesh_jkv2x")
 surface_material_override/0 = ExtResource("3_o6xl0")
 
 [node name="WallMap" parent="World/Level" unique_id=1257022023 instance=ExtResource("6_jbj1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -23)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.2603881, -23.392921)
+
+[node name="InteractableComponent" parent="World/Level/WallMap" index="1" unique_id=1328555702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08941555, -0.28497374, 0.19902182)
+
+[node name="CollisionShape3D" parent="World/Level/WallMap/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1257022023, 1328555702, 842578170) index="0" unique_id=2013022885]
+shape = SubResource("SphereShape3D_muem4")
+
+[node name="LabelQuadMesh" parent="World/Level/WallMap/InteractableComponent" index="1" unique_id=677357067]
+surface_material_override/0 = SubResource("StandardMaterial3D_gqmmt")
 
 [node name="Gates" type="Node3D" parent="World/Level" unique_id=270694422]
 
@@ -2643,6 +2669,8 @@ texture = ExtResource("10_choun")
 visible = false
 size = Vector3(161, 1, 94)
 
+[editable path="World/Level/WallMap"]
+[editable path="World/Level/WallMap/InteractableComponent"]
 [editable path="World/Level/Gates/Gate1"]
 [editable path="World/Level/Gates/Gate1/Wall/InteractableComponent"]
 [editable path="World/Level/Gates/Gate2"]

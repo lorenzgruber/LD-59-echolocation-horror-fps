@@ -20,18 +20,18 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_jkv2x"]
 size = Vector2(200, 200)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_muem4"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_jbj1t"]
 resource_local_to_scene = true
-radius = 2.0
+radius = 1.5126706
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dp3eg"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_muem4"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqmmt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp3eg"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_dp3eg")
+albedo_texture = SubResource("ViewportTexture_muem4")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -53,24 +53,24 @@ shader_parameter/height_texture_scale = 0.20800000988
 shader_parameter/height_texture_offset = Vector3(0, 0, 0.54)
 shader_parameter/height_after_glow_affect = 0.999999977648
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jbj1t"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ld40"]
 resource_local_to_scene = true
 radius = 3.0466678
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_muem4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_gqmmt"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp3eg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc10j"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_muem4")
+albedo_texture = SubResource("ViewportTexture_gqmmt")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ld40"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jscy8"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
@@ -93,24 +93,24 @@ shader_parameter/height_texture_scale = 0.20800000988
 shader_parameter/height_texture_offset = Vector3(0.263, 0, 0)
 shader_parameter/height_after_glow_affect = 0.999999977648
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gqmmt"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_pm3ni"]
 resource_local_to_scene = true
 radius = 3.0466678
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yc10j"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_y6deb"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jscy8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_yc10j")
+albedo_texture = SubResource("ViewportTexture_y6deb")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pm3ni"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wyq8"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
@@ -133,24 +133,24 @@ shader_parameter/height_texture_scale = 0.20800000988
 shader_parameter/height_texture_offset = Vector3(0.75, 0, 0.54)
 shader_parameter/height_after_glow_affect = 0.999999977648
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_y6deb"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_vxglm"]
 resource_local_to_scene = true
 radius = 3.0466678
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_og1vs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2f3dj"]
 viewport_path = NodePath("LabelQuadMesh/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wyq8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yq6so"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_og1vs")
+albedo_texture = SubResource("ViewportTexture_2f3dj")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxglm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv21b"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
@@ -230,7 +230,7 @@ script = ExtResource("2_jbj1t")
 [node name="World" type="Node3D" parent="." unique_id=2076819926]
 
 [node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.894844, 1, 15.5718155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.776062, 1, 15.422125)
 
 [node name="Monster" parent="World" unique_id=611558888 node_paths=PackedStringArray("navigation_manager", "player") instance=ExtResource("4_85g3d")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57, 0, 16)
@@ -252,10 +252,11 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.2603881, -23.392921)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08941555, -0.28497374, 0.19902182)
 
 [node name="CollisionShape3D" parent="World/Level/WallMap/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1257022023, 1328555702, 842578170) index="0" unique_id=2013022885]
-shape = SubResource("SphereShape3D_muem4")
+shape = SubResource("SphereShape3D_jbj1t")
 
 [node name="LabelQuadMesh" parent="World/Level/WallMap/InteractableComponent" index="1" unique_id=677357067]
-surface_material_override/0 = SubResource("StandardMaterial3D_gqmmt")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74400234, 0, 0.14522934)
+surface_material_override/0 = SubResource("StandardMaterial3D_dp3eg")
 
 [node name="Gates" type="Node3D" parent="World/Level" unique_id=270694422]
 
@@ -266,13 +267,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -25)
 material = SubResource("ShaderMaterial_muem4")
 
 [node name="CollisionShape3D" parent="World/Level/Gates/Gate1/Wall/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(2048521342, 1328555702, 842578170) index="0" unique_id=2013022885]
-shape = SubResource("SphereShape3D_jbj1t")
+shape = SubResource("SphereShape3D_0ld40")
 
 [node name="LabelQuadMesh" parent="World/Level/Gates/Gate1/Wall/InteractableComponent" parent_id_path=PackedInt32Array(2048521342, 1328555702) index="1" unique_id=677357067]
-surface_material_override/0 = SubResource("StandardMaterial3D_dp3eg")
+surface_material_override/0 = SubResource("StandardMaterial3D_yc10j")
 
 [node name="KeySymbol" parent="World/Level/Gates/Gate1/Wall/Key" parent_id_path=PackedInt32Array(2048521342, 2127213977) index="1" unique_id=114299881]
-surface_material_override/0 = SubResource("StandardMaterial3D_0ld40")
+surface_material_override/0 = SubResource("StandardMaterial3D_jscy8")
 
 [node name="Gate2" parent="World/Level/Gates" unique_id=1052177103 instance=ExtResource("6_a8y0u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22, 0, -35)
@@ -282,13 +283,13 @@ key_type = 2
 material = SubResource("ShaderMaterial_jbj1t")
 
 [node name="CollisionShape3D" parent="World/Level/Gates/Gate2/Wall/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1052177103, 1328555702, 842578170) index="0" unique_id=2013022885]
-shape = SubResource("SphereShape3D_gqmmt")
+shape = SubResource("SphereShape3D_pm3ni")
 
 [node name="LabelQuadMesh" parent="World/Level/Gates/Gate2/Wall/InteractableComponent" parent_id_path=PackedInt32Array(1052177103, 1328555702) index="1" unique_id=677357067]
-surface_material_override/0 = SubResource("StandardMaterial3D_jscy8")
+surface_material_override/0 = SubResource("StandardMaterial3D_og1vs")
 
 [node name="KeySymbol" parent="World/Level/Gates/Gate2/Wall/Key" parent_id_path=PackedInt32Array(1052177103, 2127213977) index="1" unique_id=114299881]
-surface_material_override/0 = SubResource("StandardMaterial3D_pm3ni")
+surface_material_override/0 = SubResource("StandardMaterial3D_2wyq8")
 
 [node name="Gate3" parent="World/Level/Gates" unique_id=678661581 instance=ExtResource("6_a8y0u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, -19)
@@ -298,13 +299,13 @@ key_type = 3
 material = SubResource("ShaderMaterial_dp3eg")
 
 [node name="CollisionShape3D" parent="World/Level/Gates/Gate3/Wall/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(678661581, 1328555702, 842578170) index="0" unique_id=2013022885]
-shape = SubResource("SphereShape3D_y6deb")
+shape = SubResource("SphereShape3D_vxglm")
 
 [node name="LabelQuadMesh" parent="World/Level/Gates/Gate3/Wall/InteractableComponent" parent_id_path=PackedInt32Array(678661581, 1328555702) index="1" unique_id=677357067]
-surface_material_override/0 = SubResource("StandardMaterial3D_2wyq8")
+surface_material_override/0 = SubResource("StandardMaterial3D_yq6so")
 
 [node name="KeySymbol" parent="World/Level/Gates/Gate3/Wall/Key" parent_id_path=PackedInt32Array(678661581, 2127213977) index="1" unique_id=114299881]
-surface_material_override/0 = SubResource("StandardMaterial3D_vxglm")
+surface_material_override/0 = SubResource("StandardMaterial3D_fv21b")
 
 [node name="Keys" type="Node3D" parent="World/Level" unique_id=1485673073]
 

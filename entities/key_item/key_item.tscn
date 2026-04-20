@@ -354,7 +354,7 @@ draw_pass_1 = SubResource("QuadMesh_i5kk3")
 
 [node name="InteractableComponent" parent="KeyInner" unique_id=1328555702 instance=ExtResource("7_vusxe")]
 unique_name_in_owner = true
-label_text = "Pick up"
+label_text = "Collect"
 
 [node name="CollisionShape3D" parent="KeyInner/InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1328555702, 842578170) index="0" unique_id=2013022885]
 shape = SubResource("SphereShape3D_6qhou")

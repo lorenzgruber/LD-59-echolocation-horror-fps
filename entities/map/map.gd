@@ -14,6 +14,48 @@ class_name Map extends Node3D
 
 @onready var echo_signal_receiver: EchoSignalReceiverComponent = $EchoSignalReceiverComponent
 
+@export var is_key_1_visible: bool = true:
+	get:
+		return is_key_1_visible
+	set(value):
+		is_key_1_visible = value
+		key_1.visible = value
+		
+@export var is_key_2_visible: bool = true:
+	get:
+		return is_key_2_visible
+	set(value):
+		is_key_2_visible = value
+		key_2.visible = value
+		
+@export var is_key_3_visible: bool = true:
+	get:
+		return is_key_3_visible
+	set(value):
+		is_key_3_visible = value
+		key_3.visible = value
+
+@export var is_lock_1_visible: bool = true:
+	get:
+		return is_lock_1_visible
+	set(value):
+		is_lock_1_visible = value
+		lock_1.visible = value
+		
+@export var is_lock_2_visible: bool = true:
+	get:
+		return is_lock_2_visible
+	set(value):
+		is_lock_2_visible = value
+		lock_2.visible = value
+
+@export var is_lock_3_visible: bool = true:
+	get:
+		return is_lock_3_visible
+	set(value):
+		is_lock_3_visible = value
+		lock_3.visible = value
+
 @export var is_echo_reactive: bool = false:
 	get:
 		return is_echo_reactive

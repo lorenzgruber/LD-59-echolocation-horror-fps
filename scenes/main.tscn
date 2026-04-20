@@ -213,10 +213,10 @@ script = ExtResource("2_jbj1t")
 [node name="World" type="Node3D" parent="." unique_id=2076819926]
 
 [node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9034195, 1, 15.279705)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.894844, 1, 15.5718155)
 
 [node name="Monster" parent="World" unique_id=611558888 node_paths=PackedStringArray("navigation_manager", "player") instance=ExtResource("4_85g3d")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -58, 0, 16)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57, 0, 16)
 navigation_manager = NodePath("../../MonsterNavigationManager")
 player = NodePath("../Player")
 

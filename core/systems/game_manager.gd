@@ -35,6 +35,7 @@ func on_key_collected(key_type: KeyItem.KeyType) -> void:
 		2: key_2_collected = true
 		3: key_3_collected = true
 	update_gates()
+	update_player_map()
 
 func on_gate_opened(key_type: Gate.KeyType) -> void:
 	match key_type:
@@ -42,6 +43,7 @@ func on_gate_opened(key_type: Gate.KeyType) -> void:
 		2: gate_2_opened = true
 		3: gate_3_opened = true
 	update_monster_navigation()
+	update_player_map()
 
 func update_gates() -> void:
 	update_gate(1, key_1_collected)
@@ -63,3 +65,11 @@ func update_monster_navigation() -> void:
 	if(gate_2_opened):
 		monster_navigation_manager.connect_area_2_and_3()
 	
+
+func update_player_map() -> void:
+	player.map.is_key_1_visible = !key_1_collected
+	player.map.is_key_2_visible = !key_2_collected
+	player.map.is_key_3_visible = !key_3_collected
+	player.map.is_lock_1_visible = !gate_1_opened
+	player.map.is_lock_2_visible = !gate_2_opened
+	player.map.is_lock_3_visible = !gate_3_opened

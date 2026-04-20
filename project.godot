@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://bk83ypkxvrpr7"
 
 EchoPingManager="*uid://cjywiv4q8m227"
 Constants="*uid://dcmiqqvgn0btf"
+FootstepManager="*uid://bs6gt15e7q8ha"
 
 [debug]
 
@@ -104,6 +105,8 @@ INTERACT={
 3d_physics/layer_5="EchoSignal"
 3d_physics/layer_6="EchoSignalReceiver"
 3d_physics/layer_7="Interactable"
+3d_physics/layer_8="Footstep"
+3d_physics/layer_9="FootstepReceiver"
 
 [physics]
 

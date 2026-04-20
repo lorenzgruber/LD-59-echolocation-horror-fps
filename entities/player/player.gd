@@ -15,15 +15,15 @@ var base_step_volume: float = 0.0
 
 const WALK_SPEED: float = 3.0
 const WALK_STEP_VOLUME_PERCENT: float = 100
-const WALK_STEP_ECHO_RADIUS: float = 2.5;
+const WALK_STEP_RANGE: float = 5.0
 
 const RUN_SPEED: float = 6.0
 const RUN_STEP_VOLUME_PERCENT: float = 250
-const RUN_STEP_ECHO_RADIUS: float = 4.5;
+const RUN_STEP_RANGE: float = 12.0;
 
 const SNEAK_SPEED: float = 1.0
 const SNEAK_STEP_VOLUME_PERCENT: float = 10
-const SNEAK_STEP_ECHO_RADIUS: float = 0.0;
+const SNEAK_STEP_RANGE: float = 0.0
 
 const MOUSE_SENSITIVITY: float = 0.001;
 const CAMERA_MAX_X_ANGLE: float = 45;
@@ -32,7 +32,7 @@ static var instance: Player = null
 
 func _ready() -> void:
 	base_step_volume = footstep_audio_player.volume_linear
-	update_footstep_volume()
+	set_state(States.WALK)
 	instance = self
 
 func _physics_process(delta: float) -> void:
@@ -78,6 +78,7 @@ func _input(event: InputEvent) -> void:
 func set_state(_state: States) -> void:
 	self.state = _state
 	update_footstep_volume()
+	update_footstep_range()
 		
 func get_move_speed() -> float:
 	if (state == States.WALK): return WALK_SPEED;
@@ -90,4 +91,11 @@ func update_footstep_volume() -> void:
 	elif (state == States.RUN): percent = RUN_STEP_VOLUME_PERCENT;
 	else: percent = SNEAK_STEP_VOLUME_PERCENT;
 	var volume_db := linear_to_db( base_step_volume * (percent / 100))
-	footstep_component.footstep_volume_db = volume_db
+	footstep_component.footstep_volume_db = volume_db;
+	
+func update_footstep_range() -> void:
+	var step_range: float;
+	if (state == States.WALK): step_range = WALK_STEP_RANGE;
+	elif (state == States.RUN): step_range = RUN_STEP_RANGE;
+	else: step_range = SNEAK_STEP_RANGE;
+	footstep_component.footstep_detection_range = step_range;

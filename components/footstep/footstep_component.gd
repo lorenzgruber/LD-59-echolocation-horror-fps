@@ -4,6 +4,9 @@ class_name FootstepComponent extends Node3D
 @export var footstep_audio_player: AudioStreamPlayer3D
 @export var footstep_volume_db: float
 
+@export var footstep_detection_range: float
+@export var is_detectable: bool
+
 var parent: Node3D;
 var prev_position: Vector3;
 var distance_travel_since_last_step := 0.0;
@@ -26,3 +29,6 @@ func play_footstep_sound() -> void:
 	footstep_audio_player.volume_db = footstep_volume_db;
 	footstep_audio_player.play();
 	distance_travel_since_last_step = 0.0;
+	
+	if (is_detectable and footstep_detection_range > 0):
+		FootstepManager.emit_footstep(parent.global_position, footstep_detection_range)

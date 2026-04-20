@@ -64,6 +64,8 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.882, -0.38)
 footstep_distance = 1.5
 footstep_audio_player = NodePath("FootstepAudioPlayer")
+footstep_detection_range = 5.0
+is_detectable = true
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="FootstepComponent" unique_id=619262945]
 unique_name_in_owner = true

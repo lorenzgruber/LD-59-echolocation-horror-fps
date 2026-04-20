@@ -310,7 +310,7 @@ echo_ping_color = 1
 
 [node name="EchoPingAudioPlayer" type="AudioStreamPlayer3D" parent="Sphere" unique_id=517826852]
 stream = ExtResource("3_3u2ct")
-max_distance = 30.0
+max_distance = 60.0
 
 [node name="AmbientHumAudioPlayer" type="AudioStreamPlayer3D" parent="Sphere" unique_id=2131332101]
 stream = ExtResource("4_3u2ct")

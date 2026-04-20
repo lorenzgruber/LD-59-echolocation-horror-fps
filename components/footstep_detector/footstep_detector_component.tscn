@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://r8r784h6kqeo"]
+
+[ext_resource type="Script" uid="uid://bcdusrboog62a" path="res://components/footstep_detector/footstep_detector_component.gd" id="1_nifd6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nifd6"]
+
+[node name="FootstepDetectorComponent" type="Node3D" unique_id=285710775]
+script = ExtResource("1_nifd6")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=480752095]
+collision_layer = 256
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1383423781]
+shape = SubResource("SphereShape3D_nifd6")

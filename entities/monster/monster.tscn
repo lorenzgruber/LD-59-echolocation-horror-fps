@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dc23srler2pqk" path="res://assets/audio/footsteps/monster_footstep-02.mp3" id="5_xlk6p"]
 [ext_resource type="AudioStream" uid="uid://byu6aamb1c1mq" path="res://assets/audio/footsteps/monster_footstep-03.mp3" id="6_86lao"]
 [ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="7_xlk6p"]
+[ext_resource type="PackedScene" uid="uid://r8r784h6kqeo" path="res://components/footstep_detector/footstep_detector_component.tscn" id="8_4t3mc"]
 [ext_resource type="AudioStream" uid="uid://bynfoum5exse2" path="res://assets/audio/monster/scream_1.wav" id="8_28eux"]
 [ext_resource type="AudioStream" uid="uid://cn5shxs4fbdpp" path="res://assets/audio/monster/scream_2.wav" id="9_ladlc"]
 [ext_resource type="AudioStream" uid="uid://bxuncu5lgfwlj" path="res://assets/audio/monster/scream_3.wav" id="10_4t3mc"]
@@ -23,6 +24,9 @@ stream_2/stream = ExtResource("6_86lao")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un211"]
 radius = 0.9
 height = 3.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4t3mc"]
+radius = 4.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c2mh0"]
 random_pitch = 1.122462
@@ -62,7 +66,18 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1
 shape = SubResource("CapsuleShape3D_un211")
 
 [node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("7_xlk6p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.547544, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="FootstepDetectorComponent" parent="." unique_id=285710775 instance=ExtResource("8_4t3mc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="PlayerDetectionArea" type="Area3D" parent="." unique_id=995838327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=1420755708]
+shape = SubResource("SphereShape3D_4t3mc")
 
 [node name="HuntLight" type="OmniLight3D" parent="." unique_id=1255420405]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2730215, 1.8930488)
@@ -71,7 +86,6 @@ light_energy = 2.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1138198179]
 target_desired_distance = 2.0
-debug_enabled = true
 
 [node name="LineOfSightOrigin" type="Marker3D" parent="." unique_id=306017212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0892928, 1.3340719)

@@ -64,13 +64,24 @@ shape = SubResource("CapsuleShape3D_un211")
 [node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("7_xlk6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.547544, 0)
 
+[node name="HuntLight" type="OmniLight3D" parent="." unique_id=1255420405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2730215, 1.8930488)
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.0
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1138198179]
 target_desired_distance = 2.0
 debug_enabled = true
 
+[node name="LineOfSightOrigin" type="Marker3D" parent="." unique_id=306017212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0892928, 1.3340719)
+
 [node name="NavigationUpdateTimer" type="Timer" parent="." unique_id=1919852413]
 wait_time = 0.5
-autostart = true
+
+[node name="HuntTimer" type="Timer" parent="." unique_id=86146006]
+wait_time = 5.0
+one_shot = true
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=1484775347]
 one_shot = true

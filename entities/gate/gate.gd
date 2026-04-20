@@ -33,7 +33,7 @@ func on_interacted() -> void:
 	if (!is_key_collected): return
 	open_gate()
 	
-func on_echo_signal_received() -> void:
+func on_echo_signal_received(_origin: Vector3) -> void:
 	print("Echo signal received by gate")
 	if (tween != null): tween.kill()
 	tween = create_tween()

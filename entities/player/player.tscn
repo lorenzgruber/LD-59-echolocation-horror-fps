@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59513026, 0)
 
 [node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=1185320935]
 unique_name_in_owner = true
-cull_mask = 1048571
+cull_mask = 3
 
 [node name="EchoPingEmitter" parent="CameraPivot" unique_id=545550957 node_paths=PackedStringArray("echo_ping_audio_player") instance=ExtResource("2_hqtel")]
 unique_name_in_owner = true

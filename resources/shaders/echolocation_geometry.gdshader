@@ -53,6 +53,6 @@ void fragment() {
 		);
 	}
 	
-	//ALBEDO = vec3(0);
-	ALBEDO = vec3(height_val);
+	ALBEDO = vec3(0);
+	//ALBEDO = vec3(height_val);
 }

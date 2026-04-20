@@ -29,7 +29,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LabelQuadMesh/SubViewport/Control/LabelContainer:modulate")
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +57,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LabelQuadMesh/SubViewport/Control/LabelContainer:modulate")
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,7 +85,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LabelQuadMesh/SubViewport/Control/LabelContainer:modulate")
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,7 +113,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LabelQuadMesh/SubViewport/Control/LabelContainer:modulate")
+tracks/0/path = NodePath("LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -162,7 +162,8 @@ transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Control" type="Control" parent="LabelQuadMesh/SubViewport" unique_id=671325147]
+[node name="LabelContainer" type="Control" parent="LabelQuadMesh/SubViewport" unique_id=671325147]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -173,7 +174,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 
-[node name="LabelContainer" type="HBoxContainer" parent="LabelQuadMesh/SubViewport/Control" unique_id=846088477]
+[node name="LabelContainerInner" type="HBoxContainer" parent="LabelQuadMesh/SubViewport/LabelContainer" unique_id=846088477]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -193,12 +194,12 @@ size_flags_vertical = 4
 theme_override_constants/separation = 48
 alignment = 1
 
-[node name="KeyPrompt" type="Control" parent="LabelQuadMesh/SubViewport/Control/LabelContainer" unique_id=1695801311]
+[node name="KeyPrompt" type="Control" parent="LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner" unique_id=1695801311]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(105, 104)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LabelQuadMesh/SubViewport/Control/LabelContainer/KeyPrompt" unique_id=1549305492]
+[node name="TextureRect" type="TextureRect" parent="LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner/KeyPrompt" unique_id=1549305492]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -216,7 +217,7 @@ texture = ExtResource("2_yp7s8")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="KeyPromptLabel" type="Label" parent="LabelQuadMesh/SubViewport/Control/LabelContainer/KeyPrompt" unique_id=307693273]
+[node name="KeyPromptLabel" type="Label" parent="LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner/KeyPrompt" unique_id=307693273]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -234,7 +235,7 @@ theme_override_fonts/font = ExtResource("3_k508k")
 theme_override_font_sizes/font_size = 64
 text = "E"
 
-[node name="Label" type="Label" parent="LabelQuadMesh/SubViewport/Control/LabelContainer" unique_id=2133683811]
+[node name="Label" type="Label" parent="LabelQuadMesh/SubViewport/LabelContainer/LabelContainerInner" unique_id=2133683811]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2

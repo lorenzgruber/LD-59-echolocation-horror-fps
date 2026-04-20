@@ -198,8 +198,3 @@ mesh = SubResource("QuadMesh_vix08")
 surface_material_override/0 = SubResource("StandardMaterial3D_yq7ol")
 
 [node name="EchoSignalReceiverComponent" parent="." unique_id=1206163352 instance=ExtResource("10_rxsem")]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=505641247]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, -0.0004272461, 0)
-visible = false
-size = Vector3(0.95581055, 0.56018066, 1)

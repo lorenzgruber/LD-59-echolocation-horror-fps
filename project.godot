@@ -40,6 +40,10 @@ Area1="Rooms accessible before finding a key"
 Area2="Rooms accesible after finding key 1"
 Area3="Rooms accesible after finding key 2"
 
+[gui]
+
+theme/custom_font="uid://ddciu3udce3rq"
+
 [input]
 
 ECHO={

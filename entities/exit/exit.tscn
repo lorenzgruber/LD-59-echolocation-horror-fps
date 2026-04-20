@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://q3jdnjgt6ssh"]
+
+[ext_resource type="PackedScene" uid="uid://bgv0gybtw35xo" path="res://components/interactable/interactable_component.tscn" id="1_44v7a"]
+[ext_resource type="Script" uid="uid://dxkvs60rtxyej" path="res://entities/exit/exit.gd" id="1_w22fd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
+shading_mode = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a4tfl"]
+resource_local_to_scene = true
+radius = 2.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6s5bo"]
+viewport_path = NodePath("LabelQuadMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8lml"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_6s5bo")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Exit" type="Node3D" unique_id=1447036924]
+script = ExtResource("1_w22fd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=565046982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_energy = 5.0
+
+[node name="Exit" type="CSGBox3D" parent="." unique_id=404267648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 5, 5)
+material = SubResource("StandardMaterial3D_y6deb")
+
+[node name="Exit2" type="CSGBox3D" parent="." unique_id=1722781248]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, 2)
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 5, 3)
+material = SubResource("StandardMaterial3D_y6deb")
+
+[node name="Exit3" type="CSGBox3D" parent="." unique_id=1645681211]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, -2)
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 5, 3)
+material = SubResource("StandardMaterial3D_y6deb")
+
+[node name="Exit4" type="CSGBox3D" parent="." unique_id=1433154357]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.49950004, 0)
+use_collision = true
+collision_mask = 0
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_y6deb")
+
+[node name="Exit5" type="CSGBox3D" parent="." unique_id=1853558733]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 4.5004997, 0)
+use_collision = true
+collision_mask = 0
+size = Vector3(3, 0.001, 3)
+material = SubResource("StandardMaterial3D_y6deb")
+
+[node name="InteractableComponent" parent="." unique_id=1328555702 instance=ExtResource("1_44v7a")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5, 0)
+label_text = "Escape"
+label_color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape3D" parent="InteractableComponent/Area3D" parent_id_path=PackedInt32Array(1328555702, 842578170) index="0" unique_id=2013022885]
+shape = SubResource("SphereShape3D_a4tfl")
+
+[node name="LabelQuadMesh" parent="InteractableComponent" index="1" unique_id=677357067]
+surface_material_override/0 = SubResource("StandardMaterial3D_o8lml")
+
+[editable path="InteractableComponent"]

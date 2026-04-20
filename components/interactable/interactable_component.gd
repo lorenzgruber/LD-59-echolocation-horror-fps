@@ -5,7 +5,8 @@ signal interacted
 @onready var area: Area3D = $Area3D
 @onready var label: Label = $%Label
 @onready var key_prompt: Control = $%KeyPrompt
-@onready var label_container: Container = $%LabelContainer
+@onready var label_container: Control = $%LabelContainer
+@onready var label_container_inner: Container = $%LabelContainerInner
 @onready var label_quad_mesh: MeshInstance3D = $LabelQuadMesh
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -14,21 +15,28 @@ signal interacted
 		return label_text
 	set(value):
 		label_text = value
-		update_label_text()
+		update_label()
 		
 @export var disabled_text: String = "Disabled":
 	get:
 		return disabled_text
 	set(value):
 		disabled_text = value
-		update_label_text()
+		update_label()
+		
+@export var label_color: Color = Color.WHITE:
+	get:
+		return label_color
+	set(value):
+		label_color = value
+		update_label()
 		
 @export var enabled: bool = true:
 	get:
 		return enabled
 	set(value):
 		enabled = value
-		update_label_text()
+		update_label()
 	
 
 var is_in_range: bool = false;
@@ -37,7 +45,7 @@ var was_interacted_with: bool = false;
 func _ready() -> void:
 	area.body_entered.connect(on_body_entered)
 	area.body_exited.connect(on_body_exited)
-	update_label_text()
+	update_label()
 
 func _input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("INTERACT") and is_in_range and !was_interacted_with and enabled):
@@ -57,7 +65,8 @@ func on_body_exited(body: Node3D) -> void:
 	animation_player.play('fade_out')
 	print("out of range")
 
-func update_label_text() -> void:
+func update_label() -> void:
 	if (label == null): return
 	label.text = label_text if enabled else disabled_text
 	key_prompt.visible = enabled
+	label_container.modulate = label_color

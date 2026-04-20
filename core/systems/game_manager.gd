@@ -5,6 +5,7 @@ extends Node
 @export var monster_navigation_manager: MonsterNavigationManager
 @export var wall_map: WallMap
 @export var player: Player
+@export var exit: Exit
 
 var key_1_collected: bool = false
 var key_2_collected: bool = false
@@ -15,6 +16,7 @@ var gate_3_opened: bool = false
 
 func _ready() -> void:
 	wall_map.collected.connect(on_wall_map_collected)
+	exit.level_exited.connect(on_level_exited)
 
 	var keys := keys_container.get_children()
 	for key : Node in keys:
@@ -73,3 +75,6 @@ func update_player_map() -> void:
 	player.map.is_lock_1_visible = !gate_1_opened
 	player.map.is_lock_2_visible = !gate_2_opened
 	player.map.is_lock_3_visible = !gate_3_opened
+	
+func on_level_exited() -> void:
+	MainUi.instance.fade_in_victory_screen()

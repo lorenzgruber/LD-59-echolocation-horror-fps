@@ -37,10 +37,16 @@ func _input(event: InputEvent) -> void:
 func fade_in_victory_screen() -> void:
 	pausable = false
 	get_tree().paused = true
+	capture_mouse = false
+	AmbientSoundManager.instance.fade_out_ambient_sound()
 	victory_screen_animation_player.play("fade_in")
 	
 func fade_in_defeat_screen() -> void:
 	defeat_screen_animation_player.play("fade_in")
+	await defeat_screen_animation_player.animation_finished
+	pausable = false
+	get_tree().paused = true
+	capture_mouse = false
 
 func set_paused(paused: bool) -> void:
 	if (!pausable): return

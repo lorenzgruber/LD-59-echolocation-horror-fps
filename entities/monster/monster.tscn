@@ -28,6 +28,9 @@ height = 3.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_4t3mc"]
 radius = 4.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_nnaoo"]
+radius = 1.0
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c2mh0"]
 random_pitch = 1.122462
 streams_count = 1
@@ -78,6 +81,15 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=1420755708]
 shape = SubResource("SphereShape3D_4t3mc")
+
+[node name="HitArea" type="Area3D" parent="." unique_id=1192726234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.257996)
+collision_layer = 1024
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea" unique_id=363860111]
+shape = SubResource("SphereShape3D_nnaoo")
+debug_color = Color(0.70196074, 0, 0, 0.41960785)
 
 [node name="HuntLight" type="OmniLight3D" parent="." unique_id=1255420405]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2730215, 1.8930488)

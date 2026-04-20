@@ -116,6 +116,8 @@ MAP={
 3d_physics/layer_7="Interactable"
 3d_physics/layer_8="Footstep"
 3d_physics/layer_9="FootstepReceiver"
+3d_physics/layer_10="PlayerHurtBox"
+3d_physics/layer_11="MonsterHitBox"
 
 [physics]
 

@@ -3,17 +3,48 @@
 [ext_resource type="PackedScene" uid="uid://dlk68f604osgy" path="res://entities/key_item/key_item.tscn" id="2_85g3d"]
 [ext_resource type="Script" uid="uid://m0kxb1d8vyl3" path="res://core/systems/monster_navigation_manager.gd" id="2_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://bwon163ox2jcm" path="res://entities/player/player.tscn" id="2_tefeu"]
+[ext_resource type="PackedScene" uid="uid://ddrl5c5yjypi" path="res://core/systems/ambient_sound_manager/ambient_sound_manager.tscn" id="3_a8y0u"]
 [ext_resource type="Material" uid="uid://cqnpm44jkdu37" path="res://resources/materials/echolocation/echolocation_walls.material" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://csmo1yyvhnm5q" path="res://entities/monster/monster.tscn" id="4_85g3d"]
 [ext_resource type="Material" uid="uid://0aqvyb6gc8l5" path="res://resources/materials/echolocation/echolocation_floor.material" id="4_eb6dy"]
 [ext_resource type="Shader" uid="uid://ckwr1wq0i7mhj" path="res://resources/shaders/cctv.gdshader" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://d30rsvrhs43bv" path="res://entities/gate/gate.tscn" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://q4f677130omi" path="res://scenes/wall_map.tscn" id="6_jbj1t"]
-[ext_resource type="AudioStream" uid="uid://dcogvon41no0w" path="res://assets/audio/ambience/478812__ianstargem__ambience-4.wav" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://o3r4j5e0jxsh" path="res://core/systems/game_manager.gd" id="6_trceg"]
 [ext_resource type="Shader" uid="uid://wyy1wcqknf2a" path="res://resources/shaders/echolocation_geometry.gdshader" id="7_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://q3jdnjgt6ssh" path="res://entities/exit/exit.tscn" id="11_muem4"]
 [ext_resource type="PackedScene" uid="uid://8uuogeisd5si" path="res://ui/main_ui.tscn" id="15_jbj1t"]
+
+[sub_resource type="Gradient" id="Gradient_1bvp3"]
+offsets = PackedFloat32Array(0, 0.52, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lquwl"]
+frequency = 0.0262
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7mycd"]
+noise = SubResource("FastNoiseLite_lquwl")
+color_ramp = SubResource("Gradient_1bvp3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
+frequency = 0.0795
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lquwl"]
+noise = SubResource("FastNoiseLite_1bvp3")
+seamless = true
+seamless_blend_skirt = 0.167
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("5_85g3d")
+shader_parameter/distort_noise = SubResource("NoiseTexture2D_7mycd")
+shader_parameter/scanline_count = 100
+shader_parameter/scanline_speed = 5.0
+shader_parameter/scanline_alpha = 1.0
+shader_parameter/noise_overlay = SubResource("NoiseTexture2D_lquwl")
+shader_parameter/noise_strength = 0.006000000285
+shader_parameter/brightness = 0.6
+shader_parameter/color_multiplier = Vector3(1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jkv2x"]
 size = Vector2(200, 200)
@@ -176,37 +207,6 @@ fog_mode = 1
 fog_light_color = Color(0.04396057, 0.09046364, 0.16796875, 1)
 fog_density = 1.0
 
-[sub_resource type="Gradient" id="Gradient_1bvp3"]
-offsets = PackedFloat32Array(0, 0.52, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lquwl"]
-frequency = 0.0262
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7mycd"]
-noise = SubResource("FastNoiseLite_lquwl")
-color_ramp = SubResource("Gradient_1bvp3")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
-frequency = 0.0795
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lquwl"]
-noise = SubResource("FastNoiseLite_1bvp3")
-seamless = true
-seamless_blend_skirt = 0.167
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
-shader = ExtResource("5_85g3d")
-shader_parameter/distort_noise = SubResource("NoiseTexture2D_7mycd")
-shader_parameter/scanline_count = 100
-shader_parameter/scanline_speed = 5.0
-shader_parameter/scanline_alpha = 1.0
-shader_parameter/noise_overlay = SubResource("NoiseTexture2D_lquwl")
-shader_parameter/noise_strength = 0.006000000285
-shader_parameter/brightness = 0.6
-shader_parameter/color_multiplier = Vector3(1, 1, 1)
-shader_parameter/alpha = 1.0
-
 [node name="Main" type="Node3D" unique_id=2114469542]
 
 [node name="GameManager" type="Node" parent="." unique_id=1878232699 node_paths=PackedStringArray("keys_container", "gates_container", "monster_navigation_manager", "wall_map", "player", "exit")]
@@ -221,13 +221,28 @@ exit = NodePath("../World/Level/Exit")
 [node name="MonsterNavigationManager" type="Node" parent="." unique_id=2089908425]
 script = ExtResource("2_jbj1t")
 
+[node name="AmbientSoundManager" parent="." unique_id=567610688 instance=ExtResource("3_a8y0u")]
+
+[node name="ScreenSpaceShaders" type="CanvasLayer" parent="." unique_id=1177919585]
+
+[node name="CCTV" type="ColorRect" parent="ScreenSpaceShaders" unique_id=1970675418]
+material = SubResource("ShaderMaterial_1bvp3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" parent="." unique_id=254328839 instance=ExtResource("15_jbj1t")]
+
 [node name="World" type="Node3D" parent="." unique_id=2076819926]
 
-[node name="Player" parent="World" unique_id=447243112 instance=ExtResource("2_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.776062, 1, 15.422125)
+[node name="Player" parent="World" unique_id=447243112 node_paths=PackedStringArray("monster") instance=ExtResource("2_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.223938, 1, 15.422125)
+monster = NodePath("../Monster")
 
 [node name="Monster" parent="World" unique_id=611558888 node_paths=PackedStringArray("navigation_manager", "player") instance=ExtResource("4_85g3d")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57, 0, 16)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11, 0, 15)
 navigation_manager = NodePath("../../MonsterNavigationManager")
 player = NodePath("../Player")
 
@@ -2615,25 +2630,6 @@ material = ExtResource("3_o6xl0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=382546998]
 environment = SubResource("Environment_h2yge")
-
-[node name="Sound" type="Node" parent="." unique_id=113021516]
-
-[node name="DarkAmbience" type="AudioStreamPlayer" parent="Sound" unique_id=2087790957]
-stream = ExtResource("6_tefeu")
-volume_db = -10.0
-autoplay = true
-
-[node name="ScreenSpaceShaders" type="CanvasLayer" parent="." unique_id=1177919585]
-
-[node name="CCTV" type="ColorRect" parent="ScreenSpaceShaders" unique_id=1970675418]
-material = SubResource("ShaderMaterial_1bvp3")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="UI" parent="." unique_id=254328839 instance=ExtResource("15_jbj1t")]
 
 [editable path="World/Level/WallMap"]
 [editable path="World/Level/WallMap/InteractableComponent"]

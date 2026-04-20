@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ddrl5c5yjypi"]
+
+[ext_resource type="Script" uid="uid://c28v5vnirrey7" path="res://core/systems/ambient_sound_manager/ambient_sound_manager.gd" id="1_j0fs4"]
+[ext_resource type="AudioStream" uid="uid://dcogvon41no0w" path="res://assets/audio/ambience/478812__ianstargem__ambience-4.wav" id="2_tpuj6"]
+
+[node name="AmbientSoundManager" type="Node" unique_id=567610688]
+process_mode = 3
+script = ExtResource("1_j0fs4")
+
+[node name="DarkAmbiencePlayer" type="AudioStreamPlayer" parent="." unique_id=1418856565]
+stream = ExtResource("2_tpuj6")
+volume_db = -10.0
+autoplay = true

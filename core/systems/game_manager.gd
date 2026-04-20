@@ -17,6 +17,7 @@ var gate_3_opened: bool = false
 func _ready() -> void:
 	wall_map.collected.connect(on_wall_map_collected)
 	exit.level_exited.connect(on_level_exited)
+	player.death.connect(on_player_death)
 
 	var keys := keys_container.get_children()
 	for key : Node in keys:
@@ -78,3 +79,6 @@ func update_player_map() -> void:
 	
 func on_level_exited() -> void:
 	MainUi.instance.fade_in_victory_screen()
+
+func on_player_death() -> void:
+	MainUi.instance.fade_in_defeat_screen()	

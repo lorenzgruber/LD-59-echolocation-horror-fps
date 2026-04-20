@@ -1,6 +1,6 @@
-extends CharacterBody3D
+class_name Monster extends CharacterBody3D
 
-enum States {IDLE, PATROL, INVESTIGATE, HUNT_INITIAL, HUNT}
+enum States {IDLE, PATROL, INVESTIGATE, HUNT_INITIAL, HUNT, KILL}
 var state: States
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
@@ -11,6 +11,7 @@ var state: States
 @onready var echo_signal_receiver: EchoSignalReceiverComponent = $EchoSignalReceiverComponent
 @onready var footstep_detector: FootstepDetectorComponent = $FootstepDetectorComponent
 @onready var player_detection_area: Area3D = $PlayerDetectionArea
+@onready var hit_area: Area3D = $HitArea
 @onready var long_scream_player: AudioStreamPlayer3D = $LongScreamAudioPlayer
 @onready var short_scream_player: AudioStreamPlayer3D = $ShortScreamAudioPlayer
 @onready var line_of_sight_origin: Marker3D = $LineOfSightOrigin
@@ -21,9 +22,7 @@ var state: States
 
 var current_room: int
 var prev_room: int = -1
-
 var last_player_sound_origin: Vector3
-
 var eyes_material : StandardMaterial3D
 
 const WALK_SPEED: float = 2.0
@@ -32,8 +31,9 @@ const RUN_SPEED: float = 4.5
 
 const WALK_ANIMATION_SPEED: float = 0.5
 const FAST_WALK_ANIMATION_SPEED: float = 0.7
-const RUN_ANIMATION_SPEED: float = 1.2 # TODO: adjust this
-const IDLE_ANIMATION_SPEED: float = 1.0
+const RUN_ANIMATION_SPEED: float = 1.2
+const ATTACK_ANIMATION_SPEED: float = 1.5
+const DEFAULT_ANIMATION_SPEED: float = 1.0
 
 func _ready() -> void:
 	navigation_update_timer.timeout.connect(set_navigation_target_to_player)
@@ -42,11 +42,12 @@ func _ready() -> void:
 	echo_signal_receiver.echo_signal_received.connect(on_player_sound_detected)
 	footstep_detector.footstep_detected.connect(on_player_sound_detected)
 	player_detection_area.body_entered.connect(on_player_detection_area_entered)
+	hit_area.area_entered.connect(on_hit_area_entered)
 	eyes_material = (get_node("MonsterInherited/Armature/Skeleton3D/weirdo_low") as MeshInstance3D).get_surface_override_material(1)
 	set_state(States.PATROL)
 	
 func _physics_process(delta: float) -> void:
-	if (state == States.IDLE): return;
+	if (state == States.IDLE or state == States.KILL): return;
 	
 	var next_position := navigation_agent.get_next_path_position()
 
@@ -83,8 +84,12 @@ func update_animation_speed() -> void:
 	if (state == States.PATROL): speed = WALK_ANIMATION_SPEED;
 	elif (state == States.INVESTIGATE): speed = FAST_WALK_ANIMATION_SPEED;
 	elif (state == States.HUNT_INITIAL or state == States.HUNT): speed = RUN_ANIMATION_SPEED;
-	else: speed = IDLE_ANIMATION_SPEED;
+	elif(state == States.KILL): speed = ATTACK_ANIMATION_SPEED
+	else: speed = DEFAULT_ANIMATION_SPEED;
 	animation_player.speed_scale = speed
+
+func on_hit_area_entered(_area: Area3D) -> void:
+	set_state(States.KILL)
 
 func on_player_detection_area_entered(_player: Node3D) -> void:
 	on_player_sound_detected(_player.global_position)
@@ -106,6 +111,7 @@ func on_player_sound_detected(origin: Vector3) -> void:
 func has_line_of_sight_to_player() -> bool:
 	var space_state := get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(line_of_sight_origin.global_position, player.global_position)
+	query.exclude = [self]
 	var result := space_state.intersect_ray(query)
 	return result.collider == player
 	
@@ -122,6 +128,8 @@ func idle_for_seconds(seconds: float, next_state: States) -> void:
 	set_state(next_state)
 	
 func set_state(_state: States) -> void:
+	if(state == States.KILL): return
+	
 	on_state_exit(state)
 	self.state = _state
 	on_state_enter(state)
@@ -129,7 +137,12 @@ func set_state(_state: States) -> void:
 func on_state_enter(_state: States) -> void:
 	update_animation_speed()
 	
-	if (_state == States.IDLE):
+	if (state == States.KILL):
+		debug_log("entered IDLE state")
+		set_eyes_glowing(true)
+		play_kill_animation()
+	
+	elif (_state == States.IDLE):
 		debug_log("entered IDLE state")
 		set_eyes_glowing(false)
 		animation_player.play('Idle', 0.2)
@@ -180,6 +193,22 @@ func set_next_patrol_room() -> void:
 	prev_room = current_room
 	current_room = next_room	
 	navigation_agent.target_position = navigation_manager.get_room_position(current_room)
+	
+func play_kill_animation() -> void:
+	animation_player.play('Idle', 0.2)
+	
+	var tween := create_tween()
+	tween.set_parallel()
+	
+	var dir_to_player := global_position.direction_to(player.global_position)
+	var y_angle := atan2(dir_to_player.x, dir_to_player.z)
+	var x_angle := deg_to_rad(15.0)
+	
+	tween.tween_property(self, "rotation:y", y_angle, Constants.DEATH_ANIMATION_DURATION).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "rotation:x", x_angle, Constants.DEATH_ANIMATION_DURATION).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.chain()
+	
+	tween.tween_callback(func() -> void: animation_player.play('Attack', 0.2))
 	
 func debug_log(value: Variant) -> void:
 	print("[Monster] " + value)

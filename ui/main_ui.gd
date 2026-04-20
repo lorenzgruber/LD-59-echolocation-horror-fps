@@ -28,6 +28,10 @@ signal start_game_pressed
 @onready var tutorial_movement_hint: Control = $%MovementHint
 @onready var tutorial_map_hint_1: Control = $%MapHint
 @onready var tutorial_map_hint_2: Control = $%MapHint2
+@onready var run_hint: Control = $%RunHint
+@onready var sneak_hint: Control = $%SneakHint
+@onready var hiding_hint: Control = $%HidingHint
+var tutorial_tween: Tween
 
 static var instance: MainUi
 
@@ -61,14 +65,21 @@ func setup_main_level() -> void:
 	defeat_screen_container.visible = false
 
 func show_level_start_tutorial() -> void:
-	var echo_signal_tween := display_tutorial_hint(tutorial_echo_signal_hint)
-	await echo_signal_tween.finished
+	display_tutorial_hint(tutorial_echo_signal_hint)
+	await tutorial_tween.finished
 	display_tutorial_hint(tutorial_movement_hint)
 
 func show_map_tutorial() -> void:
-	var map_hint_1_tween := display_tutorial_hint(tutorial_map_hint_1)
-	await map_hint_1_tween.finished
+	display_tutorial_hint(tutorial_map_hint_1)
+	await tutorial_tween.finished
 	display_tutorial_hint(tutorial_map_hint_2)
+	
+func show_monster_tutorial() -> void:
+	display_tutorial_hint(run_hint)
+	await tutorial_tween.finished
+	display_tutorial_hint(sneak_hint)
+	await tutorial_tween.finished
+	display_tutorial_hint(hiding_hint)
 		
 func fade_in_title_screen() -> void: 
 	AmbientSoundManager.instance.transition_master_bus_volume()
@@ -103,14 +114,21 @@ func fade_in_screen_transition() -> void:
 func fade_out_screen_transition() -> void:
 	screen_transition_animation_player.play("fade_out")
 
-func display_tutorial_hint(hint: Control) -> Tween:
-	var tween := create_tween()
+func display_tutorial_hint(hint: Control) -> void:
+	hide_tutorial_hints()
+	if (tutorial_tween != null): tutorial_tween.kill()
+	tutorial_tween = create_tween()
 	
 	hint.modulate = Color.TRANSPARENT
 	hint.visible = true
 	
-	tween.tween_property(hint, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_interval(5.0)
-	tween.tween_property(hint, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(hint, "visible", false, 0)
-	return tween
+	tutorial_tween.tween_property(hint, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tutorial_tween.tween_interval(5.0)
+	tutorial_tween.tween_property(hint, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tutorial_tween.tween_property(hint, "visible", false, 0)
+
+func hide_tutorial_hints() -> void:
+	tutorial_echo_signal_hint.visible = false
+	tutorial_movement_hint.visible = false
+	tutorial_map_hint_1.visible = false
+	tutorial_map_hint_2.visible = false

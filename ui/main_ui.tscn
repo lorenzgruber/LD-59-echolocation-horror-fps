@@ -770,7 +770,7 @@ visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "press SPACE to emit echo signals"
 
 [node name="MovementHint" type="HBoxContainer" parent="TutorialOverlays/MarginContainer" unique_id=718282202]
@@ -783,22 +783,21 @@ theme_override_constants/separation = 32
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "press"
 
-[node name="KeyInputs" type="HBoxContainer" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=1144285168]
+[node name="KeyPrompts" type="HBoxContainer" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=1144285168]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 11
 alignment = 1
 
-[node name="KeyPrompt" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=849985367]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 62)
+[node name="KeyPrompt" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts" unique_id=849985367]
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt" unique_id=1161555638]
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt" unique_id=1161555638]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -806,17 +805,17 @@ anchor_left = 0.34
 anchor_top = 0.5
 anchor_right = 0.34
 anchor_bottom = 0.5
-offset_left = -35.018623
-offset_top = -35.0
-offset_right = 55.239983
-offset_bottom = 35.0
+offset_left = -31.780006
+offset_top = -23.0
+offset_right = 45.11068
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ti1yg")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt" unique_id=763412056]
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt" unique_id=763412056]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -824,22 +823,21 @@ anchor_left = 0.224
 anchor_top = 0.32500002
 anchor_right = 0.41000003
 anchor_bottom = 0.35700002
-offset_left = 2.6640224
-offset_top = -6.1499786
-offset_right = 27.260021
-offset_bottom = 35.86602
+offset_left = 0.59200096
+offset_top = -5.6499786
+offset_right = 25.188
+offset_bottom = 36.36602
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "W"
 
-[node name="KeyPrompt2" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=859117052]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 62)
+[node name="KeyPrompt2" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts" unique_id=1933174776]
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt2" unique_id=733372128]
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt2" unique_id=1909272417]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -847,17 +845,17 @@ anchor_left = 0.34
 anchor_top = 0.5
 anchor_right = 0.34
 anchor_bottom = 0.5
-offset_left = -35.018623
-offset_top = -35.0
-offset_right = 55.239983
-offset_bottom = 35.0
+offset_left = -31.780006
+offset_top = -23.0
+offset_right = 45.11068
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ti1yg")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt2" unique_id=1426202616]
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt2" unique_id=1621302202]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -865,22 +863,21 @@ anchor_left = 0.224
 anchor_top = 0.32500002
 anchor_right = 0.41000003
 anchor_bottom = 0.35700002
-offset_left = 2.6640224
-offset_top = -6.1499786
-offset_right = 27.260021
-offset_bottom = 35.86602
+offset_left = 0.59200096
+offset_top = -5.6499786
+offset_right = 25.188
+offset_bottom = 36.36602
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "A"
 
-[node name="KeyPrompt3" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=310667645]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 62)
+[node name="KeyPrompt3" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts" unique_id=1609994295]
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt3" unique_id=1532528016]
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt3" unique_id=614270141]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -888,17 +885,17 @@ anchor_left = 0.34
 anchor_top = 0.5
 anchor_right = 0.34
 anchor_bottom = 0.5
-offset_left = -35.018623
-offset_top = -35.0
-offset_right = 55.239983
-offset_bottom = 35.0
+offset_left = -31.780006
+offset_top = -23.0
+offset_right = 45.11068
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ti1yg")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt3" unique_id=1330493379]
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt3" unique_id=236719077]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -906,22 +903,21 @@ anchor_left = 0.224
 anchor_top = 0.32500002
 anchor_right = 0.41000003
 anchor_bottom = 0.35700002
-offset_left = 2.6640224
-offset_top = -6.1499786
-offset_right = 27.260021
-offset_bottom = 35.86602
+offset_left = 0.59200096
+offset_top = -5.6499786
+offset_right = 25.188
+offset_bottom = 36.36602
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "S"
 
-[node name="KeyPrompt4" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs" unique_id=1043097972]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 62)
+[node name="KeyPrompt4" type="Control" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts" unique_id=2003663628]
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt4" unique_id=246310355]
+[node name="TextureRect" type="TextureRect" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt4" unique_id=390310126]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -929,17 +925,17 @@ anchor_left = 0.34
 anchor_top = 0.5
 anchor_right = 0.34
 anchor_bottom = 0.5
-offset_left = -35.018623
-offset_top = -35.0
-offset_right = 55.239983
-offset_bottom = 35.0
+offset_left = -31.780006
+offset_top = -23.0
+offset_right = 45.11068
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ti1yg")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyInputs/KeyPrompt4" unique_id=415291986]
+[node name="KeyPromptLabel" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint/KeyPrompts/KeyPrompt4" unique_id=33941778]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -947,21 +943,21 @@ anchor_left = 0.224
 anchor_top = 0.32500002
 anchor_right = 0.41000003
 anchor_bottom = 0.35700002
-offset_left = 2.6640224
-offset_top = -6.1499786
-offset_right = 27.260021
-offset_bottom = 35.86602
+offset_left = 0.59200096
+offset_top = -5.6499786
+offset_right = 25.188
+offset_bottom = 36.36602
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "D"
 
 [node name="Label2" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=886396803]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "to move"
 
 [node name="MapHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=391997453]
@@ -970,7 +966,7 @@ visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "hold TAB to view map"
 
 [node name="MapHint2" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=2001752274]
@@ -979,11 +975,37 @@ visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_186kx")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Hint: map is reveiled by echo signal"
 
-[node name="DebugOverlays" type="Control" parent="." unique_id=1272345181]
+[node name="RunHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=1241139251]
+unique_name_in_owner = true
 visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 24
+text = "hold SHIFT to run"
+
+[node name="SneakHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=1375837916]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 24
+text = "hold CTRL to sneak"
+
+[node name="HidingHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=347295406]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_186kx")
+theme_override_font_sizes/font_size = 24
+text = "Hint: the monster can't hear you when sneaking"
+
+[node name="DebugOverlays" type="Control" parent="." unique_id=1272345181]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -991,18 +1013,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DebugMiniMap" parent="DebugOverlays" unique_id=1145789005 instance=ExtResource("2_hlo7n")]
-visible = false
-layout_mode = 1
-offset_left = 1880.0
-offset_top = 1040.0
-offset_right = 1880.0
-offset_bottom = 1040.0
-
-[node name="SubViewport" parent="DebugOverlays/DebugMiniMap/MarginContainer/SubViewportContainer" parent_id_path=PackedInt32Array(1145789005, 1823242780) index="0" unique_id=217250501]
-render_target_update_mode = 0
-
 [node name="DebugFpsCounter" parent="DebugOverlays" unique_id=356024401 instance=ExtResource("1_3lvfr")]
 layout_mode = 1
 
-[editable path="DebugOverlays/DebugMiniMap"]
+[node name="DebugMiniMap" parent="DebugOverlays" unique_id=1145789005 instance=ExtResource("2_hlo7n")]
+visible = false
+layout_mode = 1

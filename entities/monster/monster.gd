@@ -3,6 +3,8 @@ class_name Monster extends CharacterBody3D
 enum States {IDLE, PATROL, INVESTIGATE, HUNT_INITIAL, HUNT, KILL}
 var state: States
 
+signal hunt_started
+
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var navigation_update_timer: Timer = $NavigationUpdateTimer
 @onready var hunt_timer: Timer = $HuntTimer
@@ -17,8 +19,13 @@ var state: States
 @onready var line_of_sight_origin: Marker3D = $LineOfSightOrigin
 @onready var hunt_light: OmniLight3D = $HuntLight
 
-@export var navigation_manager: MonsterNavigationManager
 @export var player: Player;
+@export var navigation_manager: MonsterNavigationManager
+
+# the long hunt startup is only used oncde in the first scripted encounter with the monster
+# it gives the player a head start so it is less likely they die on their first hunt
+@onready var hunt_startup_timer: Timer = $HuntStartupTimer
+@export var use_long_hunt_startup: bool = false
 
 var current_room: int
 var prev_room: int = -1
@@ -38,6 +45,7 @@ const DEFAULT_ANIMATION_SPEED: float = 1.0
 func _ready() -> void:
 	navigation_update_timer.timeout.connect(set_navigation_target_to_player)
 	hunt_timer.timeout.connect(on_hunt_timer_timeout)
+	hunt_startup_timer.timeout.connect(on_hunt_startup_timer_timeout)
 	navigation_agent.target_reached.connect(on_navigation_target_reached)
 	echo_signal_receiver.echo_signal_received.connect(on_player_sound_detected)
 	footstep_detector.footstep_detected.connect(on_player_sound_detected)
@@ -73,9 +81,14 @@ func on_hunt_timer_timeout() -> void:
 	if (state != States.HUNT_INITIAL): return
 	set_state(States.HUNT)
 	
+func on_hunt_startup_timer_timeout() -> void:
+	use_long_hunt_startup = false
+	update_animation_speed()
+	
 func get_move_speed() -> float:
 	if (state == States.PATROL): return WALK_SPEED;
 	elif (state == States.INVESTIGATE): return FAST_WALK_SPEED;
+	elif (state == States.HUNT_INITIAL and !hunt_startup_timer.is_stopped()): return 1.0;
 	elif (state == States.HUNT_INITIAL or state == States.HUNT): return RUN_SPEED;
 	else: return 0;
 	
@@ -100,10 +113,10 @@ func on_player_sound_detected(origin: Vector3) -> void:
 	var initiate_hunt := distance_to_player <= 30.0 and has_line_of_sight_to_player()
 	
 	if(initiate_hunt and state != States.HUNT_INITIAL and state != States.HUNT):
-		await idle_for_seconds(1.5, States.HUNT_INITIAL)
+		await idle_for_seconds(1.0, States.HUNT_INITIAL)
 	
 	elif (state == States.PATROL or state == States.IDLE):
-		await idle_for_seconds(1.5, States.INVESTIGATE)
+		await idle_for_seconds(1.0, States.INVESTIGATE)
 
 	elif (state == States.INVESTIGATE or state == States.HUNT):
 		navigation_agent.target_position = last_player_sound_origin
@@ -117,7 +130,7 @@ func has_line_of_sight_to_player() -> bool:
 	
 func on_navigation_target_reached() -> void:
 	if (state == States.PATROL or state == States.INVESTIGATE or state == States.HUNT):
-		idle_for_seconds(1.5, States.PATROL)
+		idle_for_seconds(1.0, States.PATROL)
 
 func idle_for_seconds(seconds: float, next_state: States) -> void:
 	if (idle_timer.is_stopped()):
@@ -167,6 +180,10 @@ func on_state_enter(_state: States) -> void:
 		long_scream_player.play()
 		navigation_update_timer.start()
 		hunt_timer.start()
+		hunt_started.emit()
+		if (use_long_hunt_startup):
+			hunt_startup_timer.start()
+			animation_player.speed_scale = 0.3
 		
 	elif (_state == States.HUNT):
 		debug_log("entered HUNT state")
@@ -209,6 +226,14 @@ func play_kill_animation() -> void:
 	tween.chain()
 	
 	tween.tween_callback(func() -> void: animation_player.play('Attack', 0.2))
+	
+func set_scripted_target_room(room: int) -> void:
+	state = States.PATROL	
+	update_animation_speed()
+	set_eyes_glowing(false)
+	animation_player.play('Walk')
+	var target_room_position := navigation_manager.get_room_position(room)
+	navigation_agent.target_position = target_room_position
 	
 func debug_log(value: Variant) -> void:
 	print("[Monster] " + value)

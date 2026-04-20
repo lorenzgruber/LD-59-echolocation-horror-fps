@@ -109,6 +109,10 @@ wait_time = 0.5
 wait_time = 5.0
 one_shot = true
 
+[node name="HuntStartupTimer" type="Timer" parent="." unique_id=2061961023]
+wait_time = 3.0
+one_shot = true
+
 [node name="IdleTimer" type="Timer" parent="." unique_id=1484775347]
 one_shot = true
 

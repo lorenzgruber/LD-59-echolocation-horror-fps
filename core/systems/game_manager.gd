@@ -5,7 +5,13 @@ class_name GameManager extends Node
 @export var monster_navigation_manager: MonsterNavigationManager
 @export var wall_map: WallMap
 @export var player: Player
+@export var monster: Monster
 @export var exit: Exit
+
+# Scripted events
+@export var monster_spawn_marker: Marker3D
+@export var monster_spawn_trigger: Area3D
+var first_hunt_started: bool = false
 
 var key_1_collected: bool = false
 var key_2_collected: bool = false
@@ -21,6 +27,8 @@ func _ready() -> void:
 	wall_map.collected.connect(on_wall_map_collected)
 	exit.level_exited.connect(on_level_exited)
 	player.death.connect(on_player_death)
+	monster_spawn_trigger.body_entered.connect(on_monster_spawn_triggered)
+	monster.hunt_started.connect(on_monster_hunt_started)
 
 	var keys := keys_container.get_children()
 	for key : Node in keys:
@@ -89,3 +97,12 @@ func on_level_exited() -> void:
 
 func on_player_death() -> void:
 	MainUi.instance.fade_in_defeat_screen()	
+
+func on_monster_spawn_triggered(_player: Node3D) -> void:
+	monster.global_position = monster_spawn_marker.global_position
+	monster.set_scripted_target_room(5)
+	monster.use_long_hunt_startup = true
+
+func on_monster_hunt_started() -> void:
+	if (first_hunt_started): return
+	MainUi.instance.show_monster_tutorial()	

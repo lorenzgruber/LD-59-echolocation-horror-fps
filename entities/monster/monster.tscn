@@ -6,8 +6,12 @@
 [ext_resource type="AudioStream" uid="uid://cg83fw6jx0qm1" path="res://assets/audio/footsteps/monster_footstep-01.mp3" id="4_40dka"]
 [ext_resource type="AudioStream" uid="uid://dc23srler2pqk" path="res://assets/audio/footsteps/monster_footstep-02.mp3" id="5_xlk6p"]
 [ext_resource type="AudioStream" uid="uid://byu6aamb1c1mq" path="res://assets/audio/footsteps/monster_footstep-03.mp3" id="6_86lao"]
-[ext_resource type="AudioStream" uid="uid://d0v1v0lx6ylls" path="res://assets/audio/footsteps/812538__yoyamen1212__big-monster-stomp.wav" id="7_hpky2"]
 [ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="7_xlk6p"]
+[ext_resource type="AudioStream" uid="uid://bynfoum5exse2" path="res://assets/audio/monster/scream_1.wav" id="8_28eux"]
+[ext_resource type="AudioStream" uid="uid://cn5shxs4fbdpp" path="res://assets/audio/monster/scream_2.wav" id="9_ladlc"]
+[ext_resource type="AudioStream" uid="uid://bxuncu5lgfwlj" path="res://assets/audio/monster/scream_3.wav" id="10_4t3mc"]
+[ext_resource type="AudioStream" uid="uid://bccsnbc4hm3d4" path="res://assets/audio/monster/scream_4.wav" id="11_nnaoo"]
+[ext_resource type="AudioStream" uid="uid://bcvh1263codim" path="res://assets/audio/ambience/138408__robinhood76__03480-static-white-noise.wav" id="12_ladlc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_28eux"]
 random_pitch = 1.122462
@@ -19,6 +23,18 @@ stream_2/stream = ExtResource("6_86lao")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un211"]
 radius = 0.9
 height = 3.5
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c2mh0"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("8_28eux")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q63bs"]
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("9_ladlc")
+stream_1/stream = ExtResource("10_4t3mc")
+stream_2/stream = ExtResource("11_nnaoo")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40dka"]
 emission_enabled = true
@@ -32,7 +48,7 @@ script = ExtResource("1_un211")
 [node name="MonsterInherited" parent="." unique_id=958800708 instance=ExtResource("1_4k2ca")]
 
 [node name="FootstepComponent" parent="." unique_id=1123308240 node_paths=PackedStringArray("footstep_audio_player") instance=ExtResource("3_o1qde")]
-footstep_distance = 1.0
+footstep_distance = 1.2
 footstep_audio_player = NodePath("FootstepAudioPlayer")
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="FootstepComponent" unique_id=979111143]
@@ -49,14 +65,29 @@ shape = SubResource("CapsuleShape3D_un211")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.547544, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1138198179]
+target_desired_distance = 2.0
+debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="." unique_id=1919852413]
 wait_time = 0.5
 autostart = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1983729924]
-stream = ExtResource("7_hpky2")
-bus = &"Footstep Monster"
+[node name="IdleTimer" type="Timer" parent="." unique_id=1484775347]
+one_shot = true
+
+[node name="LongScreamAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1983729924]
+stream = SubResource("AudioStreamRandomizer_c2mh0")
+volume_db = 3.0
+
+[node name="ShortScreamAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1931096721]
+stream = SubResource("AudioStreamRandomizer_q63bs")
+
+[node name="StaticAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1071061487]
+stream = ExtResource("12_ladlc")
+volume_db = -15.0
+pitch_scale = 0.37
+max_distance = 30.0
+bus = &"Static Noise"
 
 [node name="DebugSphere" type="CSGSphere3D" parent="." unique_id=2015887179]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4108908, 0)

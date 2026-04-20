@@ -2,27 +2,42 @@ extends Node
 
 @export var keys_container: Node3D
 @export var gates_container: Node3D
+@export var monster_navigation_manager: MonsterNavigationManager
 
 var key_1_collected: bool = false
 var key_2_collected: bool = false
 var key_3_collected: bool = false
+var gate_1_opened: bool = false
+var gate_2_opened: bool = false
+var gate_3_opened: bool = false
 
 func _ready() -> void:
-	var children := keys_container.get_children()
-	for child : Node in children:
-		if (child is not KeyItem): continue
-		( child as KeyItem ).key_collected.connect(on_key_collected)
+	var keys := keys_container.get_children()
+	for key : Node in keys:
+		if (key is not KeyItem): continue
+		( key as KeyItem ).key_collected.connect(on_key_collected)
+		
+	var gates := gates_container.get_children()
+	for gate : Node in gates:
+		if (gate is not Gate): continue
+		( gate as Gate ).gate_opened.connect(on_gate_opened)
 
 func _process(delta: float) -> void:
 	pass
 
-func on_key_collected(key_type: int) -> void:
+func on_key_collected(key_type: KeyItem.KeyType) -> void:
 	match key_type:
 		1: key_1_collected = true
 		2: key_2_collected = true
 		3: key_3_collected = true
-		
 	update_gates()
+
+func on_gate_opened(key_type: Gate.KeyType) -> void:
+	match key_type:
+		1: gate_1_opened = true
+		2: gate_2_opened = true
+		3: gate_3_opened = true
+	update_monster_navigation()
 
 func update_gates() -> void:
 	update_gate(1, key_1_collected)
@@ -37,4 +52,10 @@ func update_gate(key_type: int, key_collected: bool) -> void:
 	if (index < 0): return
 	var gate := gates_container.get_child(index) as Gate
 	gate.is_key_collected = key_collected
+	
+func update_monster_navigation() -> void:
+	if(gate_1_opened):
+		monster_navigation_manager.connect_area_1_and_2()
+	if(gate_2_opened):
+		monster_navigation_manager.connect_area_2_and_3()
 	

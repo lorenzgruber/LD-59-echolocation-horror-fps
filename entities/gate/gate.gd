@@ -2,6 +2,8 @@ class_name Gate extends Node3D
 
 enum KeyType {KEY_1 = 1, KEY_2 = 2, KEY_3 = 3}
 
+signal gate_opened(key_type: KeyType)
+
 @onready var interactable_component: InteractableComponent = $%InteractableComponent
 @onready var echo_signal_receiver: EchoSignalReceiverComponent = $%EchoSignalReceiverComponent
 @onready var key_symbol: MeshInstance3D = $%KeySymbol
@@ -51,6 +53,7 @@ func open_gate() -> void:
 	print("Gate opened")
 	animation_player.play("open")
 	echo_signal_receiver.enabled = false
+	gate_opened.emit(key_type)
 
 func update_interactable_component() -> void:
 	if (interactable_component == null): return

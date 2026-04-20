@@ -22,7 +22,14 @@ cutoff_hz = 8002.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_fxi2g"]
 resource_name = "LowPassFilter"
-cutoff_hz = 800.0
+cutoff_hz = 8040.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_l8cm0"]
+resource_name = "Reverb"
+room_size = 0.83
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_gcjdw"]
+resource_name = "Distortion"
 
 [resource]
 bus/1/name = &"Footsteps"
@@ -49,7 +56,11 @@ bus/3/name = &"Static Noise"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = 0.0
+bus/3/volume_db = -15.204631
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectLowPassFilter_fxi2g")
 bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectReverb_l8cm0")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectDistortion_gcjdw")
+bus/3/effect/2/enabled = true

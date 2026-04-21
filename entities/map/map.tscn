@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://csvh4g2ybwft7" path="res://assets/textures/map/key_square.png" id="6_2krni"]
 [ext_resource type="Texture2D" uid="uid://puicuxkayfvo" path="res://assets/textures/map/lock_circle.png" id="7_vix08"]
 [ext_resource type="Texture2D" uid="uid://dnfxv4u8l44ug" path="res://assets/textures/map/lock_square.png" id="8_mueq4"]
+[ext_resource type="Texture2D" uid="uid://di4armqkuqyvm" path="res://assets/textures/map/lock_triangle.png" id="9_2krni"]
 [ext_resource type="Texture2D" uid="uid://xwuxm1ikyec4" path="res://assets/textures/map/player_marker_base.png" id="10_edmgv"]
 [ext_resource type="PackedScene" uid="uid://bxv0opk3hrwvp" path="res://components/echo_signal_receiver/echo_signal_receiver_component.tscn" id="10_rxsem"]
 [ext_resource type="Texture2D" uid="uid://cbv15t8prn8h4" path="res://assets/textures/map/player_marker_outline.png" id="11_2krni"]
@@ -96,15 +97,12 @@ albedo_texture = ExtResource("7_vix08")
 emission_enabled = true
 emission = Color(0, 1, 0.2980392, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vlwf4"]
-load_path = "res://.godot/imported/lock_circle.png-9fa7246de400cc79546bdf1a91a7bbbd.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc0nq"]
 resource_local_to_scene = true
 render_priority = 1
 transparency = 1
 albedo_color = Color(0, 0, 0, 1)
-albedo_texture = SubResource("CompressedTexture2D_vlwf4")
+albedo_texture = ExtResource("9_2krni")
 emission_enabled = true
 emission = Color(0, 0.6509804, 1, 1)
 

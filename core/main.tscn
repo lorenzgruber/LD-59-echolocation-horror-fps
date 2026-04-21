@@ -7,7 +7,6 @@
 
 [node name="main" type="Node" unique_id=1379091810]
 script = ExtResource("1_xiose")
-debug_mode = true
 
 [node name="ScreenSpaceShaderManager" parent="." unique_id=960731647 instance=ExtResource("2_csopv")]
 

@@ -109,6 +109,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_qry5k"]
 resource_name = "fade_in"
@@ -149,6 +161,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_186kx"]
@@ -749,6 +773,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialOverlays" unique_id=57168715]
 layout_mode = 1
@@ -762,6 +787,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_bottom = 64
 
 [node name="EchoSignalHint" type="Label" parent="TutorialOverlays/MarginContainer" unique_id=832492151]
@@ -777,6 +803,7 @@ text = "press SPACE to emit echo signals"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="TutorialOverlays/MarginContainer/MovementHint" unique_id=2049305653]
@@ -1006,6 +1033,7 @@ theme_override_font_sizes/font_size = 24
 text = "Hint: the monster can't hear you when sneaking"
 
 [node name="DebugOverlays" type="Control" parent="." unique_id=1272345181]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1014,6 +1042,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DebugFpsCounter" parent="DebugOverlays" unique_id=356024401 instance=ExtResource("1_3lvfr")]
+visible = false
 layout_mode = 1
 
 [node name="DebugMiniMap" parent="DebugOverlays" unique_id=1145789005 instance=ExtResource("2_hlo7n")]

@@ -1,6 +1,8 @@
 class_name MainUi extends CanvasLayer
 
 signal start_game_pressed
+signal try_again_pressed
+signal main_menu_pressed
 
 # Title screen
 @onready var title_screen_container: Control = $TitleScreen
@@ -24,13 +26,14 @@ signal start_game_pressed
 @onready var screen_transition_animation_player: AnimationPlayer = $%ScreenTransitionAnimationPlayer
 
 # Tutorial overlays
+@onready var tutorial_overlays_container: Control = $TutorialOverlays
 @onready var tutorial_echo_signal_hint: Control = $%EchoSignalHint
 @onready var tutorial_movement_hint: Control = $%MovementHint
 @onready var tutorial_map_hint_1: Control = $%MapHint
 @onready var tutorial_map_hint_2: Control = $%MapHint2
-@onready var run_hint: Control = $%RunHint
-@onready var sneak_hint: Control = $%SneakHint
-@onready var hiding_hint: Control = $%HidingHint
+@onready var tutorial_run_hint: Control = $%RunHint
+@onready var tutorial_sneak_hint: Control = $%SneakHint
+@onready var tutorial_hiding_hint: Control = $%HidingHint
 var tutorial_tween: Tween
 
 static var instance: MainUi
@@ -51,6 +54,8 @@ func _ready() -> void:
 	instance = self
 	capture_mouse = false
 	start_game_button.pressed.connect(on_start_game_pressed)
+	try_again_button.pressed.connect(on_try_again_pressed)
+	main_menu_button.pressed.connect(on_main_menu_pressed)
 	
 func _input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("PAUSE")):
@@ -63,6 +68,15 @@ func setup_main_level() -> void:
 	title_screen_container.visible = false
 	victory_screen_container.visible = false
 	defeat_screen_container.visible = false
+	tutorial_overlays_container.visible = true
+
+func setup_title_screen() -> void:
+	pausable = false
+	capture_mouse = false
+	title_screen_container.visible = false
+	victory_screen_container.visible = false
+	defeat_screen_container.visible = false
+	tutorial_overlays_container.visible = false
 
 func show_level_start_tutorial() -> void:
 	display_tutorial_hint(tutorial_echo_signal_hint)
@@ -75,24 +89,26 @@ func show_map_tutorial() -> void:
 	display_tutorial_hint(tutorial_map_hint_2)
 	
 func show_monster_tutorial() -> void:
-	display_tutorial_hint(run_hint)
+	display_tutorial_hint(tutorial_run_hint)
 	await tutorial_tween.finished
-	display_tutorial_hint(sneak_hint)
+	display_tutorial_hint(tutorial_sneak_hint)
 	await tutorial_tween.finished
-	display_tutorial_hint(hiding_hint)
+	display_tutorial_hint(tutorial_hiding_hint)
 		
 func fade_in_title_screen() -> void: 
 	AmbientSoundManager.instance.transition_master_bus_volume()
+	AmbientSoundManager.instance.transition_ambience_bus_volume()
 	title_screen_animation_player.play("fade_in")
 	
 func fade_in_victory_screen() -> void:
 	pausable = false
 	get_tree().paused = true
 	capture_mouse = false
-	AmbientSoundManager.instance.fade_out_ambient_sound()
+	AmbientSoundManager.instance.transition_ambience_bus_volume(0.0, -60.0, 3.0)
 	victory_screen_animation_player.play("fade_in")
 	
 func fade_in_defeat_screen() -> void:
+	tutorial_overlays_container.visible = false
 	defeat_screen_animation_player.play("fade_in")
 	await defeat_screen_animation_player.animation_finished
 	pausable = false
@@ -100,13 +116,20 @@ func fade_in_defeat_screen() -> void:
 	capture_mouse = false
 
 func set_paused(paused: bool) -> void:
-	if (!pausable): return
+	if (paused and !pausable): return
 	get_tree().paused = paused
 	pause_overlay.visible = paused
 
 
 func on_start_game_pressed() -> void:
 	start_game_pressed.emit()
+
+func on_try_again_pressed() -> void:
+	try_again_pressed.emit()
+
+func on_main_menu_pressed() -> void:
+	main_menu_pressed.emit()
+	
 	
 func fade_in_screen_transition() -> void:
 	screen_transition_animation_player.play("fade_in")
@@ -132,3 +155,6 @@ func hide_tutorial_hints() -> void:
 	tutorial_movement_hint.visible = false
 	tutorial_map_hint_1.visible = false
 	tutorial_map_hint_2.visible = false
+	tutorial_run_hint.visible = false
+	tutorial_sneak_hint.visible = false
+	tutorial_hiding_hint.visible = false

@@ -99,6 +99,7 @@ func on_player_death() -> void:
 	MainUi.instance.fade_in_defeat_screen()	
 
 func on_monster_spawn_triggered(_player: Node3D) -> void:
+	if (!key_1_collected): return
 	monster.global_position = monster_spawn_marker.global_position
 	monster.set_scripted_target_room(5)
 	monster.use_long_hunt_startup = true

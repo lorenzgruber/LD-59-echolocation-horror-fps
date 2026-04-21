@@ -1042,9 +1042,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DebugFpsCounter" parent="DebugOverlays" unique_id=356024401 instance=ExtResource("1_3lvfr")]
-visible = false
 layout_mode = 1
 
 [node name="DebugMiniMap" parent="DebugOverlays" unique_id=1145789005 instance=ExtResource("2_hlo7n")]
-visible = false
 layout_mode = 1

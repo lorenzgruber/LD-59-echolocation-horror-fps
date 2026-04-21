@@ -60,6 +60,7 @@ func on_gate_opened(key_type: Gate.KeyType) -> void:
 		1: gate_1_opened = true
 		2: gate_2_opened = true
 		3: gate_3_opened = true
+		
 	update_monster_navigation()
 	update_player_map()
 
@@ -75,15 +76,20 @@ func update_gate(key_type: int, key_collected: bool) -> void:
 	)
 	if (index < 0): return
 	var gate := gates_container.get_child(index) as Gate
+	
+	if (key_type == KeyItem.KeyType.KEY_3 and key_collected):
+		monster.set_scripted_target_room(1)
+	
 	gate.is_key_collected = key_collected
 	
 func update_monster_navigation() -> void:
 	if(gate_1_opened):
 		monster_navigation_manager.connect_area_1_and_2()
+		monster.set_scripted_target_room(8)
 	if(gate_2_opened):
 		monster_navigation_manager.connect_area_2_and_3()
+		monster.set_scripted_target_room(16)
 	
-
 func update_player_map() -> void:
 	player.map.is_key_1_visible = !key_1_collected
 	player.map.is_key_2_visible = !key_2_collected
@@ -107,3 +113,4 @@ func on_monster_spawn_triggered(_player: Node3D) -> void:
 func on_monster_hunt_started() -> void:
 	if (first_hunt_started): return
 	MainUi.instance.show_monster_tutorial()	
+	first_hunt_started = true

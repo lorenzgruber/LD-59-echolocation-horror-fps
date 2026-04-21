@@ -195,7 +195,7 @@ func on_state_exit(_state: States) -> void:
 		navigation_update_timer.stop()
 	
 	elif (_state == States.HUNT):
-		long_scream_player.play() # TODO: use another sound
+		long_scream_player.play()
 
 func set_eyes_glowing(glowing: bool) -> void:
 	var final_emission_strength: float = 3.0 if glowing else 0.0
@@ -228,6 +228,7 @@ func play_kill_animation() -> void:
 	tween.tween_callback(func() -> void: animation_player.play('Attack', 0.2))
 	
 func set_scripted_target_room(room: int) -> void:
+	if (state != States.PATROL and state != States.INVESTIGATE and state != States.IDLE): return
 	state = States.PATROL	
 	update_animation_speed()
 	set_eyes_glowing(false)

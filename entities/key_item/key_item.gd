@@ -9,6 +9,7 @@ signal key_collected(key_type: KeyType)
 @onready var mesh: CSGMesh3D = $%Mesh
 @onready var sphere_light: OmniLight3D = $%Mesh/OmniLight3D
 @onready var particles: GPUParticles3D = $%GPUParticles3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var key_type: KeyType = KeyType.KEY_1
 
@@ -27,7 +28,8 @@ func _ready() -> void:
 	
 func on_interacted() -> void:
 	key_collected.emit(key_type)
-	# TODO: add vfx/sfx
+	animation_player.play("fade_out")
+	await animation_player.animation_finished
 	queue_free()
 	
 func get_color() -> Color:

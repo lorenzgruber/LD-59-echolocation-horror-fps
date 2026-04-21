@@ -100,7 +100,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%StartGameButton:modulate")
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/VBoxContainer/StartGameButton:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -120,6 +120,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%QuitButton:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%ToggleFullscreenButton1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qry5k"]
@@ -153,7 +177,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%StartGameButton:modulate")
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/VBoxContainer/StartGameButton:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -173,6 +197,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%QuitButton:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.525, 3.525, 5.525),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%ToggleFullscreenButton1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.525, 4.5250006, 6.5250006),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_186kx"]
@@ -556,7 +604,11 @@ layout_mode = 2
 texture = ExtResource("2_x3h8h")
 expand_mode = 5
 
-[node name="StartGameButton" type="Button" parent="TitleScreen/MarginContainer/VBoxContainer" unique_id=1386334482]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/MarginContainer/VBoxContainer" unique_id=483356174]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StartGameButton" type="Button" parent="TitleScreen/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1386334482]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -572,9 +624,53 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_qry5k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_x3h8h")
 text = "Start"
 
+[node name="QuitButton" type="Button" parent="TitleScreen/MarginContainer/VBoxContainer/VBoxContainer" unique_id=716081719]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.1640625, 0.1640625, 0.1640625, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3lvfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hlo7n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x3h8h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qry5k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_x3h8h")
+text = "Quit"
+
 [node name="TitleScreenAnimationPlayer" type="AnimationPlayer" parent="TitleScreen" unique_id=678788492]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_186kx")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TitleScreen" unique_id=1207620430]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -296.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+
+[node name="ToggleFullscreenButton1" type="Button" parent="TitleScreen/MarginContainer2" unique_id=1937883393]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.1640625, 0.1640625, 0.1640625, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3lvfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hlo7n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x3h8h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qry5k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_x3h8h")
+text = "Toggle Fullscreen"
 
 [node name="VictoryScreen" type="Control" parent="." unique_id=1690372248]
 visible = false
@@ -743,6 +839,34 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Paused"
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseOverlay" unique_id=1256344222]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -296.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+
+[node name="ToggleFullscreenButton2" type="Button" parent="PauseOverlay/MarginContainer" unique_id=821617117]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.1640625, 0.1640625, 0.1640625, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3lvfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hlo7n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x3h8h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qry5k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_x3h8h")
+text = "Toggle Fullscreen"
 
 [node name="ScreenTransition" type="Control" parent="." unique_id=2065556922]
 visible = false

@@ -8,6 +8,8 @@ signal main_menu_pressed
 @onready var title_screen_container: Control = $TitleScreen
 @onready var title_screen_animation_player: AnimationPlayer = $%TitleScreenAnimationPlayer
 @onready var start_game_button: Button = $%StartGameButton
+@onready var quite_game_button: Button = $%QuitButton
+@onready var toggle_fullscreen_button_1: Button = $%ToggleFullscreenButton1
 
 # Victory screen
 @onready var victory_screen_container: Control = $VictoryScreen
@@ -21,6 +23,7 @@ signal main_menu_pressed
 
 # Pause overlay
 @onready var pause_overlay: Control = $PauseOverlay
+@onready var toggle_fullscreen_button_2: Button = $%ToggleFullscreenButton2
 
 #Screen transition
 @onready var screen_transition_animation_player: AnimationPlayer = $%ScreenTransitionAnimationPlayer
@@ -54,8 +57,11 @@ func _ready() -> void:
 	instance = self
 	capture_mouse = false
 	start_game_button.pressed.connect(on_start_game_pressed)
+	quite_game_button.pressed.connect(on_quit_pressed)
 	try_again_button.pressed.connect(on_try_again_pressed)
 	main_menu_button.pressed.connect(on_main_menu_pressed)
+	toggle_fullscreen_button_1.pressed.connect(toggle_fullscreen)
+	toggle_fullscreen_button_2.pressed.connect(toggle_fullscreen)
 	
 func _input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("PAUSE")):
@@ -158,3 +164,11 @@ func hide_tutorial_hints() -> void:
 	tutorial_run_hint.visible = false
 	tutorial_sneak_hint.visible = false
 	tutorial_hiding_hint.visible = false
+
+func toggle_fullscreen() -> void:
+	var mode := DisplayServer.window_get_mode()
+	var is_window: bool = mode != DisplayServer.WINDOW_MODE_FULLSCREEN
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_window else DisplayServer.WINDOW_MODE_WINDOWED)
+
+func on_quit_pressed() -> void:
+	get_tree().quit()
